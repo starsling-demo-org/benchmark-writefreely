@@ -6,11 +6,9 @@ name: Build container image, publish as GitHub-package
 # documentation.
 
 on:
-  push:
-    branches: [ main, develop ]
-    # Publish semver tags as releases.
-    tags:
-      - 'v*.*.*'
+  # bench-only: run on each PR into starsling/develop; no push trigger.
+  pull_request:
+    branches: [ starsling/develop ]
 
 env:
   # Use docker.io for Docker Hub if empty
@@ -21,7 +19,7 @@ env:
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: starsling-ubuntu-24.04
     permissions:
       contents: read
       packages: write
