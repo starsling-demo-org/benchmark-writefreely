@@ -1,7 +1,7 @@
 FROM --platform=$BUILDPLATFORM tonistiigi/xx:1.6.1 AS xx
 
-# Build image: runs on the build machine; the Go binary is cross-compiled for the target (no CPU emulation).
-FROM --platform=$BUILDPLATFORM golang:1.25-alpine3.22 AS build
+# Build images run on the build machine; the Go binary is cross-compiled for the target (no CPU emulation).
+FROM --platform=$BUILDPLATFORM golang:1.25-alpine3.22 AS base
 COPY --from=xx / /
 
 LABEL org.opencontainers.image.source="https://github.com/writefreely/writefreely"
@@ -12,22 +12,26 @@ RUN apk -U upgrade \
     && npm install -g less less-plugin-clean-css \
     && mkdir -p /go/src/github.com/writefreely/writefreely
 
-ARG TARGETPLATFORM
-RUN xx-apk add --no-cache gcc musl-dev && xx-go --wrap
-
 WORKDIR /go/src/github.com/writefreely/writefreely
-
-COPY . .
-
-RUN cat ossl_legacy.cnf > /etc/ssl/openssl.cnf
 
 ENV GO111MODULE=on
 ENV NODE_OPTIONS=--openssl-legacy-provider
+
+# UI (CSS and the editor's JS): the same for every CPU, so this stage is built once for all platforms.
+FROM base AS ui
+COPY . .
+RUN cat ossl_legacy.cnf > /etc/ssl/openssl.cnf
+RUN make ui
+
+FROM base AS build
+ARG TARGETPLATFORM
+RUN xx-apk add --no-cache gcc musl-dev && xx-go --wrap
 # Go turns cgo off when cross-compiling unless asked; SQLite needs it (as in the native build).
 ENV CGO_ENABLED=1
+COPY . .
+COPY --from=ui /go/src/github.com/writefreely/writefreely/static ./static
 
 RUN make build \
-    && make ui \
     && xx-verify --static cmd/writefreely/writefreely \
     && mkdir /stage \
     && cp -R /go/bin \
