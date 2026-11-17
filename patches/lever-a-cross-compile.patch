@@ -1,0 +1,41 @@
+diff --git a/Dockerfile b/Dockerfile
+index 6b92196..4c7b470 100644
+--- a/Dockerfile
++++ b/Dockerfile
+@@ -1,14 +1,20 @@
+-# Build image
+-FROM golang:1.25-alpine3.22 AS build
++FROM --platform=$BUILDPLATFORM tonistiigi/xx:1.6.1 AS xx
++
++# Build image: runs on the build machine; the Go binary is cross-compiled for the target (no CPU emulation).
++FROM --platform=$BUILDPLATFORM golang:1.25-alpine3.22 AS build
++COPY --from=xx / /
+ 
+ LABEL org.opencontainers.image.source="https://github.com/writefreely/writefreely"
+ LABEL org.opencontainers.image.description="WriteFreely is a clean, minimalist publishing platform made for writers. Start a blog, share knowledge within your organization, or build a community around the shared act of writing."
+ 
+ RUN apk -U upgrade \
+-    && apk add --no-cache nodejs npm make g++ git \
++    && apk add --no-cache nodejs npm make g++ git clang lld \
+     && npm install -g less less-plugin-clean-css \
+     && mkdir -p /go/src/github.com/writefreely/writefreely
+ 
++ARG TARGETPLATFORM
++RUN xx-apk add --no-cache gcc musl-dev && xx-go --wrap
++
+ WORKDIR /go/src/github.com/writefreely/writefreely
+ 
+ COPY . .
+@@ -17,9 +23,12 @@ RUN cat ossl_legacy.cnf > /etc/ssl/openssl.cnf
+ 
+ ENV GO111MODULE=on
+ ENV NODE_OPTIONS=--openssl-legacy-provider
++# Go turns cgo off when cross-compiling unless asked; SQLite needs it (as in the native build).
++ENV CGO_ENABLED=1
+ 
+ RUN make build \
+     && make ui \
++    && xx-verify --static cmd/writefreely/writefreely \
+     && mkdir /stage \
+     && cp -R /go/bin \
+       /go/src/github.com/writefreely/writefreely/templates \
