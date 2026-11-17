@@ -130,7 +130,7 @@ Each cell is the whole wait for that merge and links to its run.
 6. **Check.** Replays are compared job by job with upstream's own runs for the same commit, and every sample's test verdicts, coverage and cache restores are read from its own job logs.
 
 - **Control configuration.** Each round also replayed the event on StarSling runners with the CI unchanged, as an internal control. It is not part of this comparison, and its samples are not shown in the tables on this page; they are in the data files under `benchmark/`.
-- **Default branch.** The default branch is `develop`.
+- **Default branch.** Upstream's default branch is `develop`.
 - The fixes were measured one at a time from patch files before the agent PRs were opened; the full benchmark ran after both PRs merged. Outside the bench-only CI setup, the measured trees are exact: the unchanged CI equals upstream `5d1bc057` (git tree `ef89d9cf`), and the CI with agent PRs equals the merged agent PRs (git tree `e5d36ffa`). Tree comparison: [experiments/p5c/TREES.md](https://github.com/starsling-demo-org/benchmark-writefreely/blob/bench/control/experiments/p5c/TREES.md).
 - **Runner sizes.** GitHub `ubuntu-24.04-4core` (4 vCPU, 16 GiB) and StarSling `starsling-ubuntu-24.04` (4 vCPU, 16 GiB). StarSling's 4 vCPU runners can burst to 5 vCPU and 32 GB RAM (Afterburner); GitHub's 4-core runners have 16 GB.
 - **Upstream reference (context only; not like-for-like; not the headline).** What upstream sees today: a median 21.1 min per merge to the default branch on upstream's own GitHub runners (n=13, most recent comparable merges to the default branch within the last 60 days; warm Docker layer caches likely, many commits; standard runners; includes registry push; not a like-for-like replay).
