@@ -1,0 +1,34 @@
+{
+  "name": "starsling-whole-pipeline-benchmark",
+  "version": "0.1.0",
+  "description": "Replay a public project's own CI on GitHub-hosted runners and StarSling Runners, with and without StarSling's agent PRs, and publish the results.",
+  "private": true,
+  "license": "MIT",
+  "type": "module",
+  "bin": {
+    "bench": "./src/cli.ts"
+  },
+  "scripts": {
+    "bench": "node src/cli.ts",
+    "build": "tsdown",
+    "check": "biome check --write .",
+    "lint": "biome ci --error-on-warnings .",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@actions/core": "3.0.1",
+    "fast-xml-parser": "^5.12.0",
+    "yaml": "2.9.1"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.5.15",
+    "@types/node": "24.19.2",
+    "tsdown": "0.23.2",
+    "typescript": "7.0.2",
+    "vitest": "4.1.11"
+  },
+  "engines": {
+    "node": ">=24.0.0"
+  }
+}

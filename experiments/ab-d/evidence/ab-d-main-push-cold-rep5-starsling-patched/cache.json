@@ -1,0 +1,32 @@
+{
+  "cacheEvents": [
+    {
+      "cacheKey": "buildkit-gha",
+      "requestedRestoreKeys": [],
+      "matchedKey": null,
+      "hitKind": "miss",
+      "sourceRef": "unknown",
+      "buildkit": {
+        "done": 14,
+        "cached": 0,
+        "error": 0,
+        "imported": true,
+        "exported": false
+      }
+    },
+    {
+      "cacheKey": "buildkit-gha",
+      "requestedRestoreKeys": [],
+      "matchedKey": null,
+      "hitKind": "miss",
+      "sourceRef": "unknown",
+      "buildkit": {
+        "done": 22,
+        "cached": 0,
+        "error": 0,
+        "imported": false,
+        "exported": true
+      }
+    }
+  ]
+}

@@ -1,0 +1,362 @@
+diff --git a/.github/workflows/CI.yml b/.github/workflows/CI.yml
+index 666dc38e..ad9542f1 100644
+--- a/.github/workflows/CI.yml
++++ b/.github/workflows/CI.yml
+@@ -27,71 +27,100 @@ jobs:
+     if: github.repository == 'DefinitelyTyped/DefinitelyTyped'
+ 
+     outputs:
+-      matrix: ${{ steps.matrix.outputs.matrix }}
++      # test (shard 1) runs without waiting for this job; test-rest takes shards 2..N of fan-out PRs.
++      rest: ${{ steps.matrix.outputs.rest }}
++      shards: ${{ steps.matrix.outputs.shards }}
+ 
+     steps:
+       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+         with:
+-          # Need this to be able to inquire about origin/master
+-          filter: blob:none # https://github.blog/2020-12-21-get-up-to-speed-with-partial-clone-and-shallow-clone/
+-          fetch-depth: 0 # Default is 1; need to set to 0 to get the benefits of blob:none.
++          # HEAD^1 (the merge base for PR merge commits) is all the diff needs. Materialize only root files,
++          # scripts/ and package.json files; the tested packages are added after install.
++          fetch-depth: 2
++          sparse-checkout-cone-mode: false
++          sparse-checkout: |
++            /*
++            !/*/
++            /.github/
++            /scripts/
++            /types/**/package.json
++            /types/**/ts[0-9]*/
+       - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+         with:
+           node-version: '24'
+ 
+-      - uses: pnpm/action-setup@ea17c68df8912ef543352723c149a84f56e3d413 # v6.1.0
+-
+       - id: matrix
+         run: |
+           if [ "${{ github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' }}" == "true" ]; then
+             TESTS=all
+           else
+-            TESTS=$(pnpm ls --depth -1 --parseable --filter '...@types/**[HEAD^1]' | wc -)
++            TESTS=$(./scripts/ci-matrix-count.sh)
+           fi
+           MATRIX=$(node ./scripts/get-ci-matrix $TESTS)
+           echo $MATRIX
+-          echo "matrix=$MATRIX" >> "$GITHUB_OUTPUT"
++          echo "rest=$(jq -c '{include: [.include[] | select(.shardId > 1)]}' <<<"$MATRIX")" >> "$GITHUB_OUTPUT"
++          echo "shards=$(jq '.include | length' <<<"$MATRIX")" >> "$GITHUB_OUTPUT"
+ 
+   test:
+     runs-on: ubuntu-latest
+     if: github.repository == 'DefinitelyTyped/DefinitelyTyped'
+-    needs: setup-matrix
+-
+-    strategy:
+-      matrix: ${{ fromJson(needs.setup-matrix.outputs.matrix) }}
+-      fail-fast: false
++    # Shard 1 starts at once (no `needs: setup-matrix`): it computes the shard count itself with the same script,
++    # so setup-matrix is off the critical path. Shards 2..N of fan-out PRs run in test-rest.
++    outputs:
++      # test-all's own result: dangerbot (fan-out PRs) waits on it, not on the folded scripts type check.
++      testall: ${{ steps.testall.outcome }}
+ 
+-    steps:
++    steps: &test-steps
+       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+         with:
+-          # Need this to be able to inquire about origin/master
+-          filter: blob:none # https://github.blog/2020-12-21-get-up-to-speed-with-partial-clone-and-shallow-clone/
+-          fetch-depth: 0 # Default is 1; need to set to 0 to get the benefits of blob:none.
++          # HEAD^1 (the merge base for PR merge commits) is all the diff needs. Materialize only root files,
++          # scripts/ and package.json files; the tested packages are added after install.
++          fetch-depth: 2
++          sparse-checkout-cone-mode: false
++          sparse-checkout: |
++            /*
++            !/*/
++            /.github/
++            /scripts/
++            /types/**/package.json
++            /types/**/ts[0-9]*/
+       - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+         with:
+           node-version: '24'
+ 
+       # forbid symlinks
+       - name: 'Pre-run validation'
++        # sparse checkout: check the committed tree itself (mode 120000 = symlink), which covers every path
+         run: |
+-          symlinks="$(find . -type l)"
++          symlinks="$(git ls-files -s | awk '$1=="120000" {print $4}')"
+           if [[ -n "$symlinks" ]]; then
+             printf "Aborting: symlinks found:\n%s" "$symlinks"; exit 1
+           fi
+ 
++      - name: Shard count (shard 1 only)
++        id: shard
++        if: ${{ !matrix.shardCount }}
++        run: |
++          if [ "${{ github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' }}" == "true" ]; then
++            TESTS=all
++          else
++            TESTS=$(./scripts/ci-matrix-count.sh)
++          fi
++          echo "count=$(node ./scripts/get-ci-matrix $TESTS | jq '.include | length')" >> "$GITHUB_OUTPUT"
++
+       - uses: pnpm/action-setup@ea17c68df8912ef543352723c149a84f56e3d413 # v6.1.0
+ 
+-      - name: Get pnpm cache info
+-        id: pnpm-cache
++      # `scripts` type check, folded into test shard 1 (was a separate ubuntu-slim job that repeated checkout,
++      # node and pnpm setup). The scripts closure installs into scripts/node_modules before the workspace is
++      # narrowed (its @types links resolve to the full workspace, as before); tsc runs on a spare core during test-all.
++      - name: Install scripts closure (shard 1)
++        id: scripts-install
++        if: ${{ !matrix.shardCount }}
+         run: |
+-          echo "store=$(pnpm store path)" >> $GITHUB_OUTPUT
+-
+-      - name: Restore pnpm cache
+-        uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+-        with:
+-          path: ${{ steps.pnpm-cache.outputs.store }}
+-          key: ${{ runner.os }}-pnpm-store-cache-
+-          restore-keys: ${{ runner.os }}-pnpm-store-cache-
++          pnpm install --filter '{./scripts}...'
++          # every workspace dir node_modules links to (e.g. @types/node -> types/node)
++          dirs=$(find scripts/node_modules -type l -path '*/@types/*' -exec readlink -f {} + 2>/dev/null | sed -n "s#^$PWD/##p" | grep '^types/' | sort -u || true)
++          if [ -n "$dirs" ]; then printf '/%s/\n' $dirs | git sparse-checkout add --stdin; fi
+ 
+       - run: ./scripts/pnpm-install.sh
+         name: pnpm install (filtered)
+@@ -101,12 +130,29 @@ jobs:
+         name: pnpm install
+         if: ${{ github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' }}
+ 
++      - name: Materialize the tested packages
++        run: |
++          if git diff --name-only HEAD^1 | grep -q -E 'types/(react|prop-types|scheduler)/|^attw\.json$' \
++             || git diff --diff-filter=DR --name-only HEAD^1 | grep -q 'package.json' \
++             || [ "${{ github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' }}" == "true" ]; then
++            git sparse-checkout disable; exit 0
++          fi
++          dirs=$(pnpm ls --depth Infinity --parseable --filter '...@types/**[HEAD^1]...' | grep -v node_modules | sed "s#^$PWD/##" | grep '^types/' | sort -u || true)
++          printf '/%s/\n' $dirs | git sparse-checkout add --stdin
++
+       - run: pnpm ls
+ 
+-      - run: pnpm run test-all --diffBase HEAD^1 --shardCount ${{ matrix.shardCount }} --shardId ${{ matrix.shardId }}
++      - name: Start scripts type check (shard 1, background)
++        id: scripts-tsc
++        if: ${{ !matrix.shardCount && steps.scripts-install.outcome == 'success' }}
++        run: |
++          ( set +e; cd scripts; pnpm exec tsc -p . > "$RUNNER_TEMP/scripts-tsc.log" 2>&1; echo $? > "$RUNNER_TEMP/scripts-tsc.rc" ) < /dev/null > /dev/null 2>&1 &
++
++      - id: testall
++        run: pnpm run test-all --diffBase HEAD^1 --shardCount ${{ matrix.shardCount || steps.shard.outputs.count }} --shardId ${{ matrix.shardId || 1 }}
+         if: ${{ !(github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') }}
+ 
+-      - run: pnpm run test-all --selection all --shardCount ${{ matrix.shardCount }} --shardId ${{ matrix.shardId }}
++      - run: pnpm run test-all --selection all --shardCount ${{ matrix.shardCount || steps.shard.outputs.count }} --shardId ${{ matrix.shardId || 1 }}
+         if: ${{ github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' }}
+ 
+       - name: Get suggestions dir
+@@ -117,19 +163,58 @@ jobs:
+       - name: Upload suggestions
+         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+         with:
+-          name: suggestions_${{ matrix.shardId }}_${{ matrix.shardCount }}
++          name: suggestions_${{ matrix.shardId || 1 }}_${{ matrix.shardCount || steps.shard.outputs.count }}
+           if-no-files-found: ignore
+           include-hidden-files: true
+           path: ${{ steps.suggestions-dir.outputs.path }}
+           retention-days: 1
+         if: ${{ github.event_name == 'pull_request' }}
+ 
++      # 1-shard PRs: run Danger here (risk is a root devDependency the install above already linked, and this job's
++      # suggestionsDir is the only suggestions source), instead of a separate dangerbot job after test.
++      - name: 'Run Danger'
++        if: ${{ github.event_name == 'pull_request' && !matrix.shardCount && steps.shard.outputs.count == '1' }}
++        env:
++          # See https://github.com/danger/danger-js/issues/1042
++          DANGER_GITHUB_API_BASE_URL: 'https://api.github.com'
++        # Danger failing (for example through rate-limiting) shouldn't fail the build
++        run: |
++          # Exposing this token is safe because the user of it has no other public repositories
++          # and has no permission to modify this repository. See #62638 for the discussion.
++          TOKEN='fixture-public-token-redacted'
++          TOKEN+='fixture-suffix-redacted'
++          DANGER_GITHUB_API_TOKEN=$TOKEN pnpm danger ci || $( exit 0 )
++
++      - name: Type-check scripts (tsc -p ./scripts)
++        if: ${{ always() && !matrix.shardCount && steps.scripts-tsc.outcome == 'success' }}
++        timeout-minutes: 10
++        # last step: a scripts type error fails the job but never skips upload/danger above (upstream: scripts is its own job)
++        run: |
++          while [ ! -s "$RUNNER_TEMP/scripts-tsc.rc" ]; do sleep 0.2; done
++          cat "$RUNNER_TEMP/scripts-tsc.log"
++          exit "$(cat "$RUNNER_TEMP/scripts-tsc.rc")"
++
++  test-rest:
++    runs-on: ubuntu-latest
++    if: github.repository == 'DefinitelyTyped/DefinitelyTyped' && needs.setup-matrix.outputs.shards != '1'
++    needs: setup-matrix
++
++    strategy:
++      matrix: ${{ fromJson(needs.setup-matrix.outputs.rest) }}
++      fail-fast: false
++
++    steps: *test-steps
++
+   dangerbot:
+     runs-on: ubuntu-slim
+-    if: github.repository == 'DefinitelyTyped/DefinitelyTyped' && github.event_name == 'pull_request'
++    # Fan-out PRs only (1-shard PRs run Danger inside test).
++    # upstream: dangerbot needs every test shard; a scripts type error (folded into test shard 1) must not skip it.
++    if: ${{ !cancelled() && github.repository == 'DefinitelyTyped/DefinitelyTyped' && github.event_name == 'pull_request' && needs.setup-matrix.outputs.shards != '1' && needs.test-rest.result == 'success' && needs.test.outputs.testall == 'success' }}
+ 
+     needs:
++      - setup-matrix
+       - test
++      - test-rest
+ 
+     steps:
+       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+@@ -157,12 +242,3 @@ jobs:
+           TOKEN+='fixture-suffix-redacted'
+           DANGER_GITHUB_API_TOKEN=$TOKEN pnpm danger ci || $( exit 0 )
+ 
+-  scripts:
+-    runs-on: ubuntu-slim
+-    if: github.repository == 'DefinitelyTyped/DefinitelyTyped'
+-
+-    steps:
+-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+-      - uses: ./.github/actions/setup-for-scripts
+-
+-      - run: pnpm tsc -p ./scripts
+diff --git a/scripts/ci-matrix-count.sh b/scripts/ci-matrix-count.sh
+new file mode 100755
+index 00000000..29a192ee
+--- /dev/null
++++ b/scripts/ci-matrix-count.sh
+@@ -0,0 +1,29 @@
++#!/bin/bash
++# Prints the number of packages `pnpm ls --depth -1 --parseable --filter '...@types/**[HEAD^1]'` would list,
++# for get-ci-matrix. Fast path: changed @types projects plus their dependents matched by NAME (every version
++# dir of a dependency name counts) is an upper bound on pnpm's set, read with git + jq only. When that bound
++# is <= 100 the shard count is provably pnpm's (1 shard) and pnpm is never started; above 100 the real pnpm
++# count is used, so fan-out PRs get exactly today's matrix.
++set -euo pipefail
++t=$(mktemp -d); trap 'rm -rf "$t"' EXIT
++git diff --name-only HEAD^1 -- types/ > "$t/changed"
++git ls-files -z -- ':(glob)types/**/package.json' | xargs -0 jq -c '{dir: (input_filename | sub("/package.json$"; "")), name: (.name // ""), deps: ([.dependencies, .devDependencies, .peerDependencies, .optionalDependencies] | map(select(type == "object") | to_entries[] | .key, ((.value | tostring | capture("^npm:(?<n>@?[^@]+)") | .n) // empty)) | unique)}' > "$t/projects"
++jq -rs --rawfile changed "$t/changed" '
++  (map({key: .dir, value: .}) | from_entries) as $by
++  | (reduce .[] as $p ({}; reduce ($p.deps[] | select(. != $p.name)) as $d (.; .[$d] += [$p.dir]))) as $rev
++  | [ $changed | split("\n")[] | select(length > 0) | split("/") as $s
++      | [ range(2; $s | length) | $s[0:.] | join("/") | select($by[.] != null) ] | last // empty ]
++  | unique | map(select($by[.].name | startswith("@types/"))) as $seed
++  | {sel: $seed, front: $seed}
++  | until((.front | length) == 0 or (.sel | length) > 100;
++      .sel as $sel
++      | ([ .front[] | $by[.].name | ($rev[.] // [])[] ] | unique | map(select(. as $d | ($sel | index($d)) == null))) as $new
++      | {sel: ($sel + $new), front: $new})
++  | .sel | sort[] ' "$t/projects" > "$t/sel"
++n=$(wc -l < "$t/sel")
++echo "name-closure upper bound: $n" >&2
++if [ "$n" -gt 100 ]; then
++  n=$(npx -y pnpm@10.30.1 ls --depth -1 --parseable --filter '...@types/**[HEAD^1]' | wc -l)
++  echo "pnpm count: $n" >&2
++fi
++echo "$n"
+diff --git a/scripts/narrow-workspace.sh b/scripts/narrow-workspace.sh
+new file mode 100755
+index 00000000..a00900e5
+--- /dev/null
++++ b/scripts/narrow-workspace.sh
+@@ -0,0 +1,34 @@
++#!/bin/bash
++# Narrow pnpm-workspace.yaml for a filtered install. Every pnpm call in scripts/pnpm-install.sh (install, ls, install, ls) first reads all
++# ~9k workspace package.json files (~1.6 s each). Narrow pnpm-workspace.yaml for the install to a NAME-closure
++# that contains every project pnpm can select or link: projects with changed files, their dependents (by
++# name, transitive), then every dependency name's dirs (all versions), transitive. It stays narrowed through test-all.
++set -euo pipefail
++if git diff --name-only HEAD^1 | grep -q -E 'types/(react|prop-types|scheduler)/' \
++   || git diff --diff-filter=DR --name-only HEAD^1 | grep -q 'package.json'; then
++  echo "full install for this diff: workspace left as is"; exit 0
++fi
++t=$(mktemp -d)
++git diff --name-only HEAD^1 -- types/ > "$t/changed"
++git ls-files -z -- ':(glob)types/**/package.json' | xargs -0 jq -c '{dir: (input_filename | sub("/package.json$"; "")), name: (.name // ""), deps: ([.dependencies, .devDependencies, .peerDependencies, .optionalDependencies] | map(select(type == "object") | to_entries[] | .key, ((.value | tostring | capture("^npm:(?<n>@?[^@]+)") | .n) // empty)) | unique)}' > "$t/projects"
++jq -rs --rawfile changed "$t/changed" '
++  (map({key: .dir, value: .}) | from_entries) as $by
++  | (reduce .[] as $p ({}; .[$p.name] += [$p.dir])) as $named
++  | (reduce .[] as $p ({}; reduce ($p.deps[] | select(. != $p.name)) as $d (.; .[$d] += [$p.dir]))) as $rev
++  | def grow(f): {sel: ., front: .} | until((.front | length) == 0 or (.sel | length) > 400;
++        .sel as $sel | ([ .front[] | f ] | unique | map(select(. as $d | ($sel | index($d)) == null))) as $new
++        | {sel: ($sel + $new), front: $new}) | .sel;
++  [ $changed | split("\n")[] | select(length > 0) | split("/") as $s
++    | [ range(2; $s | length) | $s[0:.] | join("/") | select($by[.] != null) ] | last // empty ] | unique
++  | grow($by[.].name as $n | ($rev[$n] // [])[], ($named[$n] // [])[])
++  | grow($by[.].deps[] | ($named[.] // [])[])
++  | sort[] ' "$t/projects" > "$t/dirs"
++n=$(wc -l < "$t/dirs")
++echo "name-closure: $n workspace project(s)"; sed 's/^/  /' "$t/dirs"
++if [ "$n" -eq 0 ] || [ "$n" -gt 400 ]; then echo "closure empty or > 400: workspace left as is"; rm -rf "$t"; exit 0; fi
++{ echo "packages:"; echo "  - 'scripts'"; sed "s/^\(.*\)$/  - '\1'/" "$t/dirs"; awk '/^packages:/{p=1;next} p && /^  - /{next} {p=0; print}' pnpm-workspace.yaml; } > "$t/ws"
++cat "$t/ws" > pnpm-workspace.yaml; rm -rf "$t"
++# keep the narrowed file out of the `git diff HEAD^1` change detection of pnpm filters
++git update-index --assume-unchanged pnpm-workspace.yaml
++head -n "$((n + 3))" pnpm-workspace.yaml
++
+diff --git a/scripts/package.json b/scripts/package.json
+index f8c87f4a..5f9adeb4 100644
+--- a/scripts/package.json
++++ b/scripts/package.json
+@@ -2,6 +2,8 @@
+     "private": true,
+     "type": "module",
+     "devDependencies": {
++        "@definitelytyped/definitions-parser": "latest",
++        "@definitelytyped/utils": "latest",
+         "@types/d3-array": "^3.0.0",
+         "@types/d3-axis": "^3.0.0",
+         "@types/d3-scale": "^4.0.0",
+@@ -19,6 +21,7 @@
+         "d3-time-format": "^4.0.0",
+         "jsdom": "^17.0.0",
+         "octokit": "^4.0.2",
++        "typescript": "<7",
+         "w3c-xmlserializer": "^2.0.0"
+     }
+ }
+diff --git a/scripts/pnpm-install.sh b/scripts/pnpm-install.sh
+index 2c60e618..5a6cd775 100755
+--- a/scripts/pnpm-install.sh
++++ b/scripts/pnpm-install.sh
+@@ -12,6 +12,14 @@ if git diff --diff-filter=DR --name-only HEAD^1 | grep -q 'package.json'; then
+     exit 0
+ fi
+ 
++# Every pnpm call below (and dtslint-runner's two `pnpm ls -r` in test-all) first reads all ~9k workspace package.json
++# files. Install from a workspace narrowed to the diff's name-closure (a superset of every project these filters, and
++# test-all's `...@types/**[HEAD^1]`, can select or link). It stays narrowed for the rest of the CI job (the file is
++# marked assume-unchanged, so git diff HEAD^1 does not see it); the full-install fallbacks restore it first.
++cp pnpm-workspace.yaml "${RUNNER_TEMP:-/tmp}/pnpm-workspace.yaml.orig"
++restore_ws() { cat "${RUNNER_TEMP:-/tmp}/pnpm-workspace.yaml.orig" > pnpm-workspace.yaml; git update-index --no-assume-unchanged pnpm-workspace.yaml; }
++./scripts/narrow-workspace.sh
++
+ # Workaround for https://github.com/pnpm/pnpm/issues/7283
+ # After installing everything the first time, reread the graph and see if anything was missing..
+ # If something was missing, we install that again and repeat until nothing is missing.
+@@ -33,6 +41,7 @@ while true; do
+     if [ $CODE -ne 0 ]; then
+         echo "pnpm ls failed while looking for missing deps; giving up and installing everything"
+         echo "$OUTPUT"
++        restore_ws
+         exec pnpm install
+     fi
+ 

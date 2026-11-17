@@ -1,0 +1,35 @@
+{
+  "experiment": "p5c",
+  "layout": "showcase",
+  "title": "writefreely",
+  "stars": "5.3k",
+  "whatWasSlow": "Every merge to the default branch builds the WriteFreely Docker image for two CPU types, amd64 and arm64, on a fresh runner. The arm64 build ran under a CPU emulator, so the whole Go and SQLite compile ran at emulation speed, and that build was by far the slowest part of the merge's CI. On StarSling, run cold with no caches, the wait for that merge was 525 seconds (8 minutes 45 seconds) before any change. The emulated arm64 build is also the step that most often breaks upstream: 19 of the last 123 upstream runs (merges to the default branch or to `main`, and release tags) failed in the image build step (15%), including crashes of the emulated compiler (\"Illegal instruction\", for example [run 32290209731](https://github.com/writefreely/writefreely/actions/runs/32290209731)). Fix A removes that emulated step.",
+  "whatWeChanged": "The original showcase for this project proposed four fixes. We re-measured each one on its own, one at a time, on StarSling, with 5 runs on each side (the CI as it was, and the CI with the fix). Cold means no caches at the start; warm means starting from caches a seed run left behind.\n\n| Fix | Result | Decision |\n|---|---|---|\n| A. Cross-compile the arm64 build instead of emulating it | Cold: 525 s to 102 s, **5.15x faster** | Kept (agent PR 1) |\n| B. Build the UI assets once and share them (measured on top of A) | Cold: 102 s to 93 s, **1.10x faster**; every run with the fix beat every run without it | Kept (agent PR 2) |\n| C. Install dependencies in their own layers (measured on top of A and B) | Cold median: 126 s to 91 s, but the ranges overlap (3 of the 5 runs without the fix took as long as the runs with it). Warm: no difference | Dropped |\n| D. Save and restore Docker layers in the GitHub Actions cache (`type=gha`) | **Slower.** Cold: 94 s to 196 s (0.48x). Warm: 100 s to 184 s (0.54x) | Dropped |\n\nThe original showcase's cache levers (C and D) did not reproduce as wins on this base. D made the build slower, and C's gain was not distinguishable from run-to-run noise. Only A and B ship as agent PRs.\n\nThe agent PRs are in the table above. The full benchmark that follows compares GitHub-hosted runners, StarSling with the CI unchanged, and StarSling with A and B applied, against the plain upstream CI, over 5 rounds. Neither kept fix uses a cache, so the full benchmark runs cold only: warm rounds would repeat the cold numbers.",
+  "notes": [
+    "**Default branch.** The default branch is `develop`.",
+    "The fixes were measured one at a time from patch files before the agent PRs were opened; the full benchmark ran after both PRs merged. Outside the bench-only CI setup, the measured trees are exact: the two unchanged arms equal upstream `5d1bc057` (git tree `ef89d9cf`), and the fix arm equals the merged agent PRs (git tree `e5d36ffa`). Tree comparison: [experiments/p5c/TREES.md](https://github.com/starsling-demo-org/benchmark-writefreely/blob/bench/control/experiments/p5c/TREES.md).",
+    "**Runner sizes.** GitHub `ubuntu-24.04-4core` (4 vCPU, 16 GiB) and StarSling `starsling-ubuntu-24.04` (4 vCPU, 16 GiB). StarSling's 4 vCPU runners can burst to 5 vCPU and 32 GB RAM (Afterburner); GitHub's 4-core runners have 16 GB.",
+    "**Upstream reference (context only; not like-for-like; not the headline).** What upstream sees today: a median 21.1 min per merge to the default branch on upstream's own GitHub runners (n=13, most recent comparable merges to the default branch within the last 60 days; warm Docker layer caches likely, many commits; standard runners; includes registry push; not a like-for-like replay).",
+    "**PR updates:** not measured. Upstream's only workflow, `docker-publish.yml`, runs on merges to the default branch and to `main`, and on release tags, never on pull requests, so a PR update starts no CI to compare."
+  ],
+  "agentPrs": [
+    {
+      "url": "https://github.com/starsling-demo-org/benchmark-writefreely/pull/1",
+      "summary": "Cross-compile the arm64 build with the xx helper instead of running the Go and SQLite compile under CPU emulation. One file, the Dockerfile; the build checks that the arm64 binary is static and for the right CPU.",
+      "experiment": {
+        "id": "ab-a",
+        "before": "starsling-baseline",
+        "after": "starsling-patched"
+      }
+    },
+    {
+      "url": "https://github.com/starsling-demo-org/benchmark-writefreely/pull/2",
+      "summary": "Build the UI assets (CSS and editor JavaScript) once in a shared stage instead of once per platform. One file, the Dockerfile; the per-platform stage copies in the finished static files.",
+      "experiment": {
+        "id": "ab-b",
+        "before": "starsling-baseline",
+        "after": "starsling-patched"
+      }
+    }
+  ]
+}

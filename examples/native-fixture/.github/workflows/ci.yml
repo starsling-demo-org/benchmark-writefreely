@@ -1,0 +1,30 @@
+name: Fixture CI
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@f548e57e544e1ff5a4c46bf1e1b8685f8e4a348a
+      - uses: actions/cache@3edfce9056124e459a23f683a21433670d47daca
+        id: cache
+        with:
+          path: .cache
+          key: fixture-${{ runner.os }}-${{ hashFiles('package.json') }}
+      - name: Verify workload
+        run: node test.mjs
+      - name: Record cache observation
+        env:
+          CACHE_HIT: ${{ steps.cache.outputs.cache-hit }}
+        run: node -e 'require("fs").writeFileSync("cache.json",JSON.stringify({hit:process.env.CACHE_HIT}))'
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        with:
+          name: fixture-evidence
+          path: |
+            results.json
+            cache.json

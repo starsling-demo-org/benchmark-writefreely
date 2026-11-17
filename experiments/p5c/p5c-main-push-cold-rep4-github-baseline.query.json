@@ -1,0 +1,12 @@
+{
+  "sampleId": "p5c-main-push-cold-rep4-github-baseline",
+  "scenarioName": "main-push",
+  "profileName": "cold",
+  "variant": "github-baseline",
+  "repetition": 4,
+  "event": "push",
+  "dispatchedAt": "2026-11-15T20:50:47.726Z",
+  "headSha": "1167713c4769aecd191176a7038eb3168ac19ccd",
+  "targetBranch": "develop",
+  "defaultBranch": "main"
+}

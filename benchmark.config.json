@@ -1,0 +1,262 @@
+{
+  "schemaVersion": 1,
+  "upstream": {
+    "repository": "writefreely/writefreely",
+    "commitSha": "5d1bc057e86aafb6888bf301376b46ea5e0620e7",
+    "defaultBranch": "develop"
+  },
+  "benchmarkRepository": {
+    "repository": "starsling-demo-org/benchmark-writefreely",
+    "controlBranch": "bench/control",
+    "defaultBranch": "main",
+    "replayBranch": "develop"
+  },
+  "scenarios": {
+    "main-push": {
+      "name": "main-push",
+      "description": "Merge of 5d1bc057e86a to develop",
+      "event": "push",
+      "main": {
+        "branch": "develop",
+        "beforeSha": "4dc99d9fb5e6970ed4381a4ecb0c25614be59a63",
+        "afterSha": "5d1bc057e86aafb6888bf301376b46ea5e0620e7",
+        "changedPaths": [
+          "activitypub.go",
+          "webfinger.go"
+        ]
+      },
+      "referenceRuns": [
+        {
+          "workflowPath": ".github/workflows/docker-publish.yml",
+          "runId": 36467521733,
+          "attempt": 1,
+          "htmlUrl": "https://github.com/writefreely/writefreely/actions/runs/36467521733"
+        }
+      ]
+    },
+    "seed-parent": {
+      "name": "seed-parent",
+      "role": "seed",
+      "description": "Warm seed: the previous push (4dc99d9fb5e6 onto 500a04e1100c)",
+      "event": "push",
+      "main": {
+        "branch": "develop",
+        "beforeSha": "500a04e1100c3bd456f6f3b12cc90cca36436c76",
+        "afterSha": "4dc99d9fb5e6970ed4381a4ecb0c25614be59a63",
+        "changedPaths": [
+          "account.go",
+          "handle.go"
+        ]
+      },
+      "referenceRuns": []
+    }
+  },
+  "patches": [
+    {
+      "id": "lever-a-cross-compile",
+      "source": "local",
+      "pathOrUrl": "patches/cross-compile.patch",
+      "description": "Lever A: cross-compile with tonistiigi/xx instead of building arm64 under QEMU"
+    },
+    {
+      "id": "lever-b-ui-stage",
+      "source": "local",
+      "pathOrUrl": "patches/ui-stage.patch",
+      "description": "Lever B: build the UI assets in their own Docker stage"
+    }
+  ],
+  "runnerMapping": {
+    "defaultMap": {
+      "ubuntu-latest": {
+        "github": "ubuntu-24.04-4core",
+        "starsling": "starsling-ubuntu-24.04"
+      },
+      "ubuntu-24.04": {
+        "github": "TODO-github-larger-runner-for-ubuntu-24.04",
+        "starsling": "starsling-ubuntu-24.04"
+      },
+      "ubuntu-26.04": {
+        "github": "TODO-github-larger-runner-for-ubuntu-26.04",
+        "starsling": "starsling-ubuntu-26.04"
+      },
+      "ubuntu-slim": {
+        "github": "TODO-github-larger-runner-for-ubuntu-slim",
+        "starsling": "starsling-ubuntu-24.04-2"
+      }
+    },
+    "runnerSpecs": {
+      "ubuntu-latest": {
+        "label": "ubuntu-latest",
+        "provider": "github",
+        "os": "linux",
+        "arch": "x64",
+        "vcpu": 2,
+        "ramGiB": 8,
+        "billingPerMinuteUsd": 0.016
+      },
+      "ubuntu-24.04": {
+        "label": "ubuntu-24.04",
+        "provider": "github",
+        "os": "linux",
+        "arch": "x64",
+        "vcpu": 2,
+        "ramGiB": 8,
+        "billingPerMinuteUsd": 0.016
+      },
+      "ubuntu-26.04": {
+        "label": "ubuntu-26.04",
+        "provider": "github",
+        "os": "linux",
+        "arch": "x64",
+        "vcpu": 2,
+        "ramGiB": 8,
+        "billingPerMinuteUsd": 0.016
+      },
+      "ubuntu-slim": {
+        "label": "ubuntu-slim",
+        "provider": "github",
+        "os": "linux",
+        "arch": "x64",
+        "vcpu": 1,
+        "ramGiB": 5,
+        "billingPerMinuteUsd": 0.004
+      },
+      "starsling-ubuntu-24.04-2": {
+        "label": "starsling-ubuntu-24.04-2",
+        "provider": "starsling",
+        "os": "linux",
+        "arch": "x64",
+        "vcpu": 2,
+        "ramGiB": 8,
+        "billingPerMinuteUsd": 0.004
+      },
+      "starsling-ubuntu-24.04": {
+        "label": "starsling-ubuntu-24.04",
+        "provider": "starsling",
+        "os": "linux",
+        "arch": "x64",
+        "vcpu": 4,
+        "ramGiB": 16,
+        "billingPerMinuteUsd": 0.008
+      },
+      "starsling-ubuntu-26.04": {
+        "label": "starsling-ubuntu-26.04",
+        "provider": "starsling",
+        "os": "linux",
+        "arch": "x64",
+        "vcpu": 4,
+        "ramGiB": 16,
+        "billingPerMinuteUsd": 0.008
+      },
+      "macos-latest": {
+        "label": "macos-latest",
+        "provider": "github",
+        "os": "macos",
+        "arch": "arm64",
+        "vcpu": 3,
+        "ramGiB": 7,
+        "billingPerMinuteUsd": 0.08
+      },
+      "windows-latest": {
+        "label": "windows-latest",
+        "provider": "github",
+        "os": "windows",
+        "arch": "x64",
+        "vcpu": 4,
+        "ramGiB": 16,
+        "billingPerMinuteUsd": 0.032
+      },
+      "ubuntu-24.04-4core": {
+        "label": "ubuntu-24.04-4core",
+        "provider": "github",
+        "os": "linux",
+        "arch": "x64",
+        "vcpu": 4,
+        "ramGiB": 16,
+        "billingPerMinuteUsd": 0.016
+      },
+      "TODO-github-larger-runner-for-ubuntu-24.04": {
+        "label": "TODO-github-larger-runner-for-ubuntu-24.04",
+        "provider": "github",
+        "os": "linux",
+        "arch": "x64",
+        "vcpu": 4,
+        "ramGiB": 16,
+        "billingPerMinuteUsd": 0.016
+      },
+      "TODO-github-larger-runner-for-ubuntu-26.04": {
+        "label": "TODO-github-larger-runner-for-ubuntu-26.04",
+        "provider": "github",
+        "os": "linux",
+        "arch": "x64",
+        "vcpu": 4,
+        "ramGiB": 16,
+        "billingPerMinuteUsd": 0.016
+      },
+      "TODO-github-larger-runner-for-ubuntu-slim": {
+        "label": "TODO-github-larger-runner-for-ubuntu-slim",
+        "provider": "github",
+        "os": "linux",
+        "arch": "x64",
+        "vcpu": 1,
+        "ramGiB": 5,
+        "billingPerMinuteUsd": 0.004
+      }
+    }
+  },
+  "profiles": {
+    "cold": {
+      "name": "cold",
+      "actionsCache": "cold",
+      "crossRunArtifacts": "none",
+      "restoreExpectations": {},
+      "testResultReuseAllowed": false
+    },
+    "warm": {
+      "name": "warm",
+      "actionsCache": "warm",
+      "crossRunArtifacts": "seeded",
+      "seedScenario": "seed-parent",
+      "restoreExpectations": {},
+      "testResultReuseAllowed": true,
+      "amortizationHorizonRuns": 10
+    }
+  },
+  "adaptations": [
+    {
+      "id": "no-image-push",
+      "kind": "deployment-guard",
+      "workflowFile": ".github/workflows/docker-publish.yml",
+      "jobId": "build",
+      "fromPattern": "${{ github.event_name != 'pull_request' }}",
+      "toReplacement": "false",
+      "expectedMatches": 1,
+      "reason": "The benchmark must not publish images as the project; the multi-platform build itself still runs",
+      "blocksFullParity": false
+    },
+    {
+      "id": "no-registry-login",
+      "kind": "deployment-guard",
+      "workflowFile": ".github/workflows/docker-publish.yml",
+      "jobId": "build",
+      "fromPattern": "github.event_name != 'pull_request'",
+      "toReplacement": "false",
+      "expectedMatches": 1,
+      "reason": "The registry login only serves the image push, which the benchmark disables",
+      "blocksFullParity": false
+    }
+  ],
+  "collectors": [],
+  "execution": {
+    "repetitions": 5,
+    "timeoutMinutes": 60,
+    "maxConcurrentExperiments": 1,
+    "pollIntervalSeconds": 15,
+    "publicRepoGitHubFree": false,
+    "apiBudgetPerHour": 2000,
+    "commitIdentity": {
+      "name": "starsling-dev",
+      "email": "290538643+starsling-dev@users.noreply.github.com"
+    }
+  }
+}

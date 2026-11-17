@@ -1,0 +1,55 @@
+{
+  "experimentId": "p5c",
+  "sampleId": "p5c-main-push-cold-rep1-starsling-patched",
+  "scenarioName": "main-push",
+  "variant": "starsling-patched",
+  "profileName": "cold",
+  "currentStep": "completed",
+  "completedSteps": [
+    "1_acquire_lease",
+    "2_register_placeholders",
+    "3_disable_workflows_and_reset_refs",
+    "4_install_and_verify_trees",
+    "5_enable_scenario_workflows",
+    "6_trigger_event",
+    "7_await_downstream_completion"
+  ],
+  "controlBranch": "bench/control",
+  "defaultBranch": "main",
+  "benchmarkOwnedRefs": [
+    "refs/heads/develop",
+    "refs/heads/main",
+    "refs/heads/bench/pr/main-push/head"
+  ],
+  "previousBenchmarkRefs": {
+    "refs/heads/develop": "2ea8cfb1c2f48ca7298a51297a7264b830b78e51",
+    "refs/heads/main": "c677a1e1714e86db6e0b209bbabc2ffba0f5c874",
+    "refs/heads/bench/pr/main-push/head": null
+  },
+  "observedUnrelatedRefs": {
+    "refs/heads/bench/control": "a102c3eeba0b156833d2ef3e16f1f14806962198",
+    "refs/heads/starsling/cross-compile-arm64": "1cef64f28827b28f8cb17508e6d1437d27765cf6",
+    "refs/heads/starsling/develop": "d39fa725a0edac47638661b5eaa8f3b0bb90d89e",
+    "refs/heads/starsling/ui-stage": "9fdabbe6a8783ff22ceae42ada0657dfc5a83135"
+  },
+  "registeredPlaceholderWorkflows": [
+    ".github/workflows/docker-publish.yml"
+  ],
+  "disabledWorkflows": [
+    ".github/workflows/docker-publish.yml"
+  ],
+  "enabledWorkflows": [
+    ".github/workflows/docker-publish.yml"
+  ],
+  "updatedAt": "2026-11-15T19:36:02.310Z",
+  "leaseAcquiredAt": "2026-11-15T19:32:59.336Z",
+  "leaseHolder": "p5c:p5c-main-push-cold-rep1-starsling-patched",
+  "installedTreeHash": "b40126fd5df0d526d9c6fdf8429f7548064ed9e135ad835465349adeae2ebc93",
+  "dispatchRecord": {
+    "idempotencyKey": "p5c:p5c-main-push-cold-rep1-starsling-patched:main-push:starsling-patched",
+    "dispatchedAt": "2026-11-15T19:33:51.099Z",
+    "event": "push",
+    "targetRef": "refs/heads/develop",
+    "headSha": "15747e6f8530ebd0325c03c11e12a397eaebc030"
+  }
+}

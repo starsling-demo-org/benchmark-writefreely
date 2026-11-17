@@ -1,0 +1,16 @@
+name: Set up benchmark harness
+description: Install Node 24, pnpm and the harness dependencies from the committed lockfile.
+runs:
+  using: composite
+  steps:
+    - uses: pnpm/action-setup@5eea8caf49c844361c1e9ddc1324e179c54b58e9
+      with:
+        version: 12.16.1
+    # No pnpm cache: GitHub runs this when a repository is created from the template, and a cache saved on that
+    # branch would be an Actions cache the replays' cold reset does not own.
+    - uses: actions/setup-node@101b3474143230c3562bd21f0b3c3f8254784571
+      with:
+        node-version: '24'
+    - name: Install harness dependencies
+      shell: bash
+      run: pnpm install --frozen-lockfile

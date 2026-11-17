@@ -1,0 +1,1907 @@
+[
+  {
+    "sampleId": "p5c-main-push-cold-rep1-github-baseline",
+    "inputFingerprint": "499e019da126c2754c0a81d68c82aab9de6a274f357a208a8faaed1be9afeca4",
+    "runIds": [
+      43750444955
+    ],
+    "sources": [
+      {
+        "path": "p5c-main-push-cold-rep1-github-baseline/tests.json",
+        "sha256": "d2ed6ac554c0b7fcb41e6cf25dfc6a8d925cfeb39701e1589ca91f9459ec9b9c",
+        "kind": "tests",
+        "format": "json-verdicts"
+      },
+      {
+        "path": "p5c-main-push-cold-rep1-github-baseline/cache.json",
+        "sha256": "1a7b3b6eca4895ffed503a21f90a3e032edc95c4447bb45deb07560f2b9281ea",
+        "kind": "cache"
+      },
+      {
+        "path": "p5c-main-push-cold-rep1-github-baseline/coverage.json",
+        "sha256": "c26f5fc414d35c4954ddba7089661bcd807f8d8f420dd7dfcac8e3c8f27488d2",
+        "kind": "coverage",
+        "format": "units"
+      }
+    ],
+    "execution": {
+      "inventory": {
+        "scenarioName": "main-push",
+        "triggeredWorkflows": [
+          ".github/workflows/docker-publish.yml"
+        ],
+        "excludedWorkflows": [],
+        "downstreamWorkflowRuns": [],
+        "jobExpectations": [
+          {
+            "workflowFile": ".github/workflows/docker-publish.yml",
+            "workflowName": "Build container image, publish as GitHub-package",
+            "jobId": "build",
+            "triggeredBy": "direct",
+            "expectedStatus": "executed",
+            "isDynamicMatrix": false,
+            "mappedRunsOn": {
+              "github": "ubuntu-24.04-4core",
+              "starsling": "ubuntu-24.04-4core",
+              "retainedOnGitHub": true,
+              "kind": "unmapped"
+            }
+          }
+        ],
+        "mixedRunnerOnStarSling": false,
+        "movedJobs": [],
+        "retainedJobs": [
+          ".github/workflows/docker-publish.yml#build"
+        ],
+        "blockers": [],
+        "nativeConditions": []
+      },
+      "semanticObligationsFulfilled": [
+        "release-image:linux/amd64",
+        "release-image:linux/arm64",
+        "ui-assets"
+      ],
+      "executedWorkflows": [
+        ".github/workflows/docker-publish.yml"
+      ],
+      "executedMatrixRowCounts": {
+        ".github/workflows/docker-publish.yml#build": 1
+      },
+      "observedCommands": [
+        "RUN make build && make ui && mkdir /stage && cp -R /go/bin /go/src/github.com/writefreely/writefreely/templates /go/src/github.com/writefreely/writefreely/static /go/src/github.com/writefreely/writefreely/pages /go/src/github.com/writefreely/writefreely/keys /go/src/github.com/writefreely/writefreely/cmd /stage"
+      ],
+      "jobOutputs": {},
+      "tests": [
+        {
+          "testId": "go-binary:linux/amd64",
+          "verdict": "passed",
+          "mode": "executed"
+        },
+        {
+          "testId": "go-binary:linux/arm64",
+          "verdict": "passed",
+          "mode": "executed"
+        },
+        {
+          "testId": "image:linux/amd64",
+          "verdict": "passed",
+          "mode": "executed"
+        },
+        {
+          "testId": "image:linux/arm64",
+          "verdict": "passed",
+          "mode": "executed"
+        },
+        {
+          "testId": "ui",
+          "verdict": "passed",
+          "mode": "executed"
+        }
+      ],
+      "coverage": {
+        "lines": {
+          "covered": 5,
+          "total": 5,
+          "percentage": 100
+        },
+        "scopeHash": "998d3ead1c68c231ac56712856492688c2b4e6ebc41ec0507ce63f41fa7b64d3"
+      }
+    },
+    "cache": {
+      "sampleId": "p5c-main-push-cold-rep1-github-baseline",
+      "profile": {
+        "name": "cold",
+        "actionsCache": "cold",
+        "crossRunArtifacts": "none",
+        "restoreExpectations": {},
+        "testResultReuseAllowed": false
+      },
+      "expectedSourceSha": "5d1bc057e86aafb6888bf301376b46ea5e0620e7",
+      "consumerRef": "refs/heads/develop",
+      "defaultBranch": "main",
+      "cacheEvents": [],
+      "inventoryVerified": true,
+      "coldSeedTotalSeconds": 0,
+      "warmSampleTotalSeconds": 936
+    }
+  },
+  {
+    "sampleId": "p5c-main-push-cold-rep1-starsling-baseline",
+    "inputFingerprint": "499e019da126c2754c0a81d68c82aab9de6a274f357a208a8faaed1be9afeca4",
+    "runIds": [
+      43752092267
+    ],
+    "sources": [
+      {
+        "path": "p5c-main-push-cold-rep1-starsling-baseline/tests.json",
+        "sha256": "d2ed6ac554c0b7fcb41e6cf25dfc6a8d925cfeb39701e1589ca91f9459ec9b9c",
+        "kind": "tests",
+        "format": "json-verdicts"
+      },
+      {
+        "path": "p5c-main-push-cold-rep1-starsling-baseline/cache.json",
+        "sha256": "1a7b3b6eca4895ffed503a21f90a3e032edc95c4447bb45deb07560f2b9281ea",
+        "kind": "cache"
+      },
+      {
+        "path": "p5c-main-push-cold-rep1-starsling-baseline/coverage.json",
+        "sha256": "c26f5fc414d35c4954ddba7089661bcd807f8d8f420dd7dfcac8e3c8f27488d2",
+        "kind": "coverage",
+        "format": "units"
+      }
+    ],
+    "execution": {
+      "inventory": {
+        "scenarioName": "main-push",
+        "triggeredWorkflows": [
+          ".github/workflows/docker-publish.yml"
+        ],
+        "excludedWorkflows": [],
+        "downstreamWorkflowRuns": [],
+        "jobExpectations": [
+          {
+            "workflowFile": ".github/workflows/docker-publish.yml",
+            "workflowName": "Build container image, publish as GitHub-package",
+            "jobId": "build",
+            "triggeredBy": "direct",
+            "expectedStatus": "executed",
+            "isDynamicMatrix": false,
+            "mappedRunsOn": {
+              "github": "starsling-ubuntu-24.04",
+              "starsling": "starsling-ubuntu-24.04",
+              "retainedOnGitHub": true,
+              "kind": "unmapped",
+              "retentionReason": "Unmapped runner \"starsling-ubuntu-24.04\" retained on original label"
+            }
+          }
+        ],
+        "mixedRunnerOnStarSling": false,
+        "movedJobs": [],
+        "retainedJobs": [
+          ".github/workflows/docker-publish.yml#build"
+        ],
+        "blockers": [],
+        "nativeConditions": []
+      },
+      "semanticObligationsFulfilled": [
+        "release-image:linux/amd64",
+        "release-image:linux/arm64",
+        "ui-assets"
+      ],
+      "executedWorkflows": [
+        ".github/workflows/docker-publish.yml"
+      ],
+      "executedMatrixRowCounts": {
+        ".github/workflows/docker-publish.yml#build": 1
+      },
+      "observedCommands": [
+        "RUN make build && make ui && mkdir /stage && cp -R /go/bin /go/src/github.com/writefreely/writefreely/templates /go/src/github.com/writefreely/writefreely/static /go/src/github.com/writefreely/writefreely/pages /go/src/github.com/writefreely/writefreely/keys /go/src/github.com/writefreely/writefreely/cmd /stage"
+      ],
+      "jobOutputs": {},
+      "tests": [
+        {
+          "testId": "go-binary:linux/amd64",
+          "verdict": "passed",
+          "mode": "executed"
+        },
+        {
+          "testId": "go-binary:linux/arm64",
+          "verdict": "passed",
+          "mode": "executed"
+        },
+        {
+          "testId": "image:linux/amd64",
+          "verdict": "passed",
+          "mode": "executed"
+        },
+        {
+          "testId": "image:linux/arm64",
+          "verdict": "passed",
+          "mode": "executed"
+        },
+        {
+          "testId": "ui",
+          "verdict": "passed",
+          "mode": "executed"
+        }
+      ],
+      "coverage": {
+        "lines": {
+          "covered": 5,
+          "total": 5,
+          "percentage": 100
+        },
+        "scopeHash": "998d3ead1c68c231ac56712856492688c2b4e6ebc41ec0507ce63f41fa7b64d3"
+      }
+    },
+    "cache": {
+      "sampleId": "p5c-main-push-cold-rep1-starsling-baseline",
+      "profile": {
+        "name": "cold",
+        "actionsCache": "cold",
+        "crossRunArtifacts": "none",
+        "restoreExpectations": {},
+        "testResultReuseAllowed": false
+      },
+      "expectedSourceSha": "5d1bc057e86aafb6888bf301376b46ea5e0620e7",
+      "consumerRef": "refs/heads/develop",
+      "defaultBranch": "main",
+      "cacheEvents": [],
+      "inventoryVerified": true,
+      "coldSeedTotalSeconds": 0,
+      "warmSampleTotalSeconds": 527
+    }
+  },
+  {
+    "sampleId": "p5c-main-push-cold-rep1-starsling-patched",
+    "inputFingerprint": "499e019da126c2754c0a81d68c82aab9de6a274f357a208a8faaed1be9afeca4",
+    "runIds": [
+      43753131964
+    ],
+    "sources": [
+      {
+        "path": "p5c-main-push-cold-rep1-starsling-patched/tests.json",
+        "sha256": "d2ed6ac554c0b7fcb41e6cf25dfc6a8d925cfeb39701e1589ca91f9459ec9b9c",
+        "kind": "tests",
+        "format": "json-verdicts"
+      },
+      {
+        "path": "p5c-main-push-cold-rep1-starsling-patched/cache.json",
+        "sha256": "1a7b3b6eca4895ffed503a21f90a3e032edc95c4447bb45deb07560f2b9281ea",
+        "kind": "cache"
+      },
+      {
+        "path": "p5c-main-push-cold-rep1-starsling-patched/coverage.json",
+        "sha256": "c26f5fc414d35c4954ddba7089661bcd807f8d8f420dd7dfcac8e3c8f27488d2",
+        "kind": "coverage",
+        "format": "units"
+      }
+    ],
+    "execution": {
+      "inventory": {
+        "scenarioName": "main-push",
+        "triggeredWorkflows": [
+          ".github/workflows/docker-publish.yml"
+        ],
+        "excludedWorkflows": [],
+        "downstreamWorkflowRuns": [],
+        "jobExpectations": [
+          {
+            "workflowFile": ".github/workflows/docker-publish.yml",
+            "workflowName": "Build container image, publish as GitHub-package",
+            "jobId": "build",
+            "triggeredBy": "direct",
+            "expectedStatus": "executed",
+            "isDynamicMatrix": false,
+            "mappedRunsOn": {
+              "github": "starsling-ubuntu-24.04",
+              "starsling": "starsling-ubuntu-24.04",
+              "retainedOnGitHub": true,
+              "kind": "unmapped",
+              "retentionReason": "Unmapped runner \"starsling-ubuntu-24.04\" retained on original label"
+            }
+          }
+        ],
+        "mixedRunnerOnStarSling": false,
+        "movedJobs": [],
+        "retainedJobs": [
+          ".github/workflows/docker-publish.yml#build"
+        ],
+        "blockers": [],
+        "nativeConditions": []
+      },
+      "semanticObligationsFulfilled": [
+        "release-image:linux/amd64",
+        "release-image:linux/arm64",
+        "ui-assets"
+      ],
+      "executedWorkflows": [
+        ".github/workflows/docker-publish.yml"
+      ],
+      "executedMatrixRowCounts": {
+        ".github/workflows/docker-publish.yml#build": 1
+      },
+      "observedCommands": [
+        "RUN make build && xx-verify --static cmd/writefreely/writefreely && mkdir /stage && cp -R /go/bin /go/src/github.com/writefreely/writefreely/templates /go/src/github.com/writefreely/writefreely/static /go/src/github.com/writefreely/writefreely/pages /go/src/github.com/writefreely/writefreely/keys /go/src/github.com/writefreely/writefreely/cmd /stage",
+        "RUN make ui"
+      ],
+      "jobOutputs": {},
+      "tests": [
+        {
+          "testId": "go-binary:linux/amd64",
+          "verdict": "passed",
+          "mode": "executed"
+        },
+        {
+          "testId": "go-binary:linux/arm64",
+          "verdict": "passed",
+          "mode": "executed"
+        },
+        {
+          "testId": "image:linux/amd64",
+          "verdict": "passed",
+          "mode": "executed"
+        },
+        {
+          "testId": "image:linux/arm64",
+          "verdict": "passed",
+          "mode": "executed"
+        },
+        {
+          "testId": "ui",
+          "verdict": "passed",
+          "mode": "executed"
+        }
+      ],
+      "coverage": {
+        "lines": {
+          "covered": 5,
+          "total": 5,
+          "percentage": 100
+        },
+        "scopeHash": "998d3ead1c68c231ac56712856492688c2b4e6ebc41ec0507ce63f41fa7b64d3"
+      }
+    },
+    "cache": {
+      "sampleId": "p5c-main-push-cold-rep1-starsling-patched",
+      "profile": {
+        "name": "cold",
+        "actionsCache": "cold",
+        "crossRunArtifacts": "none",
+        "restoreExpectations": {},
+        "testResultReuseAllowed": false
+      },
+      "expectedSourceSha": "5d1bc057e86aafb6888bf301376b46ea5e0620e7",
+      "consumerRef": "refs/heads/develop",
+      "defaultBranch": "main",
+      "cacheEvents": [],
+      "inventoryVerified": true,
+      "coldSeedTotalSeconds": 0,
+      "warmSampleTotalSeconds": 89
+    }
+  },
+  {
+    "sampleId": "p5c-main-push-cold-rep2-starsling-baseline",
+    "inputFingerprint": "499e019da126c2754c0a81d68c82aab9de6a274f357a208a8faaed1be9afeca4",
+    "runIds": [
+      43753419636
+    ],
+    "sources": [
+      {
+        "path": "p5c-main-push-cold-rep2-starsling-baseline/tests.json",
+        "sha256": "d2ed6ac554c0b7fcb41e6cf25dfc6a8d925cfeb39701e1589ca91f9459ec9b9c",
+        "kind": "tests",
+        "format": "json-verdicts"
+      },
+      {
+        "path": "p5c-main-push-cold-rep2-starsling-baseline/cache.json",
+        "sha256": "1a7b3b6eca4895ffed503a21f90a3e032edc95c4447bb45deb07560f2b9281ea",
+        "kind": "cache"
+      },
+      {
+        "path": "p5c-main-push-cold-rep2-starsling-baseline/coverage.json",
+        "sha256": "c26f5fc414d35c4954ddba7089661bcd807f8d8f420dd7dfcac8e3c8f27488d2",
+        "kind": "coverage",
+        "format": "units"
+      }
+    ],
+    "execution": {
+      "inventory": {
+        "scenarioName": "main-push",
+        "triggeredWorkflows": [
+          ".github/workflows/docker-publish.yml"
+        ],
+        "excludedWorkflows": [],
+        "downstreamWorkflowRuns": [],
+        "jobExpectations": [
+          {
+            "workflowFile": ".github/workflows/docker-publish.yml",
+            "workflowName": "Build container image, publish as GitHub-package",
+            "jobId": "build",
+            "triggeredBy": "direct",
+            "expectedStatus": "executed",
+            "isDynamicMatrix": false,
+            "mappedRunsOn": {
+              "github": "starsling-ubuntu-24.04",
+              "starsling": "starsling-ubuntu-24.04",
+              "retainedOnGitHub": true,
+              "kind": "unmapped",
+              "retentionReason": "Unmapped runner \"starsling-ubuntu-24.04\" retained on original label"
+            }
+          }
+        ],
+        "mixedRunnerOnStarSling": false,
+        "movedJobs": [],
+        "retainedJobs": [
+          ".github/workflows/docker-publish.yml#build"
+        ],
+        "blockers": [],
+        "nativeConditions": []
+      },
+      "semanticObligationsFulfilled": [
+        "release-image:linux/amd64",
+        "release-image:linux/arm64",
+        "ui-assets"
+      ],
+      "executedWorkflows": [
+        ".github/workflows/docker-publish.yml"
+      ],
+      "executedMatrixRowCounts": {
+        ".github/workflows/docker-publish.yml#build": 1
+      },
+      "observedCommands": [
+        "RUN make build && make ui && mkdir /stage && cp -R /go/bin /go/src/github.com/writefreely/writefreely/templates /go/src/github.com/writefreely/writefreely/static /go/src/github.com/writefreely/writefreely/pages /go/src/github.com/writefreely/writefreely/keys /go/src/github.com/writefreely/writefreely/cmd /stage"
+      ],
+      "jobOutputs": {},
+      "tests": [
+        {
+          "testId": "go-binary:linux/amd64",
+          "verdict": "passed",
+          "mode": "executed"
+        },
+        {
+          "testId": "go-binary:linux/arm64",
+          "verdict": "passed",
+          "mode": "executed"
+        },
+        {
+          "testId": "image:linux/amd64",
+          "verdict": "passed",
+          "mode": "executed"
+        },
+        {
+          "testId": "image:linux/arm64",
+          "verdict": "passed",
+          "mode": "executed"
+        },
+        {
+          "testId": "ui",
+          "verdict": "passed",
+          "mode": "executed"
+        }
+      ],
+      "coverage": {
+        "lines": {
+          "covered": 5,
+          "total": 5,
+          "percentage": 100
+        },
+        "scopeHash": "998d3ead1c68c231ac56712856492688c2b4e6ebc41ec0507ce63f41fa7b64d3"
+      }
+    },
+    "cache": {
+      "sampleId": "p5c-main-push-cold-rep2-starsling-baseline",
+      "profile": {
+        "name": "cold",
+        "actionsCache": "cold",
+        "crossRunArtifacts": "none",
+        "restoreExpectations": {},
+        "testResultReuseAllowed": false
+      },
+      "expectedSourceSha": "5d1bc057e86aafb6888bf301376b46ea5e0620e7",
+      "consumerRef": "refs/heads/develop",
+      "defaultBranch": "main",
+      "cacheEvents": [],
+      "inventoryVerified": true,
+      "coldSeedTotalSeconds": 0,
+      "warmSampleTotalSeconds": 513
+    }
+  },
+  {
+    "sampleId": "p5c-main-push-cold-rep2-github-baseline",
+    "inputFingerprint": "499e019da126c2754c0a81d68c82aab9de6a274f357a208a8faaed1be9afeca4",
+    "runIds": [
+      43754442708
+    ],
+    "sources": [
+      {
+        "path": "p5c-main-push-cold-rep2-github-baseline/tests.json",
+        "sha256": "d2ed6ac554c0b7fcb41e6cf25dfc6a8d925cfeb39701e1589ca91f9459ec9b9c",
+        "kind": "tests",
+        "format": "json-verdicts"
+      },
+      {
+        "path": "p5c-main-push-cold-rep2-github-baseline/cache.json",
+        "sha256": "1a7b3b6eca4895ffed503a21f90a3e032edc95c4447bb45deb07560f2b9281ea",
+        "kind": "cache"
+      },
+      {
+        "path": "p5c-main-push-cold-rep2-github-baseline/coverage.json",
+        "sha256": "c26f5fc414d35c4954ddba7089661bcd807f8d8f420dd7dfcac8e3c8f27488d2",
+        "kind": "coverage",
+        "format": "units"
+      }
+    ],
+    "execution": {
+      "inventory": {
+        "scenarioName": "main-push",
+        "triggeredWorkflows": [
+          ".github/workflows/docker-publish.yml"
+        ],
+        "excludedWorkflows": [],
+        "downstreamWorkflowRuns": [],
+        "jobExpectations": [
+          {
+            "workflowFile": ".github/workflows/docker-publish.yml",
+            "workflowName": "Build container image, publish as GitHub-package",
+            "jobId": "build",
+            "triggeredBy": "direct",
+            "expectedStatus": "executed",
+            "isDynamicMatrix": false,
+            "mappedRunsOn": {
+              "github": "ubuntu-24.04-4core",
+              "starsling": "ubuntu-24.04-4core",
+              "retainedOnGitHub": true,
+              "kind": "unmapped"
+            }
+          }
+        ],
+        "mixedRunnerOnStarSling": false,
+        "movedJobs": [],
+        "retainedJobs": [
+          ".github/workflows/docker-publish.yml#build"
+        ],
+        "blockers": [],
+        "nativeConditions": []
+      },
+      "semanticObligationsFulfilled": [
+        "release-image:linux/amd64",
+        "release-image:linux/arm64",
+        "ui-assets"
+      ],
+      "executedWorkflows": [
+        ".github/workflows/docker-publish.yml"
+      ],
+      "executedMatrixRowCounts": {
+        ".github/workflows/docker-publish.yml#build": 1
+      },
+      "observedCommands": [
+        "RUN make build && make ui && mkdir /stage && cp -R /go/bin /go/src/github.com/writefreely/writefreely/templates /go/src/github.com/writefreely/writefreely/static /go/src/github.com/writefreely/writefreely/pages /go/src/github.com/writefreely/writefreely/keys /go/src/github.com/writefreely/writefreely/cmd /stage"
+      ],
+      "jobOutputs": {},
+      "tests": [
+        {
+          "testId": "go-binary:linux/amd64",
+          "verdict": "passed",
+          "mode": "executed"
+        },
+        {
+          "testId": "go-binary:linux/arm64",
+          "verdict": "passed",
+          "mode": "executed"
+        },
+        {
+          "testId": "image:linux/amd64",
+          "verdict": "passed",
+          "mode": "executed"
+        },
+        {
+          "testId": "image:linux/arm64",
+          "verdict": "passed",
+          "mode": "executed"
+        },
+        {
+          "testId": "ui",
+          "verdict": "passed",
+          "mode": "executed"
+        }
+      ],
+      "coverage": {
+        "lines": {
+          "covered": 5,
+          "total": 5,
+          "percentage": 100
+        },
+        "scopeHash": "998d3ead1c68c231ac56712856492688c2b4e6ebc41ec0507ce63f41fa7b64d3"
+      }
+    },
+    "cache": {
+      "sampleId": "p5c-main-push-cold-rep2-github-baseline",
+      "profile": {
+        "name": "cold",
+        "actionsCache": "cold",
+        "crossRunArtifacts": "none",
+        "restoreExpectations": {},
+        "testResultReuseAllowed": false
+      },
+      "expectedSourceSha": "5d1bc057e86aafb6888bf301376b46ea5e0620e7",
+      "consumerRef": "refs/heads/develop",
+      "defaultBranch": "main",
+      "cacheEvents": [],
+      "inventoryVerified": true,
+      "coldSeedTotalSeconds": 0,
+      "warmSampleTotalSeconds": 986
+    }
+  },
+  {
+    "sampleId": "p5c-main-push-cold-rep2-starsling-patched",
+    "inputFingerprint": "499e019da126c2754c0a81d68c82aab9de6a274f357a208a8faaed1be9afeca4",
+    "runIds": [
+      43756247624
+    ],
+    "sources": [
+      {
+        "path": "p5c-main-push-cold-rep2-starsling-patched/tests.json",
+        "sha256": "d2ed6ac554c0b7fcb41e6cf25dfc6a8d925cfeb39701e1589ca91f9459ec9b9c",
+        "kind": "tests",
+        "format": "json-verdicts"
+      },
+      {
+        "path": "p5c-main-push-cold-rep2-starsling-patched/cache.json",
+        "sha256": "1a7b3b6eca4895ffed503a21f90a3e032edc95c4447bb45deb07560f2b9281ea",
+        "kind": "cache"
+      },
+      {
+        "path": "p5c-main-push-cold-rep2-starsling-patched/coverage.json",
+        "sha256": "c26f5fc414d35c4954ddba7089661bcd807f8d8f420dd7dfcac8e3c8f27488d2",
+        "kind": "coverage",
+        "format": "units"
+      }
+    ],
+    "execution": {
+      "inventory": {
+        "scenarioName": "main-push",
+        "triggeredWorkflows": [
+          ".github/workflows/docker-publish.yml"
+        ],
+        "excludedWorkflows": [],
+        "downstreamWorkflowRuns": [],
+        "jobExpectations": [
+          {
+            "workflowFile": ".github/workflows/docker-publish.yml",
+            "workflowName": "Build container image, publish as GitHub-package",
+            "jobId": "build",
+            "triggeredBy": "direct",
+            "expectedStatus": "executed",
+            "isDynamicMatrix": false,
+            "mappedRunsOn": {
+              "github": "starsling-ubuntu-24.04",
+              "starsling": "starsling-ubuntu-24.04",
+              "retainedOnGitHub": true,
+              "kind": "unmapped",
+              "retentionReason": "Unmapped runner \"starsling-ubuntu-24.04\" retained on original label"
+            }
+          }
+        ],
+        "mixedRunnerOnStarSling": false,
+        "movedJobs": [],
+        "retainedJobs": [
+          ".github/workflows/docker-publish.yml#build"
+        ],
+        "blockers": [],
+        "nativeConditions": []
+      },
+      "semanticObligationsFulfilled": [
+        "release-image:linux/amd64",
+        "release-image:linux/arm64",
+        "ui-assets"
+      ],
+      "executedWorkflows": [
+        ".github/workflows/docker-publish.yml"
+      ],
+      "executedMatrixRowCounts": {
+        ".github/workflows/docker-publish.yml#build": 1
+      },
+      "observedCommands": [
+        "RUN make build && xx-verify --static cmd/writefreely/writefreely && mkdir /stage && cp -R /go/bin /go/src/github.com/writefreely/writefreely/templates /go/src/github.com/writefreely/writefreely/static /go/src/github.com/writefreely/writefreely/pages /go/src/github.com/writefreely/writefreely/keys /go/src/github.com/writefreely/writefreely/cmd /stage",
+        "RUN make ui"
+      ],
+      "jobOutputs": {},
+      "tests": [
+        {
+          "testId": "go-binary:linux/amd64",
+          "verdict": "passed",
+          "mode": "executed"
+        },
+        {
+          "testId": "go-binary:linux/arm64",
+          "verdict": "passed",
+          "mode": "executed"
+        },
+        {
+          "testId": "image:linux/amd64",
+          "verdict": "passed",
+          "mode": "executed"
+        },
+        {
+          "testId": "image:linux/arm64",
+          "verdict": "passed",
+          "mode": "executed"
+        },
+        {
+          "testId": "ui",
+          "verdict": "passed",
+          "mode": "executed"
+        }
+      ],
+      "coverage": {
+        "lines": {
+          "covered": 5,
+          "total": 5,
+          "percentage": 100
+        },
+        "scopeHash": "998d3ead1c68c231ac56712856492688c2b4e6ebc41ec0507ce63f41fa7b64d3"
+      }
+    },
+    "cache": {
+      "sampleId": "p5c-main-push-cold-rep2-starsling-patched",
+      "profile": {
+        "name": "cold",
+        "actionsCache": "cold",
+        "crossRunArtifacts": "none",
+        "restoreExpectations": {},
+        "testResultReuseAllowed": false
+      },
+      "expectedSourceSha": "5d1bc057e86aafb6888bf301376b46ea5e0620e7",
+      "consumerRef": "refs/heads/develop",
+      "defaultBranch": "main",
+      "cacheEvents": [],
+      "inventoryVerified": true,
+      "coldSeedTotalSeconds": 0,
+      "warmSampleTotalSeconds": 88
+    }
+  },
+  {
+    "sampleId": "p5c-main-push-cold-rep3-github-baseline",
+    "inputFingerprint": "499e019da126c2754c0a81d68c82aab9de6a274f357a208a8faaed1be9afeca4",
+    "runIds": [
+      43756544348
+    ],
+    "sources": [
+      {
+        "path": "p5c-main-push-cold-rep3-github-baseline/tests.json",
+        "sha256": "d2ed6ac554c0b7fcb41e6cf25dfc6a8d925cfeb39701e1589ca91f9459ec9b9c",
+        "kind": "tests",
+        "format": "json-verdicts"
+      },
+      {
+        "path": "p5c-main-push-cold-rep3-github-baseline/cache.json",
+        "sha256": "1a7b3b6eca4895ffed503a21f90a3e032edc95c4447bb45deb07560f2b9281ea",
+        "kind": "cache"
+      },
+      {
+        "path": "p5c-main-push-cold-rep3-github-baseline/coverage.json",
+        "sha256": "c26f5fc414d35c4954ddba7089661bcd807f8d8f420dd7dfcac8e3c8f27488d2",
+        "kind": "coverage",
+        "format": "units"
+      }
+    ],
+    "execution": {
+      "inventory": {
+        "scenarioName": "main-push",
+        "triggeredWorkflows": [
+          ".github/workflows/docker-publish.yml"
+        ],
+        "excludedWorkflows": [],
+        "downstreamWorkflowRuns": [],
+        "jobExpectations": [
+          {
+            "workflowFile": ".github/workflows/docker-publish.yml",
+            "workflowName": "Build container image, publish as GitHub-package",
+            "jobId": "build",
+            "triggeredBy": "direct",
+            "expectedStatus": "executed",
+            "isDynamicMatrix": false,
+            "mappedRunsOn": {
+              "github": "ubuntu-24.04-4core",
+              "starsling": "ubuntu-24.04-4core",
+              "retainedOnGitHub": true,
+              "kind": "unmapped"
+            }
+          }
+        ],
+        "mixedRunnerOnStarSling": false,
+        "movedJobs": [],
+        "retainedJobs": [
+          ".github/workflows/docker-publish.yml#build"
+        ],
+        "blockers": [],
+        "nativeConditions": []
+      },
+      "semanticObligationsFulfilled": [
+        "release-image:linux/amd64",
+        "release-image:linux/arm64",
+        "ui-assets"
+      ],
+      "executedWorkflows": [
+        ".github/workflows/docker-publish.yml"
+      ],
+      "executedMatrixRowCounts": {
+        ".github/workflows/docker-publish.yml#build": 1
+      },
+      "observedCommands": [
+        "RUN make build && make ui && mkdir /stage && cp -R /go/bin /go/src/github.com/writefreely/writefreely/templates /go/src/github.com/writefreely/writefreely/static /go/src/github.com/writefreely/writefreely/pages /go/src/github.com/writefreely/writefreely/keys /go/src/github.com/writefreely/writefreely/cmd /stage"
+      ],
+      "jobOutputs": {},
+      "tests": [
+        {
+          "testId": "go-binary:linux/amd64",
+          "verdict": "passed",
+          "mode": "executed"
+        },
+        {
+          "testId": "go-binary:linux/arm64",
+          "verdict": "passed",
+          "mode": "executed"
+        },
+        {
+          "testId": "image:linux/amd64",
+          "verdict": "passed",
+          "mode": "executed"
+        },
+        {
+          "testId": "image:linux/arm64",
+          "verdict": "passed",
+          "mode": "executed"
+        },
+        {
+          "testId": "ui",
+          "verdict": "passed",
+          "mode": "executed"
+        }
+      ],
+      "coverage": {
+        "lines": {
+          "covered": 5,
+          "total": 5,
+          "percentage": 100
+        },
+        "scopeHash": "998d3ead1c68c231ac56712856492688c2b4e6ebc41ec0507ce63f41fa7b64d3"
+      }
+    },
+    "cache": {
+      "sampleId": "p5c-main-push-cold-rep3-github-baseline",
+      "profile": {
+        "name": "cold",
+        "actionsCache": "cold",
+        "crossRunArtifacts": "none",
+        "restoreExpectations": {},
+        "testResultReuseAllowed": false
+      },
+      "expectedSourceSha": "5d1bc057e86aafb6888bf301376b46ea5e0620e7",
+      "consumerRef": "refs/heads/develop",
+      "defaultBranch": "main",
+      "cacheEvents": [],
+      "inventoryVerified": true,
+      "coldSeedTotalSeconds": 0,
+      "warmSampleTotalSeconds": 1259
+    }
+  },
+  {
+    "sampleId": "p5c-main-push-cold-rep3-starsling-baseline",
+    "inputFingerprint": "499e019da126c2754c0a81d68c82aab9de6a274f357a208a8faaed1be9afeca4",
+    "runIds": [
+      43758771128
+    ],
+    "sources": [
+      {
+        "path": "p5c-main-push-cold-rep3-starsling-baseline/tests.json",
+        "sha256": "d2ed6ac554c0b7fcb41e6cf25dfc6a8d925cfeb39701e1589ca91f9459ec9b9c",
+        "kind": "tests",
+        "format": "json-verdicts"
+      },
+      {
+        "path": "p5c-main-push-cold-rep3-starsling-baseline/cache.json",
+        "sha256": "1a7b3b6eca4895ffed503a21f90a3e032edc95c4447bb45deb07560f2b9281ea",
+        "kind": "cache"
+      },
+      {
+        "path": "p5c-main-push-cold-rep3-starsling-baseline/coverage.json",
+        "sha256": "c26f5fc414d35c4954ddba7089661bcd807f8d8f420dd7dfcac8e3c8f27488d2",
+        "kind": "coverage",
+        "format": "units"
+      }
+    ],
+    "execution": {
+      "inventory": {
+        "scenarioName": "main-push",
+        "triggeredWorkflows": [
+          ".github/workflows/docker-publish.yml"
+        ],
+        "excludedWorkflows": [],
+        "downstreamWorkflowRuns": [],
+        "jobExpectations": [
+          {
+            "workflowFile": ".github/workflows/docker-publish.yml",
+            "workflowName": "Build container image, publish as GitHub-package",
+            "jobId": "build",
+            "triggeredBy": "direct",
+            "expectedStatus": "executed",
+            "isDynamicMatrix": false,
+            "mappedRunsOn": {
+              "github": "starsling-ubuntu-24.04",
+              "starsling": "starsling-ubuntu-24.04",
+              "retainedOnGitHub": true,
+              "kind": "unmapped",
+              "retentionReason": "Unmapped runner \"starsling-ubuntu-24.04\" retained on original label"
+            }
+          }
+        ],
+        "mixedRunnerOnStarSling": false,
+        "movedJobs": [],
+        "retainedJobs": [
+          ".github/workflows/docker-publish.yml#build"
+        ],
+        "blockers": [],
+        "nativeConditions": []
+      },
+      "semanticObligationsFulfilled": [
+        "release-image:linux/amd64",
+        "release-image:linux/arm64",
+        "ui-assets"
+      ],
+      "executedWorkflows": [
+        ".github/workflows/docker-publish.yml"
+      ],
+      "executedMatrixRowCounts": {
+        ".github/workflows/docker-publish.yml#build": 1
+      },
+      "observedCommands": [
+        "RUN make build && make ui && mkdir /stage && cp -R /go/bin /go/src/github.com/writefreely/writefreely/templates /go/src/github.com/writefreely/writefreely/static /go/src/github.com/writefreely/writefreely/pages /go/src/github.com/writefreely/writefreely/keys /go/src/github.com/writefreely/writefreely/cmd /stage"
+      ],
+      "jobOutputs": {},
+      "tests": [
+        {
+          "testId": "go-binary:linux/amd64",
+          "verdict": "passed",
+          "mode": "executed"
+        },
+        {
+          "testId": "go-binary:linux/arm64",
+          "verdict": "passed",
+          "mode": "executed"
+        },
+        {
+          "testId": "image:linux/amd64",
+          "verdict": "passed",
+          "mode": "executed"
+        },
+        {
+          "testId": "image:linux/arm64",
+          "verdict": "passed",
+          "mode": "executed"
+        },
+        {
+          "testId": "ui",
+          "verdict": "passed",
+          "mode": "executed"
+        }
+      ],
+      "coverage": {
+        "lines": {
+          "covered": 5,
+          "total": 5,
+          "percentage": 100
+        },
+        "scopeHash": "998d3ead1c68c231ac56712856492688c2b4e6ebc41ec0507ce63f41fa7b64d3"
+      }
+    },
+    "cache": {
+      "sampleId": "p5c-main-push-cold-rep3-starsling-baseline",
+      "profile": {
+        "name": "cold",
+        "actionsCache": "cold",
+        "crossRunArtifacts": "none",
+        "restoreExpectations": {},
+        "testResultReuseAllowed": false
+      },
+      "expectedSourceSha": "5d1bc057e86aafb6888bf301376b46ea5e0620e7",
+      "consumerRef": "refs/heads/develop",
+      "defaultBranch": "main",
+      "cacheEvents": [],
+      "inventoryVerified": true,
+      "coldSeedTotalSeconds": 0,
+      "warmSampleTotalSeconds": 532
+    }
+  },
+  {
+    "sampleId": "p5c-main-push-cold-rep3-starsling-patched",
+    "inputFingerprint": "499e019da126c2754c0a81d68c82aab9de6a274f357a208a8faaed1be9afeca4",
+    "runIds": [
+      43759784598
+    ],
+    "sources": [
+      {
+        "path": "p5c-main-push-cold-rep3-starsling-patched/tests.json",
+        "sha256": "d2ed6ac554c0b7fcb41e6cf25dfc6a8d925cfeb39701e1589ca91f9459ec9b9c",
+        "kind": "tests",
+        "format": "json-verdicts"
+      },
+      {
+        "path": "p5c-main-push-cold-rep3-starsling-patched/cache.json",
+        "sha256": "1a7b3b6eca4895ffed503a21f90a3e032edc95c4447bb45deb07560f2b9281ea",
+        "kind": "cache"
+      },
+      {
+        "path": "p5c-main-push-cold-rep3-starsling-patched/coverage.json",
+        "sha256": "c26f5fc414d35c4954ddba7089661bcd807f8d8f420dd7dfcac8e3c8f27488d2",
+        "kind": "coverage",
+        "format": "units"
+      }
+    ],
+    "execution": {
+      "inventory": {
+        "scenarioName": "main-push",
+        "triggeredWorkflows": [
+          ".github/workflows/docker-publish.yml"
+        ],
+        "excludedWorkflows": [],
+        "downstreamWorkflowRuns": [],
+        "jobExpectations": [
+          {
+            "workflowFile": ".github/workflows/docker-publish.yml",
+            "workflowName": "Build container image, publish as GitHub-package",
+            "jobId": "build",
+            "triggeredBy": "direct",
+            "expectedStatus": "executed",
+            "isDynamicMatrix": false,
+            "mappedRunsOn": {
+              "github": "starsling-ubuntu-24.04",
+              "starsling": "starsling-ubuntu-24.04",
+              "retainedOnGitHub": true,
+              "kind": "unmapped",
+              "retentionReason": "Unmapped runner \"starsling-ubuntu-24.04\" retained on original label"
+            }
+          }
+        ],
+        "mixedRunnerOnStarSling": false,
+        "movedJobs": [],
+        "retainedJobs": [
+          ".github/workflows/docker-publish.yml#build"
+        ],
+        "blockers": [],
+        "nativeConditions": []
+      },
+      "semanticObligationsFulfilled": [
+        "release-image:linux/amd64",
+        "release-image:linux/arm64",
+        "ui-assets"
+      ],
+      "executedWorkflows": [
+        ".github/workflows/docker-publish.yml"
+      ],
+      "executedMatrixRowCounts": {
+        ".github/workflows/docker-publish.yml#build": 1
+      },
+      "observedCommands": [
+        "RUN make build && xx-verify --static cmd/writefreely/writefreely && mkdir /stage && cp -R /go/bin /go/src/github.com/writefreely/writefreely/templates /go/src/github.com/writefreely/writefreely/static /go/src/github.com/writefreely/writefreely/pages /go/src/github.com/writefreely/writefreely/keys /go/src/github.com/writefreely/writefreely/cmd /stage",
+        "RUN make ui"
+      ],
+      "jobOutputs": {},
+      "tests": [
+        {
+          "testId": "go-binary:linux/amd64",
+          "verdict": "passed",
+          "mode": "executed"
+        },
+        {
+          "testId": "go-binary:linux/arm64",
+          "verdict": "passed",
+          "mode": "executed"
+        },
+        {
+          "testId": "image:linux/amd64",
+          "verdict": "passed",
+          "mode": "executed"
+        },
+        {
+          "testId": "image:linux/arm64",
+          "verdict": "passed",
+          "mode": "executed"
+        },
+        {
+          "testId": "ui",
+          "verdict": "passed",
+          "mode": "executed"
+        }
+      ],
+      "coverage": {
+        "lines": {
+          "covered": 5,
+          "total": 5,
+          "percentage": 100
+        },
+        "scopeHash": "998d3ead1c68c231ac56712856492688c2b4e6ebc41ec0507ce63f41fa7b64d3"
+      }
+    },
+    "cache": {
+      "sampleId": "p5c-main-push-cold-rep3-starsling-patched",
+      "profile": {
+        "name": "cold",
+        "actionsCache": "cold",
+        "crossRunArtifacts": "none",
+        "restoreExpectations": {},
+        "testResultReuseAllowed": false
+      },
+      "expectedSourceSha": "5d1bc057e86aafb6888bf301376b46ea5e0620e7",
+      "consumerRef": "refs/heads/develop",
+      "defaultBranch": "main",
+      "cacheEvents": [],
+      "inventoryVerified": true,
+      "coldSeedTotalSeconds": 0,
+      "warmSampleTotalSeconds": 87
+    }
+  },
+  {
+    "sampleId": "p5c-main-push-cold-rep4-starsling-patched",
+    "inputFingerprint": "499e019da126c2754c0a81d68c82aab9de6a274f357a208a8faaed1be9afeca4",
+    "runIds": [
+      43760064426
+    ],
+    "sources": [
+      {
+        "path": "p5c-main-push-cold-rep4-starsling-patched/tests.json",
+        "sha256": "d2ed6ac554c0b7fcb41e6cf25dfc6a8d925cfeb39701e1589ca91f9459ec9b9c",
+        "kind": "tests",
+        "format": "json-verdicts"
+      },
+      {
+        "path": "p5c-main-push-cold-rep4-starsling-patched/cache.json",
+        "sha256": "1a7b3b6eca4895ffed503a21f90a3e032edc95c4447bb45deb07560f2b9281ea",
+        "kind": "cache"
+      },
+      {
+        "path": "p5c-main-push-cold-rep4-starsling-patched/coverage.json",
+        "sha256": "c26f5fc414d35c4954ddba7089661bcd807f8d8f420dd7dfcac8e3c8f27488d2",
+        "kind": "coverage",
+        "format": "units"
+      }
+    ],
+    "execution": {
+      "inventory": {
+        "scenarioName": "main-push",
+        "triggeredWorkflows": [
+          ".github/workflows/docker-publish.yml"
+        ],
+        "excludedWorkflows": [],
+        "downstreamWorkflowRuns": [],
+        "jobExpectations": [
+          {
+            "workflowFile": ".github/workflows/docker-publish.yml",
+            "workflowName": "Build container image, publish as GitHub-package",
+            "jobId": "build",
+            "triggeredBy": "direct",
+            "expectedStatus": "executed",
+            "isDynamicMatrix": false,
+            "mappedRunsOn": {
+              "github": "starsling-ubuntu-24.04",
+              "starsling": "starsling-ubuntu-24.04",
+              "retainedOnGitHub": true,
+              "kind": "unmapped",
+              "retentionReason": "Unmapped runner \"starsling-ubuntu-24.04\" retained on original label"
+            }
+          }
+        ],
+        "mixedRunnerOnStarSling": false,
+        "movedJobs": [],
+        "retainedJobs": [
+          ".github/workflows/docker-publish.yml#build"
+        ],
+        "blockers": [],
+        "nativeConditions": []
+      },
+      "semanticObligationsFulfilled": [
+        "release-image:linux/amd64",
+        "release-image:linux/arm64",
+        "ui-assets"
+      ],
+      "executedWorkflows": [
+        ".github/workflows/docker-publish.yml"
+      ],
+      "executedMatrixRowCounts": {
+        ".github/workflows/docker-publish.yml#build": 1
+      },
+      "observedCommands": [
+        "RUN make build && xx-verify --static cmd/writefreely/writefreely && mkdir /stage && cp -R /go/bin /go/src/github.com/writefreely/writefreely/templates /go/src/github.com/writefreely/writefreely/static /go/src/github.com/writefreely/writefreely/pages /go/src/github.com/writefreely/writefreely/keys /go/src/github.com/writefreely/writefreely/cmd /stage",
+        "RUN make ui"
+      ],
+      "jobOutputs": {},
+      "tests": [
+        {
+          "testId": "go-binary:linux/amd64",
+          "verdict": "passed",
+          "mode": "executed"
+        },
+        {
+          "testId": "go-binary:linux/arm64",
+          "verdict": "passed",
+          "mode": "executed"
+        },
+        {
+          "testId": "image:linux/amd64",
+          "verdict": "passed",
+          "mode": "executed"
+        },
+        {
+          "testId": "image:linux/arm64",
+          "verdict": "passed",
+          "mode": "executed"
+        },
+        {
+          "testId": "ui",
+          "verdict": "passed",
+          "mode": "executed"
+        }
+      ],
+      "coverage": {
+        "lines": {
+          "covered": 5,
+          "total": 5,
+          "percentage": 100
+        },
+        "scopeHash": "998d3ead1c68c231ac56712856492688c2b4e6ebc41ec0507ce63f41fa7b64d3"
+      }
+    },
+    "cache": {
+      "sampleId": "p5c-main-push-cold-rep4-starsling-patched",
+      "profile": {
+        "name": "cold",
+        "actionsCache": "cold",
+        "crossRunArtifacts": "none",
+        "restoreExpectations": {},
+        "testResultReuseAllowed": false
+      },
+      "expectedSourceSha": "5d1bc057e86aafb6888bf301376b46ea5e0620e7",
+      "consumerRef": "refs/heads/develop",
+      "defaultBranch": "main",
+      "cacheEvents": [],
+      "inventoryVerified": true,
+      "coldSeedTotalSeconds": 0,
+      "warmSampleTotalSeconds": 88
+    }
+  },
+  {
+    "sampleId": "p5c-main-push-cold-rep4-github-baseline",
+    "inputFingerprint": "499e019da126c2754c0a81d68c82aab9de6a274f357a208a8faaed1be9afeca4",
+    "runIds": [
+      43760343203
+    ],
+    "sources": [
+      {
+        "path": "p5c-main-push-cold-rep4-github-baseline/tests.json",
+        "sha256": "d2ed6ac554c0b7fcb41e6cf25dfc6a8d925cfeb39701e1589ca91f9459ec9b9c",
+        "kind": "tests",
+        "format": "json-verdicts"
+      },
+      {
+        "path": "p5c-main-push-cold-rep4-github-baseline/cache.json",
+        "sha256": "1a7b3b6eca4895ffed503a21f90a3e032edc95c4447bb45deb07560f2b9281ea",
+        "kind": "cache"
+      },
+      {
+        "path": "p5c-main-push-cold-rep4-github-baseline/coverage.json",
+        "sha256": "c26f5fc414d35c4954ddba7089661bcd807f8d8f420dd7dfcac8e3c8f27488d2",
+        "kind": "coverage",
+        "format": "units"
+      }
+    ],
+    "execution": {
+      "inventory": {
+        "scenarioName": "main-push",
+        "triggeredWorkflows": [
+          ".github/workflows/docker-publish.yml"
+        ],
+        "excludedWorkflows": [],
+        "downstreamWorkflowRuns": [],
+        "jobExpectations": [
+          {
+            "workflowFile": ".github/workflows/docker-publish.yml",
+            "workflowName": "Build container image, publish as GitHub-package",
+            "jobId": "build",
+            "triggeredBy": "direct",
+            "expectedStatus": "executed",
+            "isDynamicMatrix": false,
+            "mappedRunsOn": {
+              "github": "ubuntu-24.04-4core",
+              "starsling": "ubuntu-24.04-4core",
+              "retainedOnGitHub": true,
+              "kind": "unmapped"
+            }
+          }
+        ],
+        "mixedRunnerOnStarSling": false,
+        "movedJobs": [],
+        "retainedJobs": [
+          ".github/workflows/docker-publish.yml#build"
+        ],
+        "blockers": [],
+        "nativeConditions": []
+      },
+      "semanticObligationsFulfilled": [
+        "release-image:linux/amd64",
+        "release-image:linux/arm64",
+        "ui-assets"
+      ],
+      "executedWorkflows": [
+        ".github/workflows/docker-publish.yml"
+      ],
+      "executedMatrixRowCounts": {
+        ".github/workflows/docker-publish.yml#build": 1
+      },
+      "observedCommands": [
+        "RUN make build && make ui && mkdir /stage && cp -R /go/bin /go/src/github.com/writefreely/writefreely/templates /go/src/github.com/writefreely/writefreely/static /go/src/github.com/writefreely/writefreely/pages /go/src/github.com/writefreely/writefreely/keys /go/src/github.com/writefreely/writefreely/cmd /stage"
+      ],
+      "jobOutputs": {},
+      "tests": [
+        {
+          "testId": "go-binary:linux/amd64",
+          "verdict": "passed",
+          "mode": "executed"
+        },
+        {
+          "testId": "go-binary:linux/arm64",
+          "verdict": "passed",
+          "mode": "executed"
+        },
+        {
+          "testId": "image:linux/amd64",
+          "verdict": "passed",
+          "mode": "executed"
+        },
+        {
+          "testId": "image:linux/arm64",
+          "verdict": "passed",
+          "mode": "executed"
+        },
+        {
+          "testId": "ui",
+          "verdict": "passed",
+          "mode": "executed"
+        }
+      ],
+      "coverage": {
+        "lines": {
+          "covered": 5,
+          "total": 5,
+          "percentage": 100
+        },
+        "scopeHash": "998d3ead1c68c231ac56712856492688c2b4e6ebc41ec0507ce63f41fa7b64d3"
+      }
+    },
+    "cache": {
+      "sampleId": "p5c-main-push-cold-rep4-github-baseline",
+      "profile": {
+        "name": "cold",
+        "actionsCache": "cold",
+        "crossRunArtifacts": "none",
+        "restoreExpectations": {},
+        "testResultReuseAllowed": false
+      },
+      "expectedSourceSha": "5d1bc057e86aafb6888bf301376b46ea5e0620e7",
+      "consumerRef": "refs/heads/develop",
+      "defaultBranch": "main",
+      "cacheEvents": [],
+      "inventoryVerified": true,
+      "coldSeedTotalSeconds": 0,
+      "warmSampleTotalSeconds": 954
+    }
+  },
+  {
+    "sampleId": "p5c-main-push-cold-rep4-starsling-baseline",
+    "inputFingerprint": "499e019da126c2754c0a81d68c82aab9de6a274f357a208a8faaed1be9afeca4",
+    "runIds": [
+      43761963939
+    ],
+    "sources": [
+      {
+        "path": "p5c-main-push-cold-rep4-starsling-baseline/tests.json",
+        "sha256": "d2ed6ac554c0b7fcb41e6cf25dfc6a8d925cfeb39701e1589ca91f9459ec9b9c",
+        "kind": "tests",
+        "format": "json-verdicts"
+      },
+      {
+        "path": "p5c-main-push-cold-rep4-starsling-baseline/cache.json",
+        "sha256": "1a7b3b6eca4895ffed503a21f90a3e032edc95c4447bb45deb07560f2b9281ea",
+        "kind": "cache"
+      },
+      {
+        "path": "p5c-main-push-cold-rep4-starsling-baseline/coverage.json",
+        "sha256": "c26f5fc414d35c4954ddba7089661bcd807f8d8f420dd7dfcac8e3c8f27488d2",
+        "kind": "coverage",
+        "format": "units"
+      }
+    ],
+    "execution": {
+      "inventory": {
+        "scenarioName": "main-push",
+        "triggeredWorkflows": [
+          ".github/workflows/docker-publish.yml"
+        ],
+        "excludedWorkflows": [],
+        "downstreamWorkflowRuns": [],
+        "jobExpectations": [
+          {
+            "workflowFile": ".github/workflows/docker-publish.yml",
+            "workflowName": "Build container image, publish as GitHub-package",
+            "jobId": "build",
+            "triggeredBy": "direct",
+            "expectedStatus": "executed",
+            "isDynamicMatrix": false,
+            "mappedRunsOn": {
+              "github": "starsling-ubuntu-24.04",
+              "starsling": "starsling-ubuntu-24.04",
+              "retainedOnGitHub": true,
+              "kind": "unmapped",
+              "retentionReason": "Unmapped runner \"starsling-ubuntu-24.04\" retained on original label"
+            }
+          }
+        ],
+        "mixedRunnerOnStarSling": false,
+        "movedJobs": [],
+        "retainedJobs": [
+          ".github/workflows/docker-publish.yml#build"
+        ],
+        "blockers": [],
+        "nativeConditions": []
+      },
+      "semanticObligationsFulfilled": [
+        "release-image:linux/amd64",
+        "release-image:linux/arm64",
+        "ui-assets"
+      ],
+      "executedWorkflows": [
+        ".github/workflows/docker-publish.yml"
+      ],
+      "executedMatrixRowCounts": {
+        ".github/workflows/docker-publish.yml#build": 1
+      },
+      "observedCommands": [
+        "RUN make build && make ui && mkdir /stage && cp -R /go/bin /go/src/github.com/writefreely/writefreely/templates /go/src/github.com/writefreely/writefreely/static /go/src/github.com/writefreely/writefreely/pages /go/src/github.com/writefreely/writefreely/keys /go/src/github.com/writefreely/writefreely/cmd /stage"
+      ],
+      "jobOutputs": {},
+      "tests": [
+        {
+          "testId": "go-binary:linux/amd64",
+          "verdict": "passed",
+          "mode": "executed"
+        },
+        {
+          "testId": "go-binary:linux/arm64",
+          "verdict": "passed",
+          "mode": "executed"
+        },
+        {
+          "testId": "image:linux/amd64",
+          "verdict": "passed",
+          "mode": "executed"
+        },
+        {
+          "testId": "image:linux/arm64",
+          "verdict": "passed",
+          "mode": "executed"
+        },
+        {
+          "testId": "ui",
+          "verdict": "passed",
+          "mode": "executed"
+        }
+      ],
+      "coverage": {
+        "lines": {
+          "covered": 5,
+          "total": 5,
+          "percentage": 100
+        },
+        "scopeHash": "998d3ead1c68c231ac56712856492688c2b4e6ebc41ec0507ce63f41fa7b64d3"
+      }
+    },
+    "cache": {
+      "sampleId": "p5c-main-push-cold-rep4-starsling-baseline",
+      "profile": {
+        "name": "cold",
+        "actionsCache": "cold",
+        "crossRunArtifacts": "none",
+        "restoreExpectations": {},
+        "testResultReuseAllowed": false
+      },
+      "expectedSourceSha": "5d1bc057e86aafb6888bf301376b46ea5e0620e7",
+      "consumerRef": "refs/heads/develop",
+      "defaultBranch": "main",
+      "cacheEvents": [],
+      "inventoryVerified": true,
+      "coldSeedTotalSeconds": 0,
+      "warmSampleTotalSeconds": 559
+    }
+  },
+  {
+    "sampleId": "p5c-main-push-cold-rep5-github-baseline",
+    "inputFingerprint": "499e019da126c2754c0a81d68c82aab9de6a274f357a208a8faaed1be9afeca4",
+    "runIds": [
+      43763018010
+    ],
+    "sources": [
+      {
+        "path": "p5c-main-push-cold-rep5-github-baseline/tests.json",
+        "sha256": "d2ed6ac554c0b7fcb41e6cf25dfc6a8d925cfeb39701e1589ca91f9459ec9b9c",
+        "kind": "tests",
+        "format": "json-verdicts"
+      },
+      {
+        "path": "p5c-main-push-cold-rep5-github-baseline/cache.json",
+        "sha256": "1a7b3b6eca4895ffed503a21f90a3e032edc95c4447bb45deb07560f2b9281ea",
+        "kind": "cache"
+      },
+      {
+        "path": "p5c-main-push-cold-rep5-github-baseline/coverage.json",
+        "sha256": "c26f5fc414d35c4954ddba7089661bcd807f8d8f420dd7dfcac8e3c8f27488d2",
+        "kind": "coverage",
+        "format": "units"
+      }
+    ],
+    "execution": {
+      "inventory": {
+        "scenarioName": "main-push",
+        "triggeredWorkflows": [
+          ".github/workflows/docker-publish.yml"
+        ],
+        "excludedWorkflows": [],
+        "downstreamWorkflowRuns": [],
+        "jobExpectations": [
+          {
+            "workflowFile": ".github/workflows/docker-publish.yml",
+            "workflowName": "Build container image, publish as GitHub-package",
+            "jobId": "build",
+            "triggeredBy": "direct",
+            "expectedStatus": "executed",
+            "isDynamicMatrix": false,
+            "mappedRunsOn": {
+              "github": "ubuntu-24.04-4core",
+              "starsling": "ubuntu-24.04-4core",
+              "retainedOnGitHub": true,
+              "kind": "unmapped"
+            }
+          }
+        ],
+        "mixedRunnerOnStarSling": false,
+        "movedJobs": [],
+        "retainedJobs": [
+          ".github/workflows/docker-publish.yml#build"
+        ],
+        "blockers": [],
+        "nativeConditions": []
+      },
+      "semanticObligationsFulfilled": [
+        "release-image:linux/amd64",
+        "release-image:linux/arm64",
+        "ui-assets"
+      ],
+      "executedWorkflows": [
+        ".github/workflows/docker-publish.yml"
+      ],
+      "executedMatrixRowCounts": {
+        ".github/workflows/docker-publish.yml#build": 1
+      },
+      "observedCommands": [
+        "RUN make build && make ui && mkdir /stage && cp -R /go/bin /go/src/github.com/writefreely/writefreely/templates /go/src/github.com/writefreely/writefreely/static /go/src/github.com/writefreely/writefreely/pages /go/src/github.com/writefreely/writefreely/keys /go/src/github.com/writefreely/writefreely/cmd /stage"
+      ],
+      "jobOutputs": {},
+      "tests": [
+        {
+          "testId": "go-binary:linux/amd64",
+          "verdict": "passed",
+          "mode": "executed"
+        },
+        {
+          "testId": "go-binary:linux/arm64",
+          "verdict": "passed",
+          "mode": "executed"
+        },
+        {
+          "testId": "image:linux/amd64",
+          "verdict": "passed",
+          "mode": "executed"
+        },
+        {
+          "testId": "image:linux/arm64",
+          "verdict": "passed",
+          "mode": "executed"
+        },
+        {
+          "testId": "ui",
+          "verdict": "passed",
+          "mode": "executed"
+        }
+      ],
+      "coverage": {
+        "lines": {
+          "covered": 5,
+          "total": 5,
+          "percentage": 100
+        },
+        "scopeHash": "998d3ead1c68c231ac56712856492688c2b4e6ebc41ec0507ce63f41fa7b64d3"
+      }
+    },
+    "cache": {
+      "sampleId": "p5c-main-push-cold-rep5-github-baseline",
+      "profile": {
+        "name": "cold",
+        "actionsCache": "cold",
+        "crossRunArtifacts": "none",
+        "restoreExpectations": {},
+        "testResultReuseAllowed": false
+      },
+      "expectedSourceSha": "5d1bc057e86aafb6888bf301376b46ea5e0620e7",
+      "consumerRef": "refs/heads/develop",
+      "defaultBranch": "main",
+      "cacheEvents": [],
+      "inventoryVerified": true,
+      "coldSeedTotalSeconds": 0,
+      "warmSampleTotalSeconds": 840
+    }
+  },
+  {
+    "sampleId": "p5c-main-push-cold-rep5-starsling-baseline",
+    "inputFingerprint": "499e019da126c2754c0a81d68c82aab9de6a274f357a208a8faaed1be9afeca4",
+    "runIds": [
+      43764424246
+    ],
+    "sources": [
+      {
+        "path": "p5c-main-push-cold-rep5-starsling-baseline/tests.json",
+        "sha256": "d2ed6ac554c0b7fcb41e6cf25dfc6a8d925cfeb39701e1589ca91f9459ec9b9c",
+        "kind": "tests",
+        "format": "json-verdicts"
+      },
+      {
+        "path": "p5c-main-push-cold-rep5-starsling-baseline/cache.json",
+        "sha256": "1a7b3b6eca4895ffed503a21f90a3e032edc95c4447bb45deb07560f2b9281ea",
+        "kind": "cache"
+      },
+      {
+        "path": "p5c-main-push-cold-rep5-starsling-baseline/coverage.json",
+        "sha256": "c26f5fc414d35c4954ddba7089661bcd807f8d8f420dd7dfcac8e3c8f27488d2",
+        "kind": "coverage",
+        "format": "units"
+      }
+    ],
+    "execution": {
+      "inventory": {
+        "scenarioName": "main-push",
+        "triggeredWorkflows": [
+          ".github/workflows/docker-publish.yml"
+        ],
+        "excludedWorkflows": [],
+        "downstreamWorkflowRuns": [],
+        "jobExpectations": [
+          {
+            "workflowFile": ".github/workflows/docker-publish.yml",
+            "workflowName": "Build container image, publish as GitHub-package",
+            "jobId": "build",
+            "triggeredBy": "direct",
+            "expectedStatus": "executed",
+            "isDynamicMatrix": false,
+            "mappedRunsOn": {
+              "github": "starsling-ubuntu-24.04",
+              "starsling": "starsling-ubuntu-24.04",
+              "retainedOnGitHub": true,
+              "kind": "unmapped",
+              "retentionReason": "Unmapped runner \"starsling-ubuntu-24.04\" retained on original label"
+            }
+          }
+        ],
+        "mixedRunnerOnStarSling": false,
+        "movedJobs": [],
+        "retainedJobs": [
+          ".github/workflows/docker-publish.yml#build"
+        ],
+        "blockers": [],
+        "nativeConditions": []
+      },
+      "semanticObligationsFulfilled": [
+        "release-image:linux/amd64",
+        "release-image:linux/arm64",
+        "ui-assets"
+      ],
+      "executedWorkflows": [
+        ".github/workflows/docker-publish.yml"
+      ],
+      "executedMatrixRowCounts": {
+        ".github/workflows/docker-publish.yml#build": 1
+      },
+      "observedCommands": [
+        "RUN make build && make ui && mkdir /stage && cp -R /go/bin /go/src/github.com/writefreely/writefreely/templates /go/src/github.com/writefreely/writefreely/static /go/src/github.com/writefreely/writefreely/pages /go/src/github.com/writefreely/writefreely/keys /go/src/github.com/writefreely/writefreely/cmd /stage"
+      ],
+      "jobOutputs": {},
+      "tests": [
+        {
+          "testId": "go-binary:linux/amd64",
+          "verdict": "passed",
+          "mode": "executed"
+        },
+        {
+          "testId": "go-binary:linux/arm64",
+          "verdict": "passed",
+          "mode": "executed"
+        },
+        {
+          "testId": "image:linux/amd64",
+          "verdict": "passed",
+          "mode": "executed"
+        },
+        {
+          "testId": "image:linux/arm64",
+          "verdict": "passed",
+          "mode": "executed"
+        },
+        {
+          "testId": "ui",
+          "verdict": "passed",
+          "mode": "executed"
+        }
+      ],
+      "coverage": {
+        "lines": {
+          "covered": 5,
+          "total": 5,
+          "percentage": 100
+        },
+        "scopeHash": "998d3ead1c68c231ac56712856492688c2b4e6ebc41ec0507ce63f41fa7b64d3"
+      }
+    },
+    "cache": {
+      "sampleId": "p5c-main-push-cold-rep5-starsling-baseline",
+      "profile": {
+        "name": "cold",
+        "actionsCache": "cold",
+        "crossRunArtifacts": "none",
+        "restoreExpectations": {},
+        "testResultReuseAllowed": false
+      },
+      "expectedSourceSha": "5d1bc057e86aafb6888bf301376b46ea5e0620e7",
+      "consumerRef": "refs/heads/develop",
+      "defaultBranch": "main",
+      "cacheEvents": [],
+      "inventoryVerified": true,
+      "coldSeedTotalSeconds": 0,
+      "warmSampleTotalSeconds": 560
+    }
+  },
+  {
+    "sampleId": "p5c-main-push-cold-rep5-starsling-patched",
+    "inputFingerprint": "499e019da126c2754c0a81d68c82aab9de6a274f357a208a8faaed1be9afeca4",
+    "runIds": [
+      43765445581
+    ],
+    "sources": [
+      {
+        "path": "p5c-main-push-cold-rep5-starsling-patched/tests.json",
+        "sha256": "d2ed6ac554c0b7fcb41e6cf25dfc6a8d925cfeb39701e1589ca91f9459ec9b9c",
+        "kind": "tests",
+        "format": "json-verdicts"
+      },
+      {
+        "path": "p5c-main-push-cold-rep5-starsling-patched/cache.json",
+        "sha256": "1a7b3b6eca4895ffed503a21f90a3e032edc95c4447bb45deb07560f2b9281ea",
+        "kind": "cache"
+      },
+      {
+        "path": "p5c-main-push-cold-rep5-starsling-patched/coverage.json",
+        "sha256": "c26f5fc414d35c4954ddba7089661bcd807f8d8f420dd7dfcac8e3c8f27488d2",
+        "kind": "coverage",
+        "format": "units"
+      }
+    ],
+    "execution": {
+      "inventory": {
+        "scenarioName": "main-push",
+        "triggeredWorkflows": [
+          ".github/workflows/docker-publish.yml"
+        ],
+        "excludedWorkflows": [],
+        "downstreamWorkflowRuns": [],
+        "jobExpectations": [
+          {
+            "workflowFile": ".github/workflows/docker-publish.yml",
+            "workflowName": "Build container image, publish as GitHub-package",
+            "jobId": "build",
+            "triggeredBy": "direct",
+            "expectedStatus": "executed",
+            "isDynamicMatrix": false,
+            "mappedRunsOn": {
+              "github": "starsling-ubuntu-24.04",
+              "starsling": "starsling-ubuntu-24.04",
+              "retainedOnGitHub": true,
+              "kind": "unmapped",
+              "retentionReason": "Unmapped runner \"starsling-ubuntu-24.04\" retained on original label"
+            }
+          }
+        ],
+        "mixedRunnerOnStarSling": false,
+        "movedJobs": [],
+        "retainedJobs": [
+          ".github/workflows/docker-publish.yml#build"
+        ],
+        "blockers": [],
+        "nativeConditions": []
+      },
+      "semanticObligationsFulfilled": [
+        "release-image:linux/amd64",
+        "release-image:linux/arm64",
+        "ui-assets"
+      ],
+      "executedWorkflows": [
+        ".github/workflows/docker-publish.yml"
+      ],
+      "executedMatrixRowCounts": {
+        ".github/workflows/docker-publish.yml#build": 1
+      },
+      "observedCommands": [
+        "RUN make build && xx-verify --static cmd/writefreely/writefreely && mkdir /stage && cp -R /go/bin /go/src/github.com/writefreely/writefreely/templates /go/src/github.com/writefreely/writefreely/static /go/src/github.com/writefreely/writefreely/pages /go/src/github.com/writefreely/writefreely/keys /go/src/github.com/writefreely/writefreely/cmd /stage",
+        "RUN make ui"
+      ],
+      "jobOutputs": {},
+      "tests": [
+        {
+          "testId": "go-binary:linux/amd64",
+          "verdict": "passed",
+          "mode": "executed"
+        },
+        {
+          "testId": "go-binary:linux/arm64",
+          "verdict": "passed",
+          "mode": "executed"
+        },
+        {
+          "testId": "image:linux/amd64",
+          "verdict": "passed",
+          "mode": "executed"
+        },
+        {
+          "testId": "image:linux/arm64",
+          "verdict": "passed",
+          "mode": "executed"
+        },
+        {
+          "testId": "ui",
+          "verdict": "passed",
+          "mode": "executed"
+        }
+      ],
+      "coverage": {
+        "lines": {
+          "covered": 5,
+          "total": 5,
+          "percentage": 100
+        },
+        "scopeHash": "998d3ead1c68c231ac56712856492688c2b4e6ebc41ec0507ce63f41fa7b64d3"
+      }
+    },
+    "cache": {
+      "sampleId": "p5c-main-push-cold-rep5-starsling-patched",
+      "profile": {
+        "name": "cold",
+        "actionsCache": "cold",
+        "crossRunArtifacts": "none",
+        "restoreExpectations": {},
+        "testResultReuseAllowed": false
+      },
+      "expectedSourceSha": "5d1bc057e86aafb6888bf301376b46ea5e0620e7",
+      "consumerRef": "refs/heads/develop",
+      "defaultBranch": "main",
+      "cacheEvents": [],
+      "inventoryVerified": true,
+      "coldSeedTotalSeconds": 0,
+      "warmSampleTotalSeconds": 89
+    }
+  }
+]

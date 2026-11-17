@@ -1,0 +1,120 @@
+{
+  "schemaVersion": 1,
+  "scenarioName": "main-push",
+  "upstreamRepository": "writefreely/writefreely",
+  "event": "push",
+  "headSha": "5d1bc057e86aafb6888bf301376b46ea5e0620e7",
+  "retrievedAt": "2026-11-15T06:07:17.606Z",
+  "runs": [
+    {
+      "runId": 36467521733,
+      "attempt": 1,
+      "workflowPath": ".github/workflows/docker-publish.yml",
+      "workflowName": "Build container image, publish as GitHub-package",
+      "event": "push",
+      "status": "completed",
+      "conclusion": "success",
+      "htmlUrl": "https://github.com/writefreely/writefreely/actions/runs/36467521733",
+      "createdAt": "2026-09-28T18:46:08Z",
+      "startedAt": "2026-09-28T18:46:08Z",
+      "jobs": [
+        {
+          "id": 109081210471,
+          "name": "build",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-28T18:46:11Z",
+          "completedAt": "2026-09-28T19:05:46Z",
+          "durationSeconds": 1175,
+          "labels": [
+            "ubuntu-latest"
+          ],
+          "steps": [
+            {
+              "number": 1,
+              "name": "Set up job",
+              "conclusion": "success",
+              "durationSeconds": 2
+            },
+            {
+              "number": 2,
+              "name": "Checkout repository",
+              "conclusion": "success",
+              "durationSeconds": 1
+            },
+            {
+              "number": 3,
+              "name": "Set up QEMU",
+              "conclusion": "success",
+              "durationSeconds": 6
+            },
+            {
+              "number": 4,
+              "name": "Set up Docker Buildx",
+              "conclusion": "success",
+              "durationSeconds": 5
+            },
+            {
+              "number": 5,
+              "name": "Log into registry ghcr.io",
+              "conclusion": "success",
+              "durationSeconds": 0
+            },
+            {
+              "number": 6,
+              "name": "Extract Docker metadata",
+              "conclusion": "success",
+              "durationSeconds": 1
+            },
+            {
+              "number": 7,
+              "name": "Build and push Docker images",
+              "conclusion": "success",
+              "durationSeconds": 1135
+            },
+            {
+              "number": 10,
+              "name": "Post Build and push Docker images",
+              "conclusion": "success",
+              "durationSeconds": 1
+            },
+            {
+              "number": 11,
+              "name": "Post Log into registry ghcr.io",
+              "conclusion": "success",
+              "durationSeconds": 1
+            },
+            {
+              "number": 12,
+              "name": "Post Set up Docker Buildx",
+              "conclusion": "success",
+              "durationSeconds": 20
+            },
+            {
+              "number": 13,
+              "name": "Post Set up QEMU",
+              "conclusion": "success",
+              "durationSeconds": 1
+            },
+            {
+              "number": 14,
+              "name": "Post Checkout repository",
+              "conclusion": "success",
+              "durationSeconds": 0
+            },
+            {
+              "number": 15,
+              "name": "Complete job",
+              "conclusion": "success",
+              "durationSeconds": 0
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "metrics": {
+    "wallClockSeconds": 1178,
+    "runnerSeconds": 1175
+  }
+}

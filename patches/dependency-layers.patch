@@ -1,0 +1,26 @@
+diff --git a/Dockerfile b/Dockerfile
+index afdf2ab..800b1d9 100644
+--- a/Dockerfile
++++ b/Dockerfile
+@@ -19,6 +19,8 @@ ENV NODE_OPTIONS=--openssl-legacy-provider
+ 
+ # UI (CSS and the editor's JS): the same for every CPU, so this stage is built once for all platforms.
+ FROM base AS ui
++COPY prose/package.json prose/package-lock.json prose/
++RUN cd prose && npm install
+ COPY . .
+ RUN cat ossl_legacy.cnf > /etc/ssl/openssl.cnf
+ RUN make ui
+@@ -28,6 +30,12 @@ ARG TARGETPLATFORM
+ RUN xx-apk add --no-cache gcc musl-dev && xx-go --wrap
+ # Go turns cgo off when cross-compiling unless asked; SQLite needs it (as in the native build).
+ ENV CGO_ENABLED=1
++# Dependencies first, so these layers stay cached until go.mod/go.sum change. Also pre-built here, with the
++# same tags as `make build`: the standard library and the two slowest dependency packages (cgo SQLite and the
++# generated ActivityStreams vocabulary).
++COPY go.mod go.sum ./
++RUN go mod download \
++    && go build -tags='netgo sqlite' std github.com/mattn/go-sqlite3 github.com/writeas/activity/streams
+ COPY . .
+ COPY --from=ui /go/src/github.com/writefreely/writefreely/static ./static
+ 

@@ -1,0 +1,13 @@
+# Harness CI. Workflow files are prefixed `bench-` so they never share a path with an upstream workflow
+# that the replay installs on the default branch.
+name: Benchmark harness
+on:
+  push:
+    branches: [main, bench/control]
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    uses: ./.github/workflows/bench-verify.yml

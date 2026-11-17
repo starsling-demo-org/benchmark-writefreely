@@ -1,0 +1,53 @@
+{
+  "experimentId": "ab-b",
+  "sampleId": "ab-b-main-push-cold-rep3-starsling-patched",
+  "scenarioName": "main-push",
+  "variant": "starsling-patched",
+  "profileName": "cold",
+  "currentStep": "completed",
+  "completedSteps": [
+    "1_acquire_lease",
+    "2_register_placeholders",
+    "3_disable_workflows_and_reset_refs",
+    "4_install_and_verify_trees",
+    "5_enable_scenario_workflows",
+    "6_trigger_event",
+    "7_await_downstream_completion"
+  ],
+  "controlBranch": "bench/control",
+  "defaultBranch": "main",
+  "benchmarkOwnedRefs": [
+    "refs/heads/develop",
+    "refs/heads/main",
+    "refs/heads/bench/pr/main-push/head"
+  ],
+  "previousBenchmarkRefs": {
+    "refs/heads/develop": "b57e7aef4565d52c9d769bd7b3ca719125cda9ef",
+    "refs/heads/main": "43e0bc1126aba6510fd9233f019576472875a8f3",
+    "refs/heads/bench/pr/main-push/head": null
+  },
+  "observedUnrelatedRefs": {
+    "refs/heads/bench/control": "26db2e650c9bc1714e9524dce55330a4c701bbf9",
+    "refs/heads/starsling/develop": "f1d2c84a4e5cdf876b9070dbd5ecd3d0f9c85d98"
+  },
+  "registeredPlaceholderWorkflows": [
+    ".github/workflows/docker-publish.yml"
+  ],
+  "disabledWorkflows": [
+    ".github/workflows/docker-publish.yml"
+  ],
+  "enabledWorkflows": [
+    ".github/workflows/docker-publish.yml"
+  ],
+  "updatedAt": "2026-11-15T10:39:22.286Z",
+  "leaseAcquiredAt": "2026-11-15T10:34:19.777Z",
+  "leaseHolder": "ab-b:ab-b-main-push-cold-rep3-starsling-patched",
+  "installedTreeHash": "b40126fd5df0d526d9c6fdf8429f7548064ed9e135ad835465349adeae2ebc93",
+  "dispatchRecord": {
+    "idempotencyKey": "ab-b:ab-b-main-push-cold-rep3-starsling-patched:main-push:starsling-patched",
+    "dispatchedAt": "2026-11-15T10:36:50.772Z",
+    "event": "push",
+    "targetRef": "refs/heads/develop",
+    "headSha": "b57e7aef4565d52c9d769bd7b3ca719125cda9ef"
+  }
+}

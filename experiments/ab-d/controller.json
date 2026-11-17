@@ -1,0 +1,148 @@
+{
+  "owner": "ab-d",
+  "expectedRefs": {
+    "refs/heads/main": "ec9d1001f82a210a41cf28fd210839d7ee523052",
+    "refs/heads/develop": null
+  },
+  "workflowStates": {
+    ".github/workflows/docker-publish.yml": "absent"
+  },
+  "dispatches": {
+    "ab-d:ab-d-main-push-cold-rep1-starsling-patched:main-push:starsling-patched": {
+      "headSha": "0ef8680a364312f9e2049718ce6405be60f480fa",
+      "dispatchedAt": "2026-11-15T12:22:04.453Z"
+    },
+    "ab-d:ab-d-main-push-cold-rep1-starsling-baseline:main-push:starsling-baseline": {
+      "headSha": "b57e7aef4565d52c9d769bd7b3ca719125cda9ef",
+      "dispatchedAt": "2026-11-15T12:29:58.943Z"
+    },
+    "ab-d:ab-d-main-push-cold-rep2-starsling-baseline:main-push:starsling-baseline": {
+      "headSha": "b57e7aef4565d52c9d769bd7b3ca719125cda9ef",
+      "dispatchedAt": "2026-11-15T12:33:03.405Z"
+    },
+    "ab-d:ab-d-main-push-cold-rep2-starsling-patched:main-push:starsling-patched": {
+      "headSha": "0ef8680a364312f9e2049718ce6405be60f480fa",
+      "dispatchedAt": "2026-11-15T12:36:06.579Z"
+    },
+    "ab-d:ab-d-main-push-cold-rep3-starsling-patched:main-push:starsling-patched": {
+      "headSha": "0ef8680a364312f9e2049718ce6405be60f480fa",
+      "dispatchedAt": "2026-11-15T12:41:59.688Z"
+    },
+    "ab-d:ab-d-main-push-cold-rep3-starsling-baseline:main-push:starsling-baseline": {
+      "headSha": "b57e7aef4565d52c9d769bd7b3ca719125cda9ef",
+      "dispatchedAt": "2026-11-15T12:47:54.823Z"
+    },
+    "ab-d:ab-d-main-push-cold-rep4-starsling-baseline:main-push:starsling-baseline": {
+      "headSha": "b57e7aef4565d52c9d769bd7b3ca719125cda9ef",
+      "dispatchedAt": "2026-11-15T12:50:58.437Z"
+    },
+    "ab-d:ab-d-main-push-cold-rep4-starsling-patched:main-push:starsling-patched": {
+      "headSha": "0ef8680a364312f9e2049718ce6405be60f480fa",
+      "dispatchedAt": "2026-11-15T12:54:01.282Z"
+    },
+    "ab-d:ab-d-main-push-cold-rep5-starsling-patched:main-push:starsling-patched": {
+      "headSha": "0ef8680a364312f9e2049718ce6405be60f480fa",
+      "dispatchedAt": "2026-11-15T12:59:54.337Z"
+    },
+    "ab-d:ab-d-main-push-cold-rep5-starsling-baseline:main-push:starsling-baseline": {
+      "headSha": "b57e7aef4565d52c9d769bd7b3ca719125cda9ef",
+      "dispatchedAt": "2026-11-15T13:06:04.951Z"
+    },
+    "ab-d:ab-d-main-push-warm-rep1-starsling-baseline-seed:seed-parent:starsling-baseline": {
+      "headSha": "c22adc888ca44322be7c637d61772413aa6ba74a",
+      "dispatchedAt": "2026-11-15T13:09:08.669Z"
+    },
+    "ab-d:ab-d-main-push-warm-rep1-starsling-baseline:main-push:starsling-baseline": {
+      "headSha": "b57e7aef4565d52c9d769bd7b3ca719125cda9ef",
+      "dispatchedAt": "2026-11-15T13:12:05.793Z"
+    },
+    "ab-d:ab-d-main-push-warm-rep1-starsling-patched-seed:seed-parent:starsling-patched": {
+      "headSha": "99d1128ab358b9f8eeeda018ca2b31a78ff92564",
+      "dispatchedAt": "2026-11-15T13:15:09.373Z"
+    },
+    "ab-d:ab-d-main-push-warm-rep1-starsling-patched:main-push:starsling-patched": {
+      "headSha": "0ef8680a364312f9e2049718ce6405be60f480fa",
+      "dispatchedAt": "2026-11-15T13:20:07.438Z"
+    },
+    "ab-d:ab-d-main-push-warm-rep2-starsling-patched-seed:seed-parent:starsling-patched": {
+      "headSha": "99d1128ab358b9f8eeeda018ca2b31a78ff92564",
+      "dispatchedAt": "2026-11-15T13:28:41.908Z"
+    },
+    "ab-d:ab-d-main-push-warm-rep2-starsling-patched:main-push:starsling-patched": {
+      "headSha": "0ef8680a364312f9e2049718ce6405be60f480fa",
+      "dispatchedAt": "2026-11-15T13:33:39.250Z"
+    },
+    "ab-d:ab-d-main-push-warm-rep2-starsling-baseline-seed:seed-parent:starsling-baseline": {
+      "headSha": "c22adc888ca44322be7c637d61772413aa6ba74a",
+      "dispatchedAt": "2026-11-15T13:39:53.081Z"
+    },
+    "ab-d:ab-d-main-push-warm-rep2-starsling-baseline:main-push:starsling-baseline": {
+      "headSha": "b57e7aef4565d52c9d769bd7b3ca719125cda9ef",
+      "dispatchedAt": "2026-11-15T13:42:49.444Z"
+    },
+    "ab-d:ab-d-main-push-warm-rep3-starsling-baseline-seed:seed-parent:starsling-baseline": {
+      "headSha": "c22adc888ca44322be7c637d61772413aa6ba74a",
+      "dispatchedAt": "2026-11-15T13:45:52.268Z"
+    },
+    "ab-d:ab-d-main-push-warm-rep3-starsling-baseline:main-push:starsling-baseline": {
+      "headSha": "b57e7aef4565d52c9d769bd7b3ca719125cda9ef",
+      "dispatchedAt": "2026-11-15T13:48:48.610Z"
+    },
+    "ab-d:ab-d-main-push-warm-rep3-starsling-patched-seed:seed-parent:starsling-patched": {
+      "headSha": "99d1128ab358b9f8eeeda018ca2b31a78ff92564",
+      "dispatchedAt": "2026-11-15T13:51:51.617Z"
+    },
+    "ab-d:ab-d-main-push-warm-rep3-starsling-patched:main-push:starsling-patched": {
+      "headSha": "0ef8680a364312f9e2049718ce6405be60f480fa",
+      "dispatchedAt": "2026-11-15T13:56:50.417Z"
+    },
+    "ab-d:ab-d-main-push-warm-rep4-starsling-patched-seed:seed-parent:starsling-patched": {
+      "headSha": "99d1128ab358b9f8eeeda018ca2b31a78ff92564",
+      "dispatchedAt": "2026-11-15T14:03:06.387Z"
+    },
+    "ab-d:ab-d-main-push-warm-rep4-starsling-patched:main-push:starsling-patched": {
+      "headSha": "0ef8680a364312f9e2049718ce6405be60f480fa",
+      "dispatchedAt": "2026-11-15T14:08:04.479Z"
+    },
+    "ab-d:ab-d-main-push-warm-rep4-starsling-baseline-seed:seed-parent:starsling-baseline": {
+      "headSha": "c22adc888ca44322be7c637d61772413aa6ba74a",
+      "dispatchedAt": "2026-11-15T14:14:19.171Z"
+    },
+    "ab-d:ab-d-main-push-warm-rep4-starsling-baseline:main-push:starsling-baseline": {
+      "headSha": "b57e7aef4565d52c9d769bd7b3ca719125cda9ef",
+      "dispatchedAt": "2026-11-15T14:17:15.770Z"
+    },
+    "ab-d:ab-d-main-push-warm-rep5-starsling-baseline-seed:seed-parent:starsling-baseline": {
+      "headSha": "c22adc888ca44322be7c637d61772413aa6ba74a",
+      "dispatchedAt": "2026-11-15T14:20:18.041Z"
+    },
+    "ab-d:ab-d-main-push-warm-rep5-starsling-baseline:main-push:starsling-baseline": {
+      "headSha": "b57e7aef4565d52c9d769bd7b3ca719125cda9ef",
+      "dispatchedAt": "2026-11-15T14:23:14.635Z"
+    },
+    "ab-d:ab-d-main-push-warm-rep5-starsling-patched-seed:seed-parent:starsling-patched": {
+      "headSha": "99d1128ab358b9f8eeeda018ca2b31a78ff92564",
+      "dispatchedAt": "2026-11-15T14:26:17.740Z"
+    },
+    "ab-d:ab-d-main-push-warm-rep5-starsling-patched:main-push:starsling-patched": {
+      "headSha": "0ef8680a364312f9e2049718ce6405be60f480fa",
+      "dispatchedAt": "2026-11-15T14:31:18.338Z"
+    }
+  },
+  "leaseSha": "a2a274681055b061895cbe9ce2e703df76222786",
+  "initialRefs": {
+    "refs/heads/bench/control": "efbd28ba29cfdd53208947982991611a42d7ea3e",
+    "refs/heads/main": "ec9d1001f82a210a41cf28fd210839d7ee523052",
+    "refs/heads/starsling/develop": "f1d2c84a4e5cdf876b9070dbd5ecd3d0f9c85d98"
+  },
+  "recovery": {
+    "phase": "completed",
+    "restoredRefs": {
+      "refs/heads/main": "ec9d1001f82a210a41cf28fd210839d7ee523052",
+      "refs/heads/develop": null
+    },
+    "disabledWorkflows": [
+      ".github/workflows/docker-publish.yml"
+    ]
+  }
+}

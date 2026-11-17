@@ -1,0 +1,9 @@
+node_modules/
+.bench-work/
+*.tgz
+.DS_Store
+# Raw API dumps and publish scratch state are large; archive them outside Git.
+experiments/*/raw/
+experiments/*/publish.git/
+reports/
+experiments/*/logs/

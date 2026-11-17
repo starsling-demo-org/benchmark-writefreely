@@ -1,0 +1,16 @@
+{
+  "scope": [
+    "go-binary:linux/amd64",
+    "go-binary:linux/arm64",
+    "image:linux/amd64",
+    "image:linux/arm64",
+    "ui"
+  ],
+  "covered": [
+    "go-binary:linux/amd64",
+    "go-binary:linux/arm64",
+    "image:linux/amd64",
+    "image:linux/arm64",
+    "ui"
+  ]
+}

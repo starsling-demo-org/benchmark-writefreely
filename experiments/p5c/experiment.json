@@ -1,0 +1,3672 @@
+{
+  "schemaVersion": 1,
+  "manifest": {
+    "schemaVersion": 1,
+    "experimentId": "p5c",
+    "inputFingerprint": "499e019da126c2754c0a81d68c82aab9de6a274f357a208a8faaed1be9afeca4",
+    "samples": [
+      {
+        "sampleId": "p5c-main-push-cold-rep1-github-baseline",
+        "scenarioName": "main-push",
+        "profileName": "cold",
+        "variant": "github-baseline",
+        "repetition": 1
+      },
+      {
+        "sampleId": "p5c-main-push-cold-rep1-starsling-baseline",
+        "scenarioName": "main-push",
+        "profileName": "cold",
+        "variant": "starsling-baseline",
+        "repetition": 1
+      },
+      {
+        "sampleId": "p5c-main-push-cold-rep1-starsling-patched",
+        "scenarioName": "main-push",
+        "profileName": "cold",
+        "variant": "starsling-patched",
+        "repetition": 1
+      },
+      {
+        "sampleId": "p5c-main-push-cold-rep2-starsling-baseline",
+        "scenarioName": "main-push",
+        "profileName": "cold",
+        "variant": "starsling-baseline",
+        "repetition": 2
+      },
+      {
+        "sampleId": "p5c-main-push-cold-rep2-github-baseline",
+        "scenarioName": "main-push",
+        "profileName": "cold",
+        "variant": "github-baseline",
+        "repetition": 2
+      },
+      {
+        "sampleId": "p5c-main-push-cold-rep2-starsling-patched",
+        "scenarioName": "main-push",
+        "profileName": "cold",
+        "variant": "starsling-patched",
+        "repetition": 2
+      },
+      {
+        "sampleId": "p5c-main-push-cold-rep3-github-baseline",
+        "scenarioName": "main-push",
+        "profileName": "cold",
+        "variant": "github-baseline",
+        "repetition": 3
+      },
+      {
+        "sampleId": "p5c-main-push-cold-rep3-starsling-baseline",
+        "scenarioName": "main-push",
+        "profileName": "cold",
+        "variant": "starsling-baseline",
+        "repetition": 3
+      },
+      {
+        "sampleId": "p5c-main-push-cold-rep3-starsling-patched",
+        "scenarioName": "main-push",
+        "profileName": "cold",
+        "variant": "starsling-patched",
+        "repetition": 3
+      },
+      {
+        "sampleId": "p5c-main-push-cold-rep4-starsling-patched",
+        "scenarioName": "main-push",
+        "profileName": "cold",
+        "variant": "starsling-patched",
+        "repetition": 4
+      },
+      {
+        "sampleId": "p5c-main-push-cold-rep4-github-baseline",
+        "scenarioName": "main-push",
+        "profileName": "cold",
+        "variant": "github-baseline",
+        "repetition": 4
+      },
+      {
+        "sampleId": "p5c-main-push-cold-rep4-starsling-baseline",
+        "scenarioName": "main-push",
+        "profileName": "cold",
+        "variant": "starsling-baseline",
+        "repetition": 4
+      },
+      {
+        "sampleId": "p5c-main-push-cold-rep5-github-baseline",
+        "scenarioName": "main-push",
+        "profileName": "cold",
+        "variant": "github-baseline",
+        "repetition": 5
+      },
+      {
+        "sampleId": "p5c-main-push-cold-rep5-starsling-baseline",
+        "scenarioName": "main-push",
+        "profileName": "cold",
+        "variant": "starsling-baseline",
+        "repetition": 5
+      },
+      {
+        "sampleId": "p5c-main-push-cold-rep5-starsling-patched",
+        "scenarioName": "main-push",
+        "profileName": "cold",
+        "variant": "starsling-patched",
+        "repetition": 5
+      }
+    ]
+  },
+  "config": {
+    "schemaVersion": 1,
+    "upstream": {
+      "repository": "writefreely/writefreely",
+      "commitSha": "5d1bc057e86aafb6888bf301376b46ea5e0620e7",
+      "defaultBranch": "develop"
+    },
+    "benchmarkRepository": {
+      "repository": "starsling-demo-org/benchmark-writefreely",
+      "controlBranch": "bench/control",
+      "defaultBranch": "main",
+      "replayBranch": "develop"
+    },
+    "scenarios": {
+      "main-push": {
+        "name": "main-push",
+        "description": "Merge of 5d1bc057e86a to develop",
+        "event": "push",
+        "main": {
+          "branch": "develop",
+          "beforeSha": "4dc99d9fb5e6970ed4381a4ecb0c25614be59a63",
+          "afterSha": "5d1bc057e86aafb6888bf301376b46ea5e0620e7",
+          "changedPaths": [
+            "activitypub.go",
+            "webfinger.go"
+          ]
+        },
+        "referenceRuns": [
+          {
+            "workflowPath": ".github/workflows/docker-publish.yml",
+            "runId": 36467521733,
+            "attempt": 1,
+            "htmlUrl": "https://github.com/writefreely/writefreely/actions/runs/36467521733"
+          }
+        ]
+      },
+      "seed-parent": {
+        "name": "seed-parent",
+        "role": "seed",
+        "description": "Warm seed: the previous push (4dc99d9fb5e6 onto 500a04e1100c)",
+        "event": "push",
+        "main": {
+          "branch": "develop",
+          "beforeSha": "500a04e1100c3bd456f6f3b12cc90cca36436c76",
+          "afterSha": "4dc99d9fb5e6970ed4381a4ecb0c25614be59a63",
+          "changedPaths": [
+            "account.go",
+            "handle.go"
+          ]
+        },
+        "referenceRuns": []
+      }
+    },
+    "patches": [
+      {
+        "id": "lever-a-cross-compile",
+        "source": "local",
+        "pathOrUrl": "patches/cross-compile.patch",
+        "description": "Lever A: cross-compile with tonistiigi/xx instead of building arm64 under QEMU"
+      },
+      {
+        "id": "lever-b-ui-stage",
+        "source": "local",
+        "pathOrUrl": "patches/ui-stage.patch",
+        "description": "Lever B: build the UI assets in their own Docker stage"
+      }
+    ],
+    "runnerMapping": {
+      "defaultMap": {
+        "ubuntu-latest": {
+          "github": "ubuntu-24.04-4core",
+          "starsling": "starsling-ubuntu-24.04"
+        },
+        "ubuntu-24.04": {
+          "github": "TODO-github-larger-runner-for-ubuntu-24.04",
+          "starsling": "starsling-ubuntu-24.04"
+        },
+        "ubuntu-26.04": {
+          "github": "TODO-github-larger-runner-for-ubuntu-26.04",
+          "starsling": "starsling-ubuntu-26.04"
+        },
+        "ubuntu-slim": {
+          "github": "TODO-github-larger-runner-for-ubuntu-slim",
+          "starsling": "starsling-ubuntu-24.04-2"
+        }
+      },
+      "runnerSpecs": {
+        "ubuntu-latest": {
+          "label": "ubuntu-latest",
+          "provider": "github",
+          "os": "linux",
+          "arch": "x64",
+          "vcpu": 2,
+          "ramGiB": 8,
+          "billingPerMinuteUsd": 0.016
+        },
+        "ubuntu-24.04": {
+          "label": "ubuntu-24.04",
+          "provider": "github",
+          "os": "linux",
+          "arch": "x64",
+          "vcpu": 2,
+          "ramGiB": 8,
+          "billingPerMinuteUsd": 0.016
+        },
+        "ubuntu-26.04": {
+          "label": "ubuntu-26.04",
+          "provider": "github",
+          "os": "linux",
+          "arch": "x64",
+          "vcpu": 2,
+          "ramGiB": 8,
+          "billingPerMinuteUsd": 0.016
+        },
+        "ubuntu-slim": {
+          "label": "ubuntu-slim",
+          "provider": "github",
+          "os": "linux",
+          "arch": "x64",
+          "vcpu": 1,
+          "ramGiB": 5,
+          "billingPerMinuteUsd": 0.004
+        },
+        "starsling-ubuntu-24.04-2": {
+          "label": "starsling-ubuntu-24.04-2",
+          "provider": "starsling",
+          "os": "linux",
+          "arch": "x64",
+          "vcpu": 2,
+          "ramGiB": 8,
+          "billingPerMinuteUsd": 0.004
+        },
+        "starsling-ubuntu-24.04": {
+          "label": "starsling-ubuntu-24.04",
+          "provider": "starsling",
+          "os": "linux",
+          "arch": "x64",
+          "vcpu": 4,
+          "ramGiB": 16,
+          "billingPerMinuteUsd": 0.008
+        },
+        "starsling-ubuntu-26.04": {
+          "label": "starsling-ubuntu-26.04",
+          "provider": "starsling",
+          "os": "linux",
+          "arch": "x64",
+          "vcpu": 4,
+          "ramGiB": 16,
+          "billingPerMinuteUsd": 0.008
+        },
+        "macos-latest": {
+          "label": "macos-latest",
+          "provider": "github",
+          "os": "macos",
+          "arch": "arm64",
+          "vcpu": 3,
+          "ramGiB": 7,
+          "billingPerMinuteUsd": 0.08
+        },
+        "windows-latest": {
+          "label": "windows-latest",
+          "provider": "github",
+          "os": "windows",
+          "arch": "x64",
+          "vcpu": 4,
+          "ramGiB": 16,
+          "billingPerMinuteUsd": 0.032
+        },
+        "ubuntu-24.04-4core": {
+          "label": "ubuntu-24.04-4core",
+          "provider": "github",
+          "os": "linux",
+          "arch": "x64",
+          "vcpu": 4,
+          "ramGiB": 16,
+          "billingPerMinuteUsd": 0.016
+        },
+        "TODO-github-larger-runner-for-ubuntu-24.04": {
+          "label": "TODO-github-larger-runner-for-ubuntu-24.04",
+          "provider": "github",
+          "os": "linux",
+          "arch": "x64",
+          "vcpu": 4,
+          "ramGiB": 16,
+          "billingPerMinuteUsd": 0.016
+        },
+        "TODO-github-larger-runner-for-ubuntu-26.04": {
+          "label": "TODO-github-larger-runner-for-ubuntu-26.04",
+          "provider": "github",
+          "os": "linux",
+          "arch": "x64",
+          "vcpu": 4,
+          "ramGiB": 16,
+          "billingPerMinuteUsd": 0.016
+        },
+        "TODO-github-larger-runner-for-ubuntu-slim": {
+          "label": "TODO-github-larger-runner-for-ubuntu-slim",
+          "provider": "github",
+          "os": "linux",
+          "arch": "x64",
+          "vcpu": 1,
+          "ramGiB": 5,
+          "billingPerMinuteUsd": 0.004
+        }
+      }
+    },
+    "profiles": {
+      "cold": {
+        "name": "cold",
+        "actionsCache": "cold",
+        "crossRunArtifacts": "none",
+        "restoreExpectations": {},
+        "testResultReuseAllowed": false
+      },
+      "warm": {
+        "name": "warm",
+        "actionsCache": "warm",
+        "crossRunArtifacts": "seeded",
+        "seedScenario": "seed-parent",
+        "restoreExpectations": {},
+        "testResultReuseAllowed": true,
+        "amortizationHorizonRuns": 10
+      }
+    },
+    "adaptations": [
+      {
+        "id": "no-image-push",
+        "kind": "deployment-guard",
+        "workflowFile": ".github/workflows/docker-publish.yml",
+        "jobId": "build",
+        "fromPattern": "${{ github.event_name != 'pull_request' }}",
+        "toReplacement": "false",
+        "expectedMatches": 1,
+        "reason": "The benchmark must not publish images as the project; the multi-platform build itself still runs",
+        "blocksFullParity": false
+      },
+      {
+        "id": "no-registry-login",
+        "kind": "deployment-guard",
+        "workflowFile": ".github/workflows/docker-publish.yml",
+        "jobId": "build",
+        "fromPattern": "github.event_name != 'pull_request'",
+        "toReplacement": "false",
+        "expectedMatches": 1,
+        "reason": "The registry login only serves the image push, which the benchmark disables",
+        "blocksFullParity": false
+      }
+    ],
+    "collectors": [],
+    "execution": {
+      "repetitions": 5,
+      "timeoutMinutes": 60,
+      "maxConcurrentExperiments": 1,
+      "pollIntervalSeconds": 15,
+      "publicRepoGitHubFree": false,
+      "apiBudgetPerHour": 2000,
+      "commitIdentity": {
+        "name": "starsling-dev",
+        "email": "290538643+starsling-dev@users.noreply.github.com"
+      }
+    }
+  },
+  "samples": [
+    {
+      "sampleId": "p5c-main-push-cold-rep1-github-baseline",
+      "repetition": 1,
+      "scenarioName": "main-push",
+      "variant": "github-baseline",
+      "profileName": "cold",
+      "complete": true,
+      "incompleteReasons": [],
+      "missingWorkflows": [],
+      "missingJobs": [],
+      "cancelledJobs": [],
+      "failedJobs": [],
+      "partialTimestampJobs": [],
+      "timestampResolution": "1s",
+      "metrics": {
+        "repoMinutes": 15.6,
+        "rawRunnerSeconds": 936,
+        "wallClockSeconds": 939,
+        "prWallClockSeconds": null,
+        "mainWallClockSeconds": 939,
+        "triggerLatencySeconds": 4,
+        "harnessOverheadSeconds": 0,
+        "maxJobQueueSeconds": 2,
+        "maxJobQueueLabel": "ubuntu-24.04-4core"
+      },
+      "workflows": [
+        {
+          "runId": 43750444955,
+          "runAttempt": 1,
+          "priorAttemptsCount": 0,
+          "workflowPath": ".github/workflows/docker-publish.yml",
+          "workflowName": "Build container image, publish as GitHub-package",
+          "event": "push",
+          "conclusion": "success",
+          "durationSeconds": 939,
+          "startedAt": "2026-11-15T19:05:32Z",
+          "completedAt": "2026-11-15T19:21:11Z",
+          "htmlUrl": "https://github.com/starsling-demo-org/benchmark-writefreely/actions/runs/43750444955",
+          "jobs": [
+            {
+              "jobRecordId": 132922984579,
+              "runId": 43750444955,
+              "runAttempt": 1,
+              "workflowPath": ".github/workflows/docker-publish.yml",
+              "jobName": "build",
+              "logicalJobId": "build",
+              "conclusion": "success",
+              "durationSeconds": 936,
+              "dependencyWaitSeconds": 0,
+              "runnerQueueSeconds": 2,
+              "resolution": "1s",
+              "labels": [
+                "ubuntu-24.04-4core"
+              ],
+              "steps": [
+                {
+                  "number": 1,
+                  "name": "Set up job",
+                  "conclusion": "success",
+                  "durationSeconds": 1,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 2,
+                  "name": "Checkout repository",
+                  "conclusion": "success",
+                  "durationSeconds": 1,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 3,
+                  "name": "Set up QEMU",
+                  "conclusion": "success",
+                  "durationSeconds": 6,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 4,
+                  "name": "Set up Docker Buildx",
+                  "conclusion": "success",
+                  "durationSeconds": 4,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 5,
+                  "name": "Log into registry ghcr.io",
+                  "conclusion": "skipped",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 6,
+                  "name": "Extract Docker metadata",
+                  "conclusion": "success",
+                  "durationSeconds": 1,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 7,
+                  "name": "Build and push Docker images",
+                  "conclusion": "success",
+                  "durationSeconds": 899,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 11,
+                  "name": "Post Build and push Docker images",
+                  "conclusion": "success",
+                  "durationSeconds": 1,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 12,
+                  "name": "Post Set up Docker Buildx",
+                  "conclusion": "success",
+                  "durationSeconds": 19,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 13,
+                  "name": "Post Set up QEMU",
+                  "conclusion": "success",
+                  "durationSeconds": 1,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 14,
+                  "name": "Post Checkout repository",
+                  "conclusion": "success",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 15,
+                  "name": "Complete job",
+                  "conclusion": "success",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                }
+              ]
+            }
+          ],
+          "artifacts": [
+            {
+              "id": 14176118176,
+              "run_id": 43750444955,
+              "name": "starsling-demo-org~benchmark-writefreely~MUHLUF.dockerbuild",
+              "size_in_bytes": 88009,
+              "sha256": "60c86a926dd83cc277f34b26535f29e26bf0edbcc6adae5e5fccba3f758253e4",
+              "created_at": "2026-11-15T19:20:49Z",
+              "expired": false
+            }
+          ]
+        }
+      ],
+      "artifacts": [
+        {
+          "id": 14176118176,
+          "run_id": 43750444955,
+          "name": "starsling-demo-org~benchmark-writefreely~MUHLUF.dockerbuild",
+          "size_in_bytes": 88009,
+          "sha256": "60c86a926dd83cc277f34b26535f29e26bf0edbcc6adae5e5fccba3f758253e4",
+          "created_at": "2026-11-15T19:20:49Z",
+          "expired": false
+        }
+      ],
+      "inputFingerprint": "499e019da126c2754c0a81d68c82aab9de6a274f357a208a8faaed1be9afeca4"
+    },
+    {
+      "sampleId": "p5c-main-push-cold-rep1-starsling-baseline",
+      "repetition": 1,
+      "scenarioName": "main-push",
+      "variant": "starsling-baseline",
+      "profileName": "cold",
+      "complete": true,
+      "incompleteReasons": [],
+      "missingWorkflows": [],
+      "missingJobs": [],
+      "cancelledJobs": [],
+      "failedJobs": [],
+      "partialTimestampJobs": [],
+      "timestampResolution": "1s",
+      "metrics": {
+        "repoMinutes": 8.7833,
+        "rawRunnerSeconds": 527,
+        "wallClockSeconds": 536,
+        "prWallClockSeconds": null,
+        "mainWallClockSeconds": 536,
+        "triggerLatencySeconds": 5,
+        "harnessOverheadSeconds": 0,
+        "maxJobQueueSeconds": 9,
+        "maxJobQueueLabel": "starsling-ubuntu-24.04"
+      },
+      "workflows": [
+        {
+          "runId": 43752092267,
+          "runAttempt": 1,
+          "priorAttemptsCount": 0,
+          "workflowPath": ".github/workflows/docker-publish.yml",
+          "workflowName": "Build container image, publish as GitHub-package",
+          "event": "push",
+          "conclusion": "success",
+          "durationSeconds": 536,
+          "startedAt": "2026-11-15T19:22:46Z",
+          "completedAt": "2026-11-15T19:31:42Z",
+          "htmlUrl": "https://github.com/starsling-demo-org/benchmark-writefreely/actions/runs/43752092267",
+          "jobs": [
+            {
+              "jobRecordId": 132928061521,
+              "runId": 43752092267,
+              "runAttempt": 1,
+              "workflowPath": ".github/workflows/docker-publish.yml",
+              "jobName": "build",
+              "logicalJobId": "build",
+              "conclusion": "success",
+              "durationSeconds": 527,
+              "dependencyWaitSeconds": 0,
+              "runnerQueueSeconds": 9,
+              "resolution": "1s",
+              "labels": [
+                "starsling-ubuntu-24.04"
+              ],
+              "steps": [
+                {
+                  "number": 1,
+                  "name": "Set up job",
+                  "conclusion": "success",
+                  "durationSeconds": 2,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 2,
+                  "name": "Set up runner",
+                  "conclusion": "success",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 3,
+                  "name": "Checkout repository",
+                  "conclusion": "success",
+                  "durationSeconds": 6,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 4,
+                  "name": "Set up QEMU",
+                  "conclusion": "success",
+                  "durationSeconds": 2,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 5,
+                  "name": "Set up Docker Buildx",
+                  "conclusion": "success",
+                  "durationSeconds": 4,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 6,
+                  "name": "Log into registry ghcr.io",
+                  "conclusion": "skipped",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 7,
+                  "name": "Extract Docker metadata",
+                  "conclusion": "success",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 8,
+                  "name": "Build and push Docker images",
+                  "conclusion": "success",
+                  "durationSeconds": 503,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 12,
+                  "name": "Post Build and push Docker images",
+                  "conclusion": "success",
+                  "durationSeconds": 2,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 13,
+                  "name": "Post Set up Docker Buildx",
+                  "conclusion": "success",
+                  "durationSeconds": 2,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 14,
+                  "name": "Post Set up QEMU",
+                  "conclusion": "success",
+                  "durationSeconds": 2,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 15,
+                  "name": "Post Checkout repository",
+                  "conclusion": "success",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 16,
+                  "name": "Complete runner",
+                  "conclusion": "success",
+                  "durationSeconds": 1,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 17,
+                  "name": "Complete job",
+                  "conclusion": "success",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                }
+              ]
+            }
+          ],
+          "artifacts": [
+            {
+              "id": 14177106270,
+              "run_id": 43752092267,
+              "name": "starsling-demo-org~benchmark-writefreely~PEQ1JS.dockerbuild",
+              "size_in_bytes": 86929,
+              "sha256": "6f4b846cedb212423d618e6217e9c705e68fc4a6080f17ff35ccca60ef569aec",
+              "created_at": "2026-11-15T19:31:35Z",
+              "expired": false
+            }
+          ]
+        }
+      ],
+      "artifacts": [
+        {
+          "id": 14177106270,
+          "run_id": 43752092267,
+          "name": "starsling-demo-org~benchmark-writefreely~PEQ1JS.dockerbuild",
+          "size_in_bytes": 86929,
+          "sha256": "6f4b846cedb212423d618e6217e9c705e68fc4a6080f17ff35ccca60ef569aec",
+          "created_at": "2026-11-15T19:31:35Z",
+          "expired": false
+        }
+      ],
+      "inputFingerprint": "499e019da126c2754c0a81d68c82aab9de6a274f357a208a8faaed1be9afeca4"
+    },
+    {
+      "sampleId": "p5c-main-push-cold-rep1-starsling-patched",
+      "repetition": 1,
+      "scenarioName": "main-push",
+      "variant": "starsling-patched",
+      "profileName": "cold",
+      "complete": true,
+      "incompleteReasons": [],
+      "missingWorkflows": [],
+      "missingJobs": [],
+      "cancelledJobs": [],
+      "failedJobs": [],
+      "partialTimestampJobs": [],
+      "timestampResolution": "1s",
+      "metrics": {
+        "repoMinutes": 1.4833,
+        "rawRunnerSeconds": 89,
+        "wallClockSeconds": 98,
+        "prWallClockSeconds": null,
+        "mainWallClockSeconds": 98,
+        "triggerLatencySeconds": 5,
+        "harnessOverheadSeconds": 0,
+        "maxJobQueueSeconds": 8,
+        "maxJobQueueLabel": "starsling-ubuntu-24.04"
+      },
+      "workflows": [
+        {
+          "runId": 43753131964,
+          "runAttempt": 1,
+          "priorAttemptsCount": 0,
+          "workflowPath": ".github/workflows/docker-publish.yml",
+          "workflowName": "Build container image, publish as GitHub-package",
+          "event": "push",
+          "conclusion": "success",
+          "durationSeconds": 98,
+          "startedAt": "2026-11-15T19:33:56Z",
+          "completedAt": "2026-11-15T19:35:34Z",
+          "htmlUrl": "https://github.com/starsling-demo-org/benchmark-writefreely/actions/runs/43753131964",
+          "jobs": [
+            {
+              "jobRecordId": 132931286846,
+              "runId": 43753131964,
+              "runAttempt": 1,
+              "workflowPath": ".github/workflows/docker-publish.yml",
+              "jobName": "build",
+              "logicalJobId": "build",
+              "conclusion": "success",
+              "durationSeconds": 89,
+              "dependencyWaitSeconds": 0,
+              "runnerQueueSeconds": 8,
+              "resolution": "1s",
+              "labels": [
+                "starsling-ubuntu-24.04"
+              ],
+              "steps": [
+                {
+                  "number": 1,
+                  "name": "Set up job",
+                  "conclusion": "success",
+                  "durationSeconds": 2,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 2,
+                  "name": "Set up runner",
+                  "conclusion": "success",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 3,
+                  "name": "Checkout repository",
+                  "conclusion": "success",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 4,
+                  "name": "Set up QEMU",
+                  "conclusion": "success",
+                  "durationSeconds": 2,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 5,
+                  "name": "Set up Docker Buildx",
+                  "conclusion": "success",
+                  "durationSeconds": 3,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 6,
+                  "name": "Log into registry ghcr.io",
+                  "conclusion": "skipped",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 7,
+                  "name": "Extract Docker metadata",
+                  "conclusion": "success",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 8,
+                  "name": "Build and push Docker images",
+                  "conclusion": "success",
+                  "durationSeconds": 74,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 12,
+                  "name": "Post Build and push Docker images",
+                  "conclusion": "success",
+                  "durationSeconds": 1,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 13,
+                  "name": "Post Set up Docker Buildx",
+                  "conclusion": "success",
+                  "durationSeconds": 2,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 14,
+                  "name": "Post Set up QEMU",
+                  "conclusion": "success",
+                  "durationSeconds": 2,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 15,
+                  "name": "Post Checkout repository",
+                  "conclusion": "success",
+                  "durationSeconds": 1,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 16,
+                  "name": "Complete runner",
+                  "conclusion": "success",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 17,
+                  "name": "Complete job",
+                  "conclusion": "success",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                }
+              ]
+            }
+          ],
+          "artifacts": [
+            {
+              "id": 14177331277,
+              "run_id": 43753131964,
+              "name": "starsling-demo-org~benchmark-writefreely~YNDMHN.dockerbuild",
+              "size_in_bytes": 86405,
+              "sha256": "300e7fb10ef0314bd68023b531e0d512e6fa5dba0ac6cf7739679992c7b552d6",
+              "created_at": "2026-11-15T19:35:27Z",
+              "expired": false
+            }
+          ]
+        }
+      ],
+      "artifacts": [
+        {
+          "id": 14177331277,
+          "run_id": 43753131964,
+          "name": "starsling-demo-org~benchmark-writefreely~YNDMHN.dockerbuild",
+          "size_in_bytes": 86405,
+          "sha256": "300e7fb10ef0314bd68023b531e0d512e6fa5dba0ac6cf7739679992c7b552d6",
+          "created_at": "2026-11-15T19:35:27Z",
+          "expired": false
+        }
+      ],
+      "inputFingerprint": "499e019da126c2754c0a81d68c82aab9de6a274f357a208a8faaed1be9afeca4"
+    },
+    {
+      "sampleId": "p5c-main-push-cold-rep2-starsling-baseline",
+      "repetition": 2,
+      "scenarioName": "main-push",
+      "variant": "starsling-baseline",
+      "profileName": "cold",
+      "complete": true,
+      "incompleteReasons": [],
+      "missingWorkflows": [],
+      "missingJobs": [],
+      "cancelledJobs": [],
+      "failedJobs": [],
+      "partialTimestampJobs": [],
+      "timestampResolution": "1s",
+      "metrics": {
+        "repoMinutes": 8.55,
+        "rawRunnerSeconds": 513,
+        "wallClockSeconds": 520,
+        "prWallClockSeconds": null,
+        "mainWallClockSeconds": 520,
+        "triggerLatencySeconds": 4,
+        "harnessOverheadSeconds": 0,
+        "maxJobQueueSeconds": 6,
+        "maxJobQueueLabel": "starsling-ubuntu-24.04"
+      },
+      "workflows": [
+        {
+          "runId": 43753419636,
+          "runAttempt": 1,
+          "priorAttemptsCount": 0,
+          "workflowPath": ".github/workflows/docker-publish.yml",
+          "workflowName": "Build container image, publish as GitHub-package",
+          "event": "push",
+          "conclusion": "success",
+          "durationSeconds": 520,
+          "startedAt": "2026-11-15T19:37:00Z",
+          "completedAt": "2026-11-15T19:45:40Z",
+          "htmlUrl": "https://github.com/starsling-demo-org/benchmark-writefreely/actions/runs/43753419636",
+          "jobs": [
+            {
+              "jobRecordId": 132932180102,
+              "runId": 43753419636,
+              "runAttempt": 1,
+              "workflowPath": ".github/workflows/docker-publish.yml",
+              "jobName": "build",
+              "logicalJobId": "build",
+              "conclusion": "success",
+              "durationSeconds": 513,
+              "dependencyWaitSeconds": 0,
+              "runnerQueueSeconds": 6,
+              "resolution": "1s",
+              "labels": [
+                "starsling-ubuntu-24.04"
+              ],
+              "steps": [
+                {
+                  "number": 1,
+                  "name": "Set up job",
+                  "conclusion": "success",
+                  "durationSeconds": 1,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 2,
+                  "name": "Set up runner",
+                  "conclusion": "success",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 3,
+                  "name": "Checkout repository",
+                  "conclusion": "success",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 4,
+                  "name": "Set up QEMU",
+                  "conclusion": "success",
+                  "durationSeconds": 2,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 5,
+                  "name": "Set up Docker Buildx",
+                  "conclusion": "success",
+                  "durationSeconds": 2,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 6,
+                  "name": "Log into registry ghcr.io",
+                  "conclusion": "skipped",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 7,
+                  "name": "Extract Docker metadata",
+                  "conclusion": "success",
+                  "durationSeconds": 1,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 8,
+                  "name": "Build and push Docker images",
+                  "conclusion": "success",
+                  "durationSeconds": 499,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 12,
+                  "name": "Post Build and push Docker images",
+                  "conclusion": "success",
+                  "durationSeconds": 1,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 13,
+                  "name": "Post Set up Docker Buildx",
+                  "conclusion": "success",
+                  "durationSeconds": 4,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 14,
+                  "name": "Post Set up QEMU",
+                  "conclusion": "success",
+                  "durationSeconds": 1,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 15,
+                  "name": "Post Checkout repository",
+                  "conclusion": "success",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 16,
+                  "name": "Complete runner",
+                  "conclusion": "success",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 17,
+                  "name": "Complete job",
+                  "conclusion": "success",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                }
+              ]
+            }
+          ],
+          "artifacts": [
+            {
+              "id": 14177582514,
+              "run_id": 43753419636,
+              "name": "starsling-demo-org~benchmark-writefreely~KE24QQ.dockerbuild",
+              "size_in_bytes": 86684,
+              "sha256": "578960c54f96ea1f644c9d1b75e5c60cf7c0127335796f364f7e535870a54b83",
+              "created_at": "2026-11-15T19:45:34Z",
+              "expired": false
+            }
+          ]
+        }
+      ],
+      "artifacts": [
+        {
+          "id": 14177582514,
+          "run_id": 43753419636,
+          "name": "starsling-demo-org~benchmark-writefreely~KE24QQ.dockerbuild",
+          "size_in_bytes": 86684,
+          "sha256": "578960c54f96ea1f644c9d1b75e5c60cf7c0127335796f364f7e535870a54b83",
+          "created_at": "2026-11-15T19:45:34Z",
+          "expired": false
+        }
+      ],
+      "inputFingerprint": "499e019da126c2754c0a81d68c82aab9de6a274f357a208a8faaed1be9afeca4"
+    },
+    {
+      "sampleId": "p5c-main-push-cold-rep2-github-baseline",
+      "repetition": 2,
+      "scenarioName": "main-push",
+      "variant": "github-baseline",
+      "profileName": "cold",
+      "complete": true,
+      "incompleteReasons": [],
+      "missingWorkflows": [],
+      "missingJobs": [],
+      "cancelledJobs": [],
+      "failedJobs": [],
+      "partialTimestampJobs": [],
+      "timestampResolution": "1s",
+      "metrics": {
+        "repoMinutes": 16.4333,
+        "rawRunnerSeconds": 986,
+        "wallClockSeconds": 989,
+        "prWallClockSeconds": null,
+        "mainWallClockSeconds": 989,
+        "triggerLatencySeconds": 4,
+        "harnessOverheadSeconds": 0,
+        "maxJobQueueSeconds": 3,
+        "maxJobQueueLabel": "ubuntu-24.04-4core"
+      },
+      "workflows": [
+        {
+          "runId": 43754442708,
+          "runAttempt": 1,
+          "priorAttemptsCount": 0,
+          "workflowPath": ".github/workflows/docker-publish.yml",
+          "workflowName": "Build container image, publish as GitHub-package",
+          "event": "push",
+          "conclusion": "success",
+          "durationSeconds": 989,
+          "startedAt": "2026-11-15T19:48:09Z",
+          "completedAt": "2026-11-15T20:04:38Z",
+          "htmlUrl": "https://github.com/starsling-demo-org/benchmark-writefreely/actions/runs/43754442708",
+          "jobs": [
+            {
+              "jobRecordId": 132935334908,
+              "runId": 43754442708,
+              "runAttempt": 1,
+              "workflowPath": ".github/workflows/docker-publish.yml",
+              "jobName": "build",
+              "logicalJobId": "build",
+              "conclusion": "success",
+              "durationSeconds": 986,
+              "dependencyWaitSeconds": 0,
+              "runnerQueueSeconds": 3,
+              "resolution": "1s",
+              "labels": [
+                "ubuntu-24.04-4core"
+              ],
+              "steps": [
+                {
+                  "number": 1,
+                  "name": "Set up job",
+                  "conclusion": "success",
+                  "durationSeconds": 4,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 2,
+                  "name": "Checkout repository",
+                  "conclusion": "success",
+                  "durationSeconds": 2,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 3,
+                  "name": "Set up QEMU",
+                  "conclusion": "success",
+                  "durationSeconds": 6,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 4,
+                  "name": "Set up Docker Buildx",
+                  "conclusion": "success",
+                  "durationSeconds": 5,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 5,
+                  "name": "Log into registry ghcr.io",
+                  "conclusion": "skipped",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 6,
+                  "name": "Extract Docker metadata",
+                  "conclusion": "success",
+                  "durationSeconds": 1,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 7,
+                  "name": "Build and push Docker images",
+                  "conclusion": "success",
+                  "durationSeconds": 943,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 11,
+                  "name": "Post Build and push Docker images",
+                  "conclusion": "success",
+                  "durationSeconds": 2,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 12,
+                  "name": "Post Set up Docker Buildx",
+                  "conclusion": "success",
+                  "durationSeconds": 18,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 13,
+                  "name": "Post Set up QEMU",
+                  "conclusion": "success",
+                  "durationSeconds": 2,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 14,
+                  "name": "Post Checkout repository",
+                  "conclusion": "success",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 15,
+                  "name": "Complete job",
+                  "conclusion": "success",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                }
+              ]
+            }
+          ],
+          "artifacts": [
+            {
+              "id": 14178720062,
+              "run_id": 43754442708,
+              "name": "starsling-demo-org~benchmark-writefreely~GINPVP.dockerbuild",
+              "size_in_bytes": 89312,
+              "sha256": "af7dfb906c9c17e0cd79f83c2aef8e0d5de30d9011c7f73918e66fef2c46446f",
+              "created_at": "2026-11-15T20:04:15Z",
+              "expired": false
+            }
+          ]
+        }
+      ],
+      "artifacts": [
+        {
+          "id": 14178720062,
+          "run_id": 43754442708,
+          "name": "starsling-demo-org~benchmark-writefreely~GINPVP.dockerbuild",
+          "size_in_bytes": 89312,
+          "sha256": "af7dfb906c9c17e0cd79f83c2aef8e0d5de30d9011c7f73918e66fef2c46446f",
+          "created_at": "2026-11-15T20:04:15Z",
+          "expired": false
+        }
+      ],
+      "inputFingerprint": "499e019da126c2754c0a81d68c82aab9de6a274f357a208a8faaed1be9afeca4"
+    },
+    {
+      "sampleId": "p5c-main-push-cold-rep2-starsling-patched",
+      "repetition": 2,
+      "scenarioName": "main-push",
+      "variant": "starsling-patched",
+      "profileName": "cold",
+      "complete": true,
+      "incompleteReasons": [],
+      "missingWorkflows": [],
+      "missingJobs": [],
+      "cancelledJobs": [],
+      "failedJobs": [],
+      "partialTimestampJobs": [],
+      "timestampResolution": "1s",
+      "metrics": {
+        "repoMinutes": 1.4667,
+        "rawRunnerSeconds": 88,
+        "wallClockSeconds": 95,
+        "prWallClockSeconds": null,
+        "mainWallClockSeconds": 95,
+        "triggerLatencySeconds": 5,
+        "harnessOverheadSeconds": 0,
+        "maxJobQueueSeconds": 6,
+        "maxJobQueueLabel": "starsling-ubuntu-24.04"
+      },
+      "workflows": [
+        {
+          "runId": 43756247624,
+          "runAttempt": 1,
+          "priorAttemptsCount": 0,
+          "workflowPath": ".github/workflows/docker-publish.yml",
+          "workflowName": "Build container image, publish as GitHub-package",
+          "event": "push",
+          "conclusion": "success",
+          "durationSeconds": 95,
+          "startedAt": "2026-11-15T20:07:21Z",
+          "completedAt": "2026-11-15T20:08:56Z",
+          "htmlUrl": "https://github.com/starsling-demo-org/benchmark-writefreely/actions/runs/43756247624",
+          "jobs": [
+            {
+              "jobRecordId": 132940864450,
+              "runId": 43756247624,
+              "runAttempt": 1,
+              "workflowPath": ".github/workflows/docker-publish.yml",
+              "jobName": "build",
+              "logicalJobId": "build",
+              "conclusion": "success",
+              "durationSeconds": 88,
+              "dependencyWaitSeconds": 0,
+              "runnerQueueSeconds": 6,
+              "resolution": "1s",
+              "labels": [
+                "starsling-ubuntu-24.04"
+              ],
+              "steps": [
+                {
+                  "number": 1,
+                  "name": "Set up job",
+                  "conclusion": "success",
+                  "durationSeconds": 1,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 2,
+                  "name": "Set up runner",
+                  "conclusion": "success",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 3,
+                  "name": "Checkout repository",
+                  "conclusion": "success",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 4,
+                  "name": "Set up QEMU",
+                  "conclusion": "success",
+                  "durationSeconds": 2,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 5,
+                  "name": "Set up Docker Buildx",
+                  "conclusion": "success",
+                  "durationSeconds": 2,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 6,
+                  "name": "Log into registry ghcr.io",
+                  "conclusion": "skipped",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 7,
+                  "name": "Extract Docker metadata",
+                  "conclusion": "success",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 8,
+                  "name": "Build and push Docker images",
+                  "conclusion": "success",
+                  "durationSeconds": 76,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 12,
+                  "name": "Post Build and push Docker images",
+                  "conclusion": "success",
+                  "durationSeconds": 1,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 13,
+                  "name": "Post Set up Docker Buildx",
+                  "conclusion": "success",
+                  "durationSeconds": 2,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 14,
+                  "name": "Post Set up QEMU",
+                  "conclusion": "success",
+                  "durationSeconds": 1,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 15,
+                  "name": "Post Checkout repository",
+                  "conclusion": "success",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 16,
+                  "name": "Complete runner",
+                  "conclusion": "success",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 17,
+                  "name": "Complete job",
+                  "conclusion": "success",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                }
+              ]
+            }
+          ],
+          "artifacts": [
+            {
+              "id": 14178560618,
+              "run_id": 43756247624,
+              "name": "starsling-demo-org~benchmark-writefreely~ZBSODE.dockerbuild",
+              "size_in_bytes": 85787,
+              "sha256": "c46aff3928fe960447ecbecb7cefc3cb9036b07b52447f3df5e73381f47f45b6",
+              "created_at": "2026-11-15T20:08:51Z",
+              "expired": false
+            }
+          ]
+        }
+      ],
+      "artifacts": [
+        {
+          "id": 14178560618,
+          "run_id": 43756247624,
+          "name": "starsling-demo-org~benchmark-writefreely~ZBSODE.dockerbuild",
+          "size_in_bytes": 85787,
+          "sha256": "c46aff3928fe960447ecbecb7cefc3cb9036b07b52447f3df5e73381f47f45b6",
+          "created_at": "2026-11-15T20:08:51Z",
+          "expired": false
+        }
+      ],
+      "inputFingerprint": "499e019da126c2754c0a81d68c82aab9de6a274f357a208a8faaed1be9afeca4"
+    },
+    {
+      "sampleId": "p5c-main-push-cold-rep3-github-baseline",
+      "repetition": 3,
+      "scenarioName": "main-push",
+      "variant": "github-baseline",
+      "profileName": "cold",
+      "complete": true,
+      "incompleteReasons": [],
+      "missingWorkflows": [],
+      "missingJobs": [],
+      "cancelledJobs": [],
+      "failedJobs": [],
+      "partialTimestampJobs": [],
+      "timestampResolution": "1s",
+      "metrics": {
+        "repoMinutes": 20.9833,
+        "rawRunnerSeconds": 1259,
+        "wallClockSeconds": 1263,
+        "prWallClockSeconds": null,
+        "mainWallClockSeconds": 1263,
+        "triggerLatencySeconds": 4,
+        "harnessOverheadSeconds": 0,
+        "maxJobQueueSeconds": 3,
+        "maxJobQueueLabel": "ubuntu-24.04-4core"
+      },
+      "workflows": [
+        {
+          "runId": 43756544348,
+          "runAttempt": 1,
+          "priorAttemptsCount": 0,
+          "workflowPath": ".github/workflows/docker-publish.yml",
+          "workflowName": "Build container image, publish as GitHub-package",
+          "event": "push",
+          "conclusion": "success",
+          "durationSeconds": 1263,
+          "startedAt": "2026-11-15T20:10:25Z",
+          "completedAt": "2026-11-15T20:31:28Z",
+          "htmlUrl": "https://github.com/starsling-demo-org/benchmark-writefreely/actions/runs/43756544348",
+          "jobs": [
+            {
+              "jobRecordId": 132941774703,
+              "runId": 43756544348,
+              "runAttempt": 1,
+              "workflowPath": ".github/workflows/docker-publish.yml",
+              "jobName": "build",
+              "logicalJobId": "build",
+              "conclusion": "success",
+              "durationSeconds": 1259,
+              "dependencyWaitSeconds": 0,
+              "runnerQueueSeconds": 3,
+              "resolution": "1s",
+              "labels": [
+                "ubuntu-24.04-4core"
+              ],
+              "steps": [
+                {
+                  "number": 1,
+                  "name": "Set up job",
+                  "conclusion": "success",
+                  "durationSeconds": 2,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 2,
+                  "name": "Checkout repository",
+                  "conclusion": "success",
+                  "durationSeconds": 1,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 3,
+                  "name": "Set up QEMU",
+                  "conclusion": "success",
+                  "durationSeconds": 5,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 4,
+                  "name": "Set up Docker Buildx",
+                  "conclusion": "success",
+                  "durationSeconds": 4,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 5,
+                  "name": "Log into registry ghcr.io",
+                  "conclusion": "skipped",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 6,
+                  "name": "Extract Docker metadata",
+                  "conclusion": "success",
+                  "durationSeconds": 1,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 7,
+                  "name": "Build and push Docker images",
+                  "conclusion": "success",
+                  "durationSeconds": 1225,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 11,
+                  "name": "Post Build and push Docker images",
+                  "conclusion": "success",
+                  "durationSeconds": 2,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 12,
+                  "name": "Post Set up Docker Buildx",
+                  "conclusion": "success",
+                  "durationSeconds": 12,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 13,
+                  "name": "Post Set up QEMU",
+                  "conclusion": "success",
+                  "durationSeconds": 3,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 14,
+                  "name": "Post Checkout repository",
+                  "conclusion": "success",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 15,
+                  "name": "Complete job",
+                  "conclusion": "success",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                }
+              ]
+            }
+          ],
+          "artifacts": [
+            {
+              "id": 14179496052,
+              "run_id": 43756544348,
+              "name": "starsling-demo-org~benchmark-writefreely~I62UM8.dockerbuild",
+              "size_in_bytes": 90440,
+              "sha256": "3fe43fb34238803f3b09415da6ef5081508f398ba18a1d7618b007b228fa0352",
+              "created_at": "2026-11-15T20:31:10Z",
+              "expired": false
+            }
+          ]
+        }
+      ],
+      "artifacts": [
+        {
+          "id": 14179496052,
+          "run_id": 43756544348,
+          "name": "starsling-demo-org~benchmark-writefreely~I62UM8.dockerbuild",
+          "size_in_bytes": 90440,
+          "sha256": "3fe43fb34238803f3b09415da6ef5081508f398ba18a1d7618b007b228fa0352",
+          "created_at": "2026-11-15T20:31:10Z",
+          "expired": false
+        }
+      ],
+      "inputFingerprint": "499e019da126c2754c0a81d68c82aab9de6a274f357a208a8faaed1be9afeca4"
+    },
+    {
+      "sampleId": "p5c-main-push-cold-rep3-starsling-baseline",
+      "repetition": 3,
+      "scenarioName": "main-push",
+      "variant": "starsling-baseline",
+      "profileName": "cold",
+      "complete": true,
+      "incompleteReasons": [],
+      "missingWorkflows": [],
+      "missingJobs": [],
+      "cancelledJobs": [],
+      "failedJobs": [],
+      "partialTimestampJobs": [],
+      "timestampResolution": "1s",
+      "metrics": {
+        "repoMinutes": 8.8667,
+        "rawRunnerSeconds": 532,
+        "wallClockSeconds": 542,
+        "prWallClockSeconds": null,
+        "mainWallClockSeconds": 542,
+        "triggerLatencySeconds": 4,
+        "harnessOverheadSeconds": 0,
+        "maxJobQueueSeconds": 9,
+        "maxJobQueueLabel": "starsling-ubuntu-24.04"
+      },
+      "workflows": [
+        {
+          "runId": 43758771128,
+          "runAttempt": 1,
+          "priorAttemptsCount": 0,
+          "workflowPath": ".github/workflows/docker-publish.yml",
+          "workflowName": "Build container image, publish as GitHub-package",
+          "event": "push",
+          "conclusion": "success",
+          "durationSeconds": 542,
+          "startedAt": "2026-11-15T20:33:41Z",
+          "completedAt": "2026-11-15T20:42:43Z",
+          "htmlUrl": "https://github.com/starsling-demo-org/benchmark-writefreely/actions/runs/43758771128",
+          "jobs": [
+            {
+              "jobRecordId": 132948600590,
+              "runId": 43758771128,
+              "runAttempt": 1,
+              "workflowPath": ".github/workflows/docker-publish.yml",
+              "jobName": "build",
+              "logicalJobId": "build",
+              "conclusion": "success",
+              "durationSeconds": 532,
+              "dependencyWaitSeconds": 0,
+              "runnerQueueSeconds": 9,
+              "resolution": "1s",
+              "labels": [
+                "starsling-ubuntu-24.04"
+              ],
+              "steps": [
+                {
+                  "number": 1,
+                  "name": "Set up job",
+                  "conclusion": "success",
+                  "durationSeconds": 1,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 2,
+                  "name": "Set up runner",
+                  "conclusion": "success",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 3,
+                  "name": "Checkout repository",
+                  "conclusion": "success",
+                  "durationSeconds": 2,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 4,
+                  "name": "Set up QEMU",
+                  "conclusion": "success",
+                  "durationSeconds": 2,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 5,
+                  "name": "Set up Docker Buildx",
+                  "conclusion": "success",
+                  "durationSeconds": 2,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 6,
+                  "name": "Log into registry ghcr.io",
+                  "conclusion": "skipped",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 7,
+                  "name": "Extract Docker metadata",
+                  "conclusion": "success",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 8,
+                  "name": "Build and push Docker images",
+                  "conclusion": "success",
+                  "durationSeconds": 514,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 12,
+                  "name": "Post Build and push Docker images",
+                  "conclusion": "success",
+                  "durationSeconds": 2,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 13,
+                  "name": "Post Set up Docker Buildx",
+                  "conclusion": "success",
+                  "durationSeconds": 3,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 14,
+                  "name": "Post Set up QEMU",
+                  "conclusion": "success",
+                  "durationSeconds": 2,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 15,
+                  "name": "Post Checkout repository",
+                  "conclusion": "success",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 16,
+                  "name": "Complete runner",
+                  "conclusion": "success",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 17,
+                  "name": "Complete job",
+                  "conclusion": "success",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                }
+              ]
+            }
+          ],
+          "artifacts": [
+            {
+              "id": 14178854310,
+              "run_id": 43758771128,
+              "name": "starsling-demo-org~benchmark-writefreely~KTGEKJ.dockerbuild",
+              "size_in_bytes": 87029,
+              "sha256": "103796eeb17c670317a71f010a1c9fcf6d5170b98dbb179331cc4b75be818011",
+              "created_at": "2026-11-15T20:42:35Z",
+              "expired": false
+            }
+          ]
+        }
+      ],
+      "artifacts": [
+        {
+          "id": 14178854310,
+          "run_id": 43758771128,
+          "name": "starsling-demo-org~benchmark-writefreely~KTGEKJ.dockerbuild",
+          "size_in_bytes": 87029,
+          "sha256": "103796eeb17c670317a71f010a1c9fcf6d5170b98dbb179331cc4b75be818011",
+          "created_at": "2026-11-15T20:42:35Z",
+          "expired": false
+        }
+      ],
+      "inputFingerprint": "499e019da126c2754c0a81d68c82aab9de6a274f357a208a8faaed1be9afeca4"
+    },
+    {
+      "sampleId": "p5c-main-push-cold-rep3-starsling-patched",
+      "repetition": 3,
+      "scenarioName": "main-push",
+      "variant": "starsling-patched",
+      "profileName": "cold",
+      "complete": true,
+      "incompleteReasons": [],
+      "missingWorkflows": [],
+      "missingJobs": [],
+      "cancelledJobs": [],
+      "failedJobs": [],
+      "partialTimestampJobs": [],
+      "timestampResolution": "1s",
+      "metrics": {
+        "repoMinutes": 1.45,
+        "rawRunnerSeconds": 87,
+        "wallClockSeconds": 95,
+        "prWallClockSeconds": null,
+        "mainWallClockSeconds": 95,
+        "triggerLatencySeconds": 4,
+        "harnessOverheadSeconds": 0,
+        "maxJobQueueSeconds": 7,
+        "maxJobQueueLabel": "starsling-ubuntu-24.04"
+      },
+      "workflows": [
+        {
+          "runId": 43759784598,
+          "runAttempt": 1,
+          "priorAttemptsCount": 0,
+          "workflowPath": ".github/workflows/docker-publish.yml",
+          "workflowName": "Build container image, publish as GitHub-package",
+          "event": "push",
+          "conclusion": "success",
+          "durationSeconds": 95,
+          "startedAt": "2026-11-15T20:44:47Z",
+          "completedAt": "2026-11-15T20:46:22Z",
+          "htmlUrl": "https://github.com/starsling-demo-org/benchmark-writefreely/actions/runs/43759784598",
+          "jobs": [
+            {
+              "jobRecordId": 132951783838,
+              "runId": 43759784598,
+              "runAttempt": 1,
+              "workflowPath": ".github/workflows/docker-publish.yml",
+              "jobName": "build",
+              "logicalJobId": "build",
+              "conclusion": "success",
+              "durationSeconds": 87,
+              "dependencyWaitSeconds": 0,
+              "runnerQueueSeconds": 7,
+              "resolution": "1s",
+              "labels": [
+                "starsling-ubuntu-24.04"
+              ],
+              "steps": [
+                {
+                  "number": 1,
+                  "name": "Set up job",
+                  "conclusion": "success",
+                  "durationSeconds": 1,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 2,
+                  "name": "Set up runner",
+                  "conclusion": "success",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 3,
+                  "name": "Checkout repository",
+                  "conclusion": "success",
+                  "durationSeconds": 1,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 4,
+                  "name": "Set up QEMU",
+                  "conclusion": "success",
+                  "durationSeconds": 2,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 5,
+                  "name": "Set up Docker Buildx",
+                  "conclusion": "success",
+                  "durationSeconds": 2,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 6,
+                  "name": "Log into registry ghcr.io",
+                  "conclusion": "skipped",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 7,
+                  "name": "Extract Docker metadata",
+                  "conclusion": "success",
+                  "durationSeconds": 1,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 8,
+                  "name": "Build and push Docker images",
+                  "conclusion": "success",
+                  "durationSeconds": 72,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 12,
+                  "name": "Post Build and push Docker images",
+                  "conclusion": "success",
+                  "durationSeconds": 1,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 13,
+                  "name": "Post Set up Docker Buildx",
+                  "conclusion": "success",
+                  "durationSeconds": 2,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 14,
+                  "name": "Post Set up QEMU",
+                  "conclusion": "success",
+                  "durationSeconds": 2,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 15,
+                  "name": "Post Checkout repository",
+                  "conclusion": "success",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 16,
+                  "name": "Complete runner",
+                  "conclusion": "success",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 17,
+                  "name": "Complete job",
+                  "conclusion": "success",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                }
+              ]
+            }
+          ],
+          "artifacts": [
+            {
+              "id": 14179946973,
+              "run_id": 43759784598,
+              "name": "starsling-demo-org~benchmark-writefreely~YXJ3KR.dockerbuild",
+              "size_in_bytes": 85962,
+              "sha256": "7e38947f325dcbbd3a2454fb216c0bea58068e7d3a6a626896fdeb57d2bf2980",
+              "created_at": "2026-11-15T20:46:16Z",
+              "expired": false
+            }
+          ]
+        }
+      ],
+      "artifacts": [
+        {
+          "id": 14179946973,
+          "run_id": 43759784598,
+          "name": "starsling-demo-org~benchmark-writefreely~YXJ3KR.dockerbuild",
+          "size_in_bytes": 85962,
+          "sha256": "7e38947f325dcbbd3a2454fb216c0bea58068e7d3a6a626896fdeb57d2bf2980",
+          "created_at": "2026-11-15T20:46:16Z",
+          "expired": false
+        }
+      ],
+      "inputFingerprint": "499e019da126c2754c0a81d68c82aab9de6a274f357a208a8faaed1be9afeca4"
+    },
+    {
+      "sampleId": "p5c-main-push-cold-rep4-starsling-patched",
+      "repetition": 4,
+      "scenarioName": "main-push",
+      "variant": "starsling-patched",
+      "profileName": "cold",
+      "complete": true,
+      "incompleteReasons": [],
+      "missingWorkflows": [],
+      "missingJobs": [],
+      "cancelledJobs": [],
+      "failedJobs": [],
+      "partialTimestampJobs": [],
+      "timestampResolution": "1s",
+      "metrics": {
+        "repoMinutes": 1.4667,
+        "rawRunnerSeconds": 88,
+        "wallClockSeconds": 97,
+        "prWallClockSeconds": null,
+        "mainWallClockSeconds": 97,
+        "triggerLatencySeconds": 4,
+        "harnessOverheadSeconds": 0,
+        "maxJobQueueSeconds": 8,
+        "maxJobQueueLabel": "starsling-ubuntu-24.04"
+      },
+      "workflows": [
+        {
+          "runId": 43760064426,
+          "runAttempt": 1,
+          "priorAttemptsCount": 0,
+          "workflowPath": ".github/workflows/docker-publish.yml",
+          "workflowName": "Build container image, publish as GitHub-package",
+          "event": "push",
+          "conclusion": "success",
+          "durationSeconds": 97,
+          "startedAt": "2026-11-15T20:47:49Z",
+          "completedAt": "2026-11-15T20:49:26Z",
+          "htmlUrl": "https://github.com/starsling-demo-org/benchmark-writefreely/actions/runs/43760064426",
+          "jobs": [
+            {
+              "jobRecordId": 132952649212,
+              "runId": 43760064426,
+              "runAttempt": 1,
+              "workflowPath": ".github/workflows/docker-publish.yml",
+              "jobName": "build",
+              "logicalJobId": "build",
+              "conclusion": "success",
+              "durationSeconds": 88,
+              "dependencyWaitSeconds": 0,
+              "runnerQueueSeconds": 8,
+              "resolution": "1s",
+              "labels": [
+                "starsling-ubuntu-24.04"
+              ],
+              "steps": [
+                {
+                  "number": 1,
+                  "name": "Set up job",
+                  "conclusion": "success",
+                  "durationSeconds": 1,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 2,
+                  "name": "Set up runner",
+                  "conclusion": "success",
+                  "durationSeconds": 1,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 3,
+                  "name": "Checkout repository",
+                  "conclusion": "success",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 4,
+                  "name": "Set up QEMU",
+                  "conclusion": "success",
+                  "durationSeconds": 2,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 5,
+                  "name": "Set up Docker Buildx",
+                  "conclusion": "success",
+                  "durationSeconds": 3,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 6,
+                  "name": "Log into registry ghcr.io",
+                  "conclusion": "skipped",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 7,
+                  "name": "Extract Docker metadata",
+                  "conclusion": "success",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 8,
+                  "name": "Build and push Docker images",
+                  "conclusion": "success",
+                  "durationSeconds": 74,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 12,
+                  "name": "Post Build and push Docker images",
+                  "conclusion": "success",
+                  "durationSeconds": 2,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 13,
+                  "name": "Post Set up Docker Buildx",
+                  "conclusion": "success",
+                  "durationSeconds": 2,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 14,
+                  "name": "Post Set up QEMU",
+                  "conclusion": "success",
+                  "durationSeconds": 2,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 15,
+                  "name": "Post Checkout repository",
+                  "conclusion": "success",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 16,
+                  "name": "Complete runner",
+                  "conclusion": "success",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 17,
+                  "name": "Complete job",
+                  "conclusion": "success",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                }
+              ]
+            }
+          ],
+          "artifacts": [
+            {
+              "id": 14179773254,
+              "run_id": 43760064426,
+              "name": "starsling-demo-org~benchmark-writefreely~BV91LT.dockerbuild",
+              "size_in_bytes": 86127,
+              "sha256": "8afb3d924bd42de6ad0d4a25078363e0faf304d89bd9e4abaffd23ab968533f7",
+              "created_at": "2026-11-15T20:49:21Z",
+              "expired": false
+            }
+          ]
+        }
+      ],
+      "artifacts": [
+        {
+          "id": 14179773254,
+          "run_id": 43760064426,
+          "name": "starsling-demo-org~benchmark-writefreely~BV91LT.dockerbuild",
+          "size_in_bytes": 86127,
+          "sha256": "8afb3d924bd42de6ad0d4a25078363e0faf304d89bd9e4abaffd23ab968533f7",
+          "created_at": "2026-11-15T20:49:21Z",
+          "expired": false
+        }
+      ],
+      "inputFingerprint": "499e019da126c2754c0a81d68c82aab9de6a274f357a208a8faaed1be9afeca4"
+    },
+    {
+      "sampleId": "p5c-main-push-cold-rep4-github-baseline",
+      "repetition": 4,
+      "scenarioName": "main-push",
+      "variant": "github-baseline",
+      "profileName": "cold",
+      "complete": true,
+      "incompleteReasons": [],
+      "missingWorkflows": [],
+      "missingJobs": [],
+      "cancelledJobs": [],
+      "failedJobs": [],
+      "partialTimestampJobs": [],
+      "timestampResolution": "1s",
+      "metrics": {
+        "repoMinutes": 15.9,
+        "rawRunnerSeconds": 954,
+        "wallClockSeconds": 958,
+        "prWallClockSeconds": null,
+        "mainWallClockSeconds": 958,
+        "triggerLatencySeconds": 4,
+        "harnessOverheadSeconds": 0,
+        "maxJobQueueSeconds": 3,
+        "maxJobQueueLabel": "ubuntu-24.04-4core"
+      },
+      "workflows": [
+        {
+          "runId": 43760343203,
+          "runAttempt": 1,
+          "priorAttemptsCount": 0,
+          "workflowPath": ".github/workflows/docker-publish.yml",
+          "workflowName": "Build container image, publish as GitHub-package",
+          "event": "push",
+          "conclusion": "success",
+          "durationSeconds": 958,
+          "startedAt": "2026-11-15T20:50:52Z",
+          "completedAt": "2026-11-15T21:06:50Z",
+          "htmlUrl": "https://github.com/starsling-demo-org/benchmark-writefreely/actions/runs/43760343203",
+          "jobs": [
+            {
+              "jobRecordId": 132953514015,
+              "runId": 43760343203,
+              "runAttempt": 1,
+              "workflowPath": ".github/workflows/docker-publish.yml",
+              "jobName": "build",
+              "logicalJobId": "build",
+              "conclusion": "success",
+              "durationSeconds": 954,
+              "dependencyWaitSeconds": 0,
+              "runnerQueueSeconds": 3,
+              "resolution": "1s",
+              "labels": [
+                "ubuntu-24.04-4core"
+              ],
+              "steps": [
+                {
+                  "number": 1,
+                  "name": "Set up job",
+                  "conclusion": "success",
+                  "durationSeconds": 3,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 2,
+                  "name": "Checkout repository",
+                  "conclusion": "success",
+                  "durationSeconds": 2,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 3,
+                  "name": "Set up QEMU",
+                  "conclusion": "success",
+                  "durationSeconds": 9,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 4,
+                  "name": "Set up Docker Buildx",
+                  "conclusion": "success",
+                  "durationSeconds": 5,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 5,
+                  "name": "Log into registry ghcr.io",
+                  "conclusion": "skipped",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 6,
+                  "name": "Extract Docker metadata",
+                  "conclusion": "success",
+                  "durationSeconds": 1,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 7,
+                  "name": "Build and push Docker images",
+                  "conclusion": "success",
+                  "durationSeconds": 909,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 11,
+                  "name": "Post Build and push Docker images",
+                  "conclusion": "success",
+                  "durationSeconds": 2,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 12,
+                  "name": "Post Set up Docker Buildx",
+                  "conclusion": "success",
+                  "durationSeconds": 19,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 13,
+                  "name": "Post Set up QEMU",
+                  "conclusion": "success",
+                  "durationSeconds": 2,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 14,
+                  "name": "Post Checkout repository",
+                  "conclusion": "success",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 15,
+                  "name": "Complete job",
+                  "conclusion": "success",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                }
+              ]
+            }
+          ],
+          "artifacts": [
+            {
+              "id": 14180331961,
+              "run_id": 43760343203,
+              "name": "starsling-demo-org~benchmark-writefreely~TGOR7A.dockerbuild",
+              "size_in_bytes": 89578,
+              "sha256": "842a4f97f17f2fc186497184359febb64e1a8e6d1ebc91da5b554c96b7d2f042",
+              "created_at": "2026-11-15T21:06:26Z",
+              "expired": false
+            }
+          ]
+        }
+      ],
+      "artifacts": [
+        {
+          "id": 14180331961,
+          "run_id": 43760343203,
+          "name": "starsling-demo-org~benchmark-writefreely~TGOR7A.dockerbuild",
+          "size_in_bytes": 89578,
+          "sha256": "842a4f97f17f2fc186497184359febb64e1a8e6d1ebc91da5b554c96b7d2f042",
+          "created_at": "2026-11-15T21:06:26Z",
+          "expired": false
+        }
+      ],
+      "inputFingerprint": "499e019da126c2754c0a81d68c82aab9de6a274f357a208a8faaed1be9afeca4"
+    },
+    {
+      "sampleId": "p5c-main-push-cold-rep4-starsling-baseline",
+      "repetition": 4,
+      "scenarioName": "main-push",
+      "variant": "starsling-baseline",
+      "profileName": "cold",
+      "complete": true,
+      "incompleteReasons": [],
+      "missingWorkflows": [],
+      "missingJobs": [],
+      "cancelledJobs": [],
+      "failedJobs": [],
+      "partialTimestampJobs": [],
+      "timestampResolution": "1s",
+      "metrics": {
+        "repoMinutes": 9.3167,
+        "rawRunnerSeconds": 559,
+        "wallClockSeconds": 567,
+        "prWallClockSeconds": null,
+        "mainWallClockSeconds": 567,
+        "triggerLatencySeconds": 4,
+        "harnessOverheadSeconds": 0,
+        "maxJobQueueSeconds": 7,
+        "maxJobQueueLabel": "starsling-ubuntu-24.04"
+      },
+      "workflows": [
+        {
+          "runId": 43761963939,
+          "runAttempt": 1,
+          "priorAttemptsCount": 0,
+          "workflowPath": ".github/workflows/docker-publish.yml",
+          "workflowName": "Build container image, publish as GitHub-package",
+          "event": "push",
+          "conclusion": "success",
+          "durationSeconds": 567,
+          "startedAt": "2026-11-15T21:08:05Z",
+          "completedAt": "2026-11-15T21:17:32Z",
+          "htmlUrl": "https://github.com/starsling-demo-org/benchmark-writefreely/actions/runs/43761963939",
+          "jobs": [
+            {
+              "jobRecordId": 132958530313,
+              "runId": 43761963939,
+              "runAttempt": 1,
+              "workflowPath": ".github/workflows/docker-publish.yml",
+              "jobName": "build",
+              "logicalJobId": "build",
+              "conclusion": "success",
+              "durationSeconds": 559,
+              "dependencyWaitSeconds": 0,
+              "runnerQueueSeconds": 7,
+              "resolution": "1s",
+              "labels": [
+                "starsling-ubuntu-24.04"
+              ],
+              "steps": [
+                {
+                  "number": 1,
+                  "name": "Set up job",
+                  "conclusion": "success",
+                  "durationSeconds": 2,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 2,
+                  "name": "Set up runner",
+                  "conclusion": "success",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 3,
+                  "name": "Checkout repository",
+                  "conclusion": "success",
+                  "durationSeconds": 1,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 4,
+                  "name": "Set up QEMU",
+                  "conclusion": "success",
+                  "durationSeconds": 2,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 5,
+                  "name": "Set up Docker Buildx",
+                  "conclusion": "success",
+                  "durationSeconds": 2,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 6,
+                  "name": "Log into registry ghcr.io",
+                  "conclusion": "skipped",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 7,
+                  "name": "Extract Docker metadata",
+                  "conclusion": "success",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 8,
+                  "name": "Build and push Docker images",
+                  "conclusion": "success",
+                  "durationSeconds": 543,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 12,
+                  "name": "Post Build and push Docker images",
+                  "conclusion": "success",
+                  "durationSeconds": 1,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 13,
+                  "name": "Post Set up Docker Buildx",
+                  "conclusion": "success",
+                  "durationSeconds": 4,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 14,
+                  "name": "Post Set up QEMU",
+                  "conclusion": "success",
+                  "durationSeconds": 1,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 15,
+                  "name": "Post Checkout repository",
+                  "conclusion": "success",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 16,
+                  "name": "Complete runner",
+                  "conclusion": "success",
+                  "durationSeconds": 1,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 17,
+                  "name": "Complete job",
+                  "conclusion": "success",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                }
+              ]
+            }
+          ],
+          "artifacts": [
+            {
+              "id": 14180283548,
+              "run_id": 43761963939,
+              "name": "starsling-demo-org~benchmark-writefreely~NJ57DA.dockerbuild",
+              "size_in_bytes": 82961,
+              "sha256": "c5ba32d0a214e008e6cb5510840eee53312d6d798d67bafc4e44a01efa16bfea",
+              "created_at": "2026-11-15T21:17:25Z",
+              "expired": false
+            }
+          ]
+        }
+      ],
+      "artifacts": [
+        {
+          "id": 14180283548,
+          "run_id": 43761963939,
+          "name": "starsling-demo-org~benchmark-writefreely~NJ57DA.dockerbuild",
+          "size_in_bytes": 82961,
+          "sha256": "c5ba32d0a214e008e6cb5510840eee53312d6d798d67bafc4e44a01efa16bfea",
+          "created_at": "2026-11-15T21:17:25Z",
+          "expired": false
+        }
+      ],
+      "inputFingerprint": "499e019da126c2754c0a81d68c82aab9de6a274f357a208a8faaed1be9afeca4"
+    },
+    {
+      "sampleId": "p5c-main-push-cold-rep5-github-baseline",
+      "repetition": 5,
+      "scenarioName": "main-push",
+      "variant": "github-baseline",
+      "profileName": "cold",
+      "complete": true,
+      "incompleteReasons": [],
+      "missingWorkflows": [],
+      "missingJobs": [],
+      "cancelledJobs": [],
+      "failedJobs": [],
+      "partialTimestampJobs": [],
+      "timestampResolution": "1s",
+      "metrics": {
+        "repoMinutes": 14,
+        "rawRunnerSeconds": 840,
+        "wallClockSeconds": 843,
+        "prWallClockSeconds": null,
+        "mainWallClockSeconds": 843,
+        "triggerLatencySeconds": 5,
+        "harnessOverheadSeconds": 0,
+        "maxJobQueueSeconds": 3,
+        "maxJobQueueLabel": "ubuntu-24.04-4core"
+      },
+      "workflows": [
+        {
+          "runId": 43763018010,
+          "runAttempt": 1,
+          "priorAttemptsCount": 0,
+          "workflowPath": ".github/workflows/docker-publish.yml",
+          "workflowName": "Build container image, publish as GitHub-package",
+          "event": "push",
+          "conclusion": "success",
+          "durationSeconds": 843,
+          "startedAt": "2026-11-15T21:19:14Z",
+          "completedAt": "2026-11-15T21:33:17Z",
+          "htmlUrl": "https://github.com/starsling-demo-org/benchmark-writefreely/actions/runs/43763018010",
+          "jobs": [
+            {
+              "jobRecordId": 132961814907,
+              "runId": 43763018010,
+              "runAttempt": 1,
+              "workflowPath": ".github/workflows/docker-publish.yml",
+              "jobName": "build",
+              "logicalJobId": "build",
+              "conclusion": "success",
+              "durationSeconds": 840,
+              "dependencyWaitSeconds": 0,
+              "runnerQueueSeconds": 3,
+              "resolution": "1s",
+              "labels": [
+                "ubuntu-24.04-4core"
+              ],
+              "steps": [
+                {
+                  "number": 1,
+                  "name": "Set up job",
+                  "conclusion": "success",
+                  "durationSeconds": 3,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 2,
+                  "name": "Checkout repository",
+                  "conclusion": "success",
+                  "durationSeconds": 1,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 3,
+                  "name": "Set up QEMU",
+                  "conclusion": "success",
+                  "durationSeconds": 9,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 4,
+                  "name": "Set up Docker Buildx",
+                  "conclusion": "success",
+                  "durationSeconds": 5,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 5,
+                  "name": "Log into registry ghcr.io",
+                  "conclusion": "skipped",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 6,
+                  "name": "Extract Docker metadata",
+                  "conclusion": "success",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 7,
+                  "name": "Build and push Docker images",
+                  "conclusion": "success",
+                  "durationSeconds": 799,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 11,
+                  "name": "Post Build and push Docker images",
+                  "conclusion": "success",
+                  "durationSeconds": 1,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 12,
+                  "name": "Post Set up Docker Buildx",
+                  "conclusion": "success",
+                  "durationSeconds": 18,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 13,
+                  "name": "Post Set up QEMU",
+                  "conclusion": "success",
+                  "durationSeconds": 2,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 14,
+                  "name": "Post Checkout repository",
+                  "conclusion": "success",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 15,
+                  "name": "Complete job",
+                  "conclusion": "success",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                }
+              ]
+            }
+          ],
+          "artifacts": [
+            {
+              "id": 14181870982,
+              "run_id": 43763018010,
+              "name": "starsling-demo-org~benchmark-writefreely~XVPK0C.dockerbuild",
+              "size_in_bytes": 86751,
+              "sha256": "4184fcedea98eec3fb5d4bc7a89c9414b44368a9b34971feb0be2b86de1cdd97",
+              "created_at": "2026-11-15T21:32:55Z",
+              "expired": false
+            }
+          ]
+        }
+      ],
+      "artifacts": [
+        {
+          "id": 14181870982,
+          "run_id": 43763018010,
+          "name": "starsling-demo-org~benchmark-writefreely~XVPK0C.dockerbuild",
+          "size_in_bytes": 86751,
+          "sha256": "4184fcedea98eec3fb5d4bc7a89c9414b44368a9b34971feb0be2b86de1cdd97",
+          "created_at": "2026-11-15T21:32:55Z",
+          "expired": false
+        }
+      ],
+      "inputFingerprint": "499e019da126c2754c0a81d68c82aab9de6a274f357a208a8faaed1be9afeca4"
+    },
+    {
+      "sampleId": "p5c-main-push-cold-rep5-starsling-baseline",
+      "repetition": 5,
+      "scenarioName": "main-push",
+      "variant": "starsling-baseline",
+      "profileName": "cold",
+      "complete": true,
+      "incompleteReasons": [],
+      "missingWorkflows": [],
+      "missingJobs": [],
+      "cancelledJobs": [],
+      "failedJobs": [],
+      "partialTimestampJobs": [],
+      "timestampResolution": "1s",
+      "metrics": {
+        "repoMinutes": 9.3333,
+        "rawRunnerSeconds": 560,
+        "wallClockSeconds": 567,
+        "prWallClockSeconds": null,
+        "mainWallClockSeconds": 567,
+        "triggerLatencySeconds": 4,
+        "harnessOverheadSeconds": 0,
+        "maxJobQueueSeconds": 7,
+        "maxJobQueueLabel": "starsling-ubuntu-24.04"
+      },
+      "workflows": [
+        {
+          "runId": 43764424246,
+          "runAttempt": 1,
+          "priorAttemptsCount": 0,
+          "workflowPath": ".github/workflows/docker-publish.yml",
+          "workflowName": "Build container image, publish as GitHub-package",
+          "event": "push",
+          "conclusion": "success",
+          "durationSeconds": 567,
+          "startedAt": "2026-11-15T21:34:24Z",
+          "completedAt": "2026-11-15T21:43:51Z",
+          "htmlUrl": "https://github.com/starsling-demo-org/benchmark-writefreely/actions/runs/43764424246",
+          "jobs": [
+            {
+              "jobRecordId": 132966216878,
+              "runId": 43764424246,
+              "runAttempt": 1,
+              "workflowPath": ".github/workflows/docker-publish.yml",
+              "jobName": "build",
+              "logicalJobId": "build",
+              "conclusion": "success",
+              "durationSeconds": 560,
+              "dependencyWaitSeconds": 0,
+              "runnerQueueSeconds": 7,
+              "resolution": "1s",
+              "labels": [
+                "starsling-ubuntu-24.04"
+              ],
+              "steps": [
+                {
+                  "number": 1,
+                  "name": "Set up job",
+                  "conclusion": "success",
+                  "durationSeconds": 1,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 2,
+                  "name": "Set up runner",
+                  "conclusion": "success",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 3,
+                  "name": "Checkout repository",
+                  "conclusion": "success",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 4,
+                  "name": "Set up QEMU",
+                  "conclusion": "success",
+                  "durationSeconds": 2,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 5,
+                  "name": "Set up Docker Buildx",
+                  "conclusion": "success",
+                  "durationSeconds": 2,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 6,
+                  "name": "Log into registry ghcr.io",
+                  "conclusion": "skipped",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 7,
+                  "name": "Extract Docker metadata",
+                  "conclusion": "success",
+                  "durationSeconds": 1,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 8,
+                  "name": "Build and push Docker images",
+                  "conclusion": "success",
+                  "durationSeconds": 545,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 12,
+                  "name": "Post Build and push Docker images",
+                  "conclusion": "success",
+                  "durationSeconds": 1,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 13,
+                  "name": "Post Set up Docker Buildx",
+                  "conclusion": "success",
+                  "durationSeconds": 4,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 14,
+                  "name": "Post Set up QEMU",
+                  "conclusion": "success",
+                  "durationSeconds": 1,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 15,
+                  "name": "Post Checkout repository",
+                  "conclusion": "success",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 16,
+                  "name": "Complete runner",
+                  "conclusion": "success",
+                  "durationSeconds": 1,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 17,
+                  "name": "Complete job",
+                  "conclusion": "success",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                }
+              ]
+            }
+          ],
+          "artifacts": [
+            {
+              "id": 14182087323,
+              "run_id": 43764424246,
+              "name": "starsling-demo-org~benchmark-writefreely~YI2FDU.dockerbuild",
+              "size_in_bytes": 88591,
+              "sha256": "d7824309ed492bf22073c2f23370ca58ef9c38186cc48184d6358c2f2ea99106",
+              "created_at": "2026-11-15T21:43:44Z",
+              "expired": false
+            }
+          ]
+        }
+      ],
+      "artifacts": [
+        {
+          "id": 14182087323,
+          "run_id": 43764424246,
+          "name": "starsling-demo-org~benchmark-writefreely~YI2FDU.dockerbuild",
+          "size_in_bytes": 88591,
+          "sha256": "d7824309ed492bf22073c2f23370ca58ef9c38186cc48184d6358c2f2ea99106",
+          "created_at": "2026-11-15T21:43:44Z",
+          "expired": false
+        }
+      ],
+      "inputFingerprint": "499e019da126c2754c0a81d68c82aab9de6a274f357a208a8faaed1be9afeca4"
+    },
+    {
+      "sampleId": "p5c-main-push-cold-rep5-starsling-patched",
+      "repetition": 5,
+      "scenarioName": "main-push",
+      "variant": "starsling-patched",
+      "profileName": "cold",
+      "complete": true,
+      "incompleteReasons": [],
+      "missingWorkflows": [],
+      "missingJobs": [],
+      "cancelledJobs": [],
+      "failedJobs": [],
+      "partialTimestampJobs": [],
+      "timestampResolution": "1s",
+      "metrics": {
+        "repoMinutes": 1.4833,
+        "rawRunnerSeconds": 89,
+        "wallClockSeconds": 97,
+        "prWallClockSeconds": null,
+        "mainWallClockSeconds": 97,
+        "triggerLatencySeconds": 4,
+        "harnessOverheadSeconds": 0,
+        "maxJobQueueSeconds": 7,
+        "maxJobQueueLabel": "starsling-ubuntu-24.04"
+      },
+      "workflows": [
+        {
+          "runId": 43765445581,
+          "runAttempt": 1,
+          "priorAttemptsCount": 0,
+          "workflowPath": ".github/workflows/docker-publish.yml",
+          "workflowName": "Build container image, publish as GitHub-package",
+          "event": "push",
+          "conclusion": "success",
+          "durationSeconds": 97,
+          "startedAt": "2026-11-15T21:45:30Z",
+          "completedAt": "2026-11-15T21:47:07Z",
+          "htmlUrl": "https://github.com/starsling-demo-org/benchmark-writefreely/actions/runs/43765445581",
+          "jobs": [
+            {
+              "jobRecordId": 132969375333,
+              "runId": 43765445581,
+              "runAttempt": 1,
+              "workflowPath": ".github/workflows/docker-publish.yml",
+              "jobName": "build",
+              "logicalJobId": "build",
+              "conclusion": "success",
+              "durationSeconds": 89,
+              "dependencyWaitSeconds": 0,
+              "runnerQueueSeconds": 7,
+              "resolution": "1s",
+              "labels": [
+                "starsling-ubuntu-24.04"
+              ],
+              "steps": [
+                {
+                  "number": 1,
+                  "name": "Set up job",
+                  "conclusion": "success",
+                  "durationSeconds": 1,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 2,
+                  "name": "Set up runner",
+                  "conclusion": "success",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 3,
+                  "name": "Checkout repository",
+                  "conclusion": "success",
+                  "durationSeconds": 1,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 4,
+                  "name": "Set up QEMU",
+                  "conclusion": "success",
+                  "durationSeconds": 2,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 5,
+                  "name": "Set up Docker Buildx",
+                  "conclusion": "success",
+                  "durationSeconds": 2,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 6,
+                  "name": "Log into registry ghcr.io",
+                  "conclusion": "skipped",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 7,
+                  "name": "Extract Docker metadata",
+                  "conclusion": "success",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 8,
+                  "name": "Build and push Docker images",
+                  "conclusion": "success",
+                  "durationSeconds": 76,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 12,
+                  "name": "Post Build and push Docker images",
+                  "conclusion": "success",
+                  "durationSeconds": 1,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 13,
+                  "name": "Post Set up Docker Buildx",
+                  "conclusion": "success",
+                  "durationSeconds": 3,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 14,
+                  "name": "Post Set up QEMU",
+                  "conclusion": "success",
+                  "durationSeconds": 1,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 15,
+                  "name": "Post Checkout repository",
+                  "conclusion": "success",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 16,
+                  "name": "Complete runner",
+                  "conclusion": "success",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 17,
+                  "name": "Complete job",
+                  "conclusion": "success",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                }
+              ]
+            }
+          ],
+          "artifacts": [
+            {
+              "id": 14181733692,
+              "run_id": 43765445581,
+              "name": "starsling-demo-org~benchmark-writefreely~9I1PB3.dockerbuild",
+              "size_in_bytes": 87838,
+              "sha256": "be105682730100dd302a5f8ad83ffa2448954a5ab01215d378478ede971a9043",
+              "created_at": "2026-11-15T21:47:02Z",
+              "expired": false
+            }
+          ]
+        }
+      ],
+      "artifacts": [
+        {
+          "id": 14181733692,
+          "run_id": 43765445581,
+          "name": "starsling-demo-org~benchmark-writefreely~9I1PB3.dockerbuild",
+          "size_in_bytes": 87838,
+          "sha256": "be105682730100dd302a5f8ad83ffa2448954a5ab01215d378478ede971a9043",
+          "created_at": "2026-11-15T21:47:02Z",
+          "expired": false
+        }
+      ],
+      "inputFingerprint": "499e019da126c2754c0a81d68c82aab9de6a274f357a208a8faaed1be9afeca4"
+    }
+  ],
+  "seedSamples": [],
+  "cacheSnapshots": {
+    "p5c-main-push-cold-rep1-github-baseline": [
+      {
+        "id": 10563973552,
+        "ref": "refs/heads/develop",
+        "key": "docker.io--tonistiigi--binfmt-latest-linux-x64",
+        "version": "0f256030c2162b26c4af1b51965f055655033ea67381759b247836dd596e3432",
+        "last_accessed_at": "2026-11-15T19:00:51.804142Z",
+        "created_at": "2026-11-15T19:00:51.804142Z",
+        "size_in_bytes": 32265034
+      }
+    ],
+    "p5c-main-push-cold-rep1-starsling-baseline": [
+      {
+        "id": 10564484783,
+        "ref": "refs/heads/develop",
+        "key": "docker.io--tonistiigi--binfmt-latest-linux-x64",
+        "version": "0f256030c2162b26c4af1b51965f055655033ea67381759b247836dd596e3432",
+        "last_accessed_at": "2026-11-15T19:21:09.363266Z",
+        "created_at": "2026-11-15T19:21:09.363266Z",
+        "size_in_bytes": 32265052
+      }
+    ],
+    "p5c-main-push-cold-rep1-starsling-patched": [
+      {
+        "id": 10564751028,
+        "ref": "refs/heads/develop",
+        "key": "docker.io--tonistiigi--binfmt-latest-linux-x64",
+        "version": "0f256030c2162b26c4af1b51965f055655033ea67381759b247836dd596e3432",
+        "last_accessed_at": "2026-11-15T19:31:39.822159Z",
+        "created_at": "2026-11-15T19:31:39.822159Z",
+        "size_in_bytes": 32265011
+      }
+    ],
+    "p5c-main-push-cold-rep2-starsling-baseline": [
+      {
+        "id": 10564852187,
+        "ref": "refs/heads/develop",
+        "key": "docker.io--tonistiigi--binfmt-latest-linux-x64",
+        "version": "0f256030c2162b26c4af1b51965f055655033ea67381759b247836dd596e3432",
+        "last_accessed_at": "2026-11-15T19:35:31.855634Z",
+        "created_at": "2026-11-15T19:35:31.855634Z",
+        "size_in_bytes": 32265017
+      }
+    ],
+    "p5c-main-push-cold-rep2-github-baseline": [
+      {
+        "id": 10565118054,
+        "ref": "refs/heads/develop",
+        "key": "docker.io--tonistiigi--binfmt-latest-linux-x64",
+        "version": "0f256030c2162b26c4af1b51965f055655033ea67381759b247836dd596e3432",
+        "last_accessed_at": "2026-11-15T19:45:39.122093Z",
+        "created_at": "2026-11-15T19:45:39.122093Z",
+        "size_in_bytes": 32265022
+      }
+    ],
+    "p5c-main-push-cold-rep2-starsling-patched": [
+      {
+        "id": 10565604605,
+        "ref": "refs/heads/develop",
+        "key": "docker.io--tonistiigi--binfmt-latest-linux-x64",
+        "version": "0f256030c2162b26c4af1b51965f055655033ea67381759b247836dd596e3432",
+        "last_accessed_at": "2026-11-15T20:04:36.351582Z",
+        "created_at": "2026-11-15T20:04:36.351582Z",
+        "size_in_bytes": 32265036
+      }
+    ],
+    "p5c-main-push-cold-rep3-github-baseline": [
+      {
+        "id": 10565719438,
+        "ref": "refs/heads/develop",
+        "key": "docker.io--tonistiigi--binfmt-latest-linux-x64",
+        "version": "0f256030c2162b26c4af1b51965f055655033ea67381759b247836dd596e3432",
+        "last_accessed_at": "2026-11-15T20:08:54.536574Z",
+        "created_at": "2026-11-15T20:08:54.536574Z",
+        "size_in_bytes": 32265032
+      }
+    ],
+    "p5c-main-push-cold-rep3-starsling-baseline": [
+      {
+        "id": 10566314102,
+        "ref": "refs/heads/develop",
+        "key": "docker.io--tonistiigi--binfmt-latest-linux-x64",
+        "version": "0f256030c2162b26c4af1b51965f055655033ea67381759b247836dd596e3432",
+        "last_accessed_at": "2026-11-15T20:31:25.101542Z",
+        "created_at": "2026-11-15T20:31:25.101542Z",
+        "size_in_bytes": 32265043
+      }
+    ],
+    "p5c-main-push-cold-rep3-starsling-patched": [
+      {
+        "id": 10566600736,
+        "ref": "refs/heads/develop",
+        "key": "docker.io--tonistiigi--binfmt-latest-linux-x64",
+        "version": "0f256030c2162b26c4af1b51965f055655033ea67381759b247836dd596e3432",
+        "last_accessed_at": "2026-11-15T20:42:40.658772Z",
+        "created_at": "2026-11-15T20:42:40.658772Z",
+        "size_in_bytes": 32265014
+      }
+    ],
+    "p5c-main-push-cold-rep4-starsling-patched": [
+      {
+        "id": 10566692802,
+        "ref": "refs/heads/develop",
+        "key": "docker.io--tonistiigi--binfmt-latest-linux-x64",
+        "version": "0f256030c2162b26c4af1b51965f055655033ea67381759b247836dd596e3432",
+        "last_accessed_at": "2026-11-15T20:46:20.180687Z",
+        "created_at": "2026-11-15T20:46:20.180687Z",
+        "size_in_bytes": 32265025
+      }
+    ],
+    "p5c-main-push-cold-rep4-github-baseline": [
+      {
+        "id": 10566771019,
+        "ref": "refs/heads/develop",
+        "key": "docker.io--tonistiigi--binfmt-latest-linux-x64",
+        "version": "0f256030c2162b26c4af1b51965f055655033ea67381759b247836dd596e3432",
+        "last_accessed_at": "2026-11-15T20:49:25.097449Z",
+        "created_at": "2026-11-15T20:49:25.097449Z",
+        "size_in_bytes": 32265014
+      }
+    ],
+    "p5c-main-push-cold-rep4-starsling-baseline": [
+      {
+        "id": 10567228896,
+        "ref": "refs/heads/develop",
+        "key": "docker.io--tonistiigi--binfmt-latest-linux-x64",
+        "version": "0f256030c2162b26c4af1b51965f055655033ea67381759b247836dd596e3432",
+        "last_accessed_at": "2026-11-15T21:06:48.418452Z",
+        "created_at": "2026-11-15T21:06:48.418452Z",
+        "size_in_bytes": 32265033
+      }
+    ],
+    "p5c-main-push-cold-rep5-github-baseline": [
+      {
+        "id": 10567505618,
+        "ref": "refs/heads/develop",
+        "key": "docker.io--tonistiigi--binfmt-latest-linux-x64",
+        "version": "0f256030c2162b26c4af1b51965f055655033ea67381759b247836dd596e3432",
+        "last_accessed_at": "2026-11-15T21:17:30.738746Z",
+        "created_at": "2026-11-15T21:17:30.738746Z",
+        "size_in_bytes": 32265014
+      }
+    ],
+    "p5c-main-push-cold-rep5-starsling-baseline": [
+      {
+        "id": 10567900688,
+        "ref": "refs/heads/develop",
+        "key": "docker.io--tonistiigi--binfmt-latest-linux-x64",
+        "version": "0f256030c2162b26c4af1b51965f055655033ea67381759b247836dd596e3432",
+        "last_accessed_at": "2026-11-15T21:33:15.504999Z",
+        "created_at": "2026-11-15T21:33:15.504999Z",
+        "size_in_bytes": 32265051
+      }
+    ],
+    "p5c-main-push-cold-rep5-starsling-patched": [
+      {
+        "id": 10568170811,
+        "ref": "refs/heads/develop",
+        "key": "docker.io--tonistiigi--binfmt-latest-linux-x64",
+        "version": "0f256030c2162b26c4af1b51965f055655033ea67381759b247836dd596e3432",
+        "last_accessed_at": "2026-11-15T21:43:49.738415Z",
+        "created_at": "2026-11-15T21:43:49.738415Z",
+        "size_in_bytes": 32265030
+      }
+    ]
+  },
+  "apiUsage": {
+    "budgetPerHour": 2000,
+    "experiment": {
+      "calls": 248,
+      "notModified": 481,
+      "graphql": 0,
+      "byCategory": {
+        "other-read": 1,
+        "run-list": 50,
+        "workflows": 33,
+        "caches": 30,
+        "cache-delete": 15,
+        "workflow-write": 31,
+        "jobs": 43,
+        "artifacts": 30,
+        "job-logs": 15
+      },
+      "throttledMs": 150400,
+      "rateLimitWaitMs": 0
+    },
+    "samples": {
+      "p5c-main-push-cold-rep1-github-baseline": {
+        "calls": 14,
+        "notModified": 39,
+        "graphql": 0,
+        "byCategory": {
+          "run-list": 3,
+          "workflows": 3,
+          "workflow-write": 2,
+          "jobs": 3,
+          "artifacts": 2,
+          "job-logs": 1
+        },
+        "throttledMs": 16600,
+        "rateLimitWaitMs": 0
+      },
+      "p5c-main-push-cold-rep1-starsling-baseline": {
+        "calls": 13,
+        "notModified": 32,
+        "graphql": 0,
+        "byCategory": {
+          "run-list": 3,
+          "workflows": 2,
+          "workflow-write": 2,
+          "jobs": 3,
+          "artifacts": 2,
+          "job-logs": 1
+        },
+        "throttledMs": 9400,
+        "rateLimitWaitMs": 0
+      },
+      "p5c-main-push-cold-rep1-starsling-patched": {
+        "calls": 13,
+        "notModified": 20,
+        "graphql": 0,
+        "byCategory": {
+          "run-list": 3,
+          "workflows": 2,
+          "workflow-write": 2,
+          "jobs": 3,
+          "artifacts": 2,
+          "job-logs": 1
+        },
+        "throttledMs": 9400,
+        "rateLimitWaitMs": 0
+      },
+      "p5c-main-push-cold-rep2-starsling-baseline": {
+        "calls": 12,
+        "notModified": 33,
+        "graphql": 0,
+        "byCategory": {
+          "run-list": 3,
+          "workflows": 2,
+          "workflow-write": 2,
+          "jobs": 2,
+          "artifacts": 2,
+          "job-logs": 1
+        },
+        "throttledMs": 9400,
+        "rateLimitWaitMs": 0
+      },
+      "p5c-main-push-cold-rep2-github-baseline": {
+        "calls": 14,
+        "notModified": 43,
+        "graphql": 0,
+        "byCategory": {
+          "run-list": 3,
+          "workflows": 2,
+          "workflow-write": 2,
+          "jobs": 4,
+          "artifacts": 2,
+          "job-logs": 1
+        },
+        "throttledMs": 9400,
+        "rateLimitWaitMs": 0
+      },
+      "p5c-main-push-cold-rep2-starsling-patched": {
+        "calls": 12,
+        "notModified": 21,
+        "graphql": 0,
+        "byCategory": {
+          "run-list": 3,
+          "workflows": 2,
+          "workflow-write": 2,
+          "jobs": 2,
+          "artifacts": 2,
+          "job-logs": 1
+        },
+        "throttledMs": 7600,
+        "rateLimitWaitMs": 0
+      },
+      "p5c-main-push-cold-rep3-github-baseline": {
+        "calls": 13,
+        "notModified": 50,
+        "graphql": 0,
+        "byCategory": {
+          "run-list": 3,
+          "workflows": 2,
+          "workflow-write": 2,
+          "jobs": 3,
+          "artifacts": 2,
+          "job-logs": 1
+        },
+        "throttledMs": 9400,
+        "rateLimitWaitMs": 0
+      },
+      "p5c-main-push-cold-rep3-starsling-baseline": {
+        "calls": 13,
+        "notModified": 32,
+        "graphql": 0,
+        "byCategory": {
+          "run-list": 3,
+          "workflows": 2,
+          "workflow-write": 2,
+          "jobs": 3,
+          "artifacts": 2,
+          "job-logs": 1
+        },
+        "throttledMs": 9400,
+        "rateLimitWaitMs": 0
+      },
+      "p5c-main-push-cold-rep3-starsling-patched": {
+        "calls": 13,
+        "notModified": 20,
+        "graphql": 0,
+        "byCategory": {
+          "run-list": 3,
+          "workflows": 2,
+          "workflow-write": 2,
+          "jobs": 3,
+          "artifacts": 2,
+          "job-logs": 1
+        },
+        "throttledMs": 9400,
+        "rateLimitWaitMs": 0
+      },
+      "p5c-main-push-cold-rep4-starsling-patched": {
+        "calls": 13,
+        "notModified": 20,
+        "graphql": 0,
+        "byCategory": {
+          "run-list": 3,
+          "workflows": 2,
+          "workflow-write": 2,
+          "jobs": 3,
+          "artifacts": 2,
+          "job-logs": 1
+        },
+        "throttledMs": 9400,
+        "rateLimitWaitMs": 0
+      },
+      "p5c-main-push-cold-rep4-github-baseline": {
+        "calls": 13,
+        "notModified": 41,
+        "graphql": 0,
+        "byCategory": {
+          "run-list": 3,
+          "workflows": 2,
+          "workflow-write": 2,
+          "jobs": 3,
+          "artifacts": 2,
+          "job-logs": 1
+        },
+        "throttledMs": 9400,
+        "rateLimitWaitMs": 0
+      },
+      "p5c-main-push-cold-rep4-starsling-baseline": {
+        "calls": 13,
+        "notModified": 32,
+        "graphql": 0,
+        "byCategory": {
+          "run-list": 3,
+          "workflows": 2,
+          "workflow-write": 2,
+          "jobs": 3,
+          "artifacts": 2,
+          "job-logs": 1
+        },
+        "throttledMs": 9400,
+        "rateLimitWaitMs": 0
+      },
+      "p5c-main-push-cold-rep5-github-baseline": {
+        "calls": 13,
+        "notModified": 38,
+        "graphql": 0,
+        "byCategory": {
+          "run-list": 3,
+          "workflows": 2,
+          "workflow-write": 2,
+          "jobs": 3,
+          "artifacts": 2,
+          "job-logs": 1
+        },
+        "throttledMs": 9400,
+        "rateLimitWaitMs": 0
+      },
+      "p5c-main-push-cold-rep5-starsling-baseline": {
+        "calls": 12,
+        "notModified": 33,
+        "graphql": 0,
+        "byCategory": {
+          "run-list": 3,
+          "workflows": 2,
+          "workflow-write": 2,
+          "jobs": 2,
+          "artifacts": 2,
+          "job-logs": 1
+        },
+        "throttledMs": 9400,
+        "rateLimitWaitMs": 0
+      },
+      "p5c-main-push-cold-rep5-starsling-patched": {
+        "calls": 13,
+        "notModified": 20,
+        "graphql": 0,
+        "byCategory": {
+          "run-list": 3,
+          "workflows": 2,
+          "workflow-write": 2,
+          "jobs": 3,
+          "artifacts": 2,
+          "job-logs": 1
+        },
+        "throttledMs": 9400,
+        "rateLimitWaitMs": 0
+      }
+    }
+  },
+  "cacheResets": [
+    "p5c-main-push-cold-rep1-github-baseline",
+    "p5c-main-push-cold-rep1-starsling-baseline",
+    "p5c-main-push-cold-rep1-starsling-patched",
+    "p5c-main-push-cold-rep2-starsling-baseline",
+    "p5c-main-push-cold-rep2-github-baseline",
+    "p5c-main-push-cold-rep2-starsling-patched",
+    "p5c-main-push-cold-rep3-github-baseline",
+    "p5c-main-push-cold-rep3-starsling-baseline",
+    "p5c-main-push-cold-rep3-starsling-patched",
+    "p5c-main-push-cold-rep4-starsling-patched",
+    "p5c-main-push-cold-rep4-github-baseline",
+    "p5c-main-push-cold-rep4-starsling-baseline",
+    "p5c-main-push-cold-rep5-github-baseline",
+    "p5c-main-push-cold-rep5-starsling-baseline",
+    "p5c-main-push-cold-rep5-starsling-patched"
+  ]
+}

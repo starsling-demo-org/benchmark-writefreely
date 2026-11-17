@@ -1,0 +1,84 @@
+# Summarize a committed experiment in the Actions UI and, optionally, publish the README showcase to the
+# default branch. Runs from bench/control; experiment records live in experiments/<id>/.
+name: Benchmark report
+on:
+  push:
+    branches: [bench/control]
+    paths: ['experiments/*/experiment.json', 'experiments/*/assessed.json', 'showcase.json', 'reference/**']
+  workflow_dispatch:
+    inputs:
+      experiment:
+        description: Experiment ID (directory under experiments/)
+        required: true
+      publish:
+        description: Publish the showcase to the default branch
+        type: boolean
+        default: false
+  workflow_call:
+    inputs:
+      experiment:
+        type: string
+        required: true
+      publish:
+        type: boolean
+        default: false
+permissions:
+  contents: read
+concurrency:
+  group: bench-report
+jobs:
+  report:
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@f548e57e544e1ff5a4c46bf1e1b8685f8e4a348a
+      - uses: ./.github/actions/setup-bench
+      - name: Select experiment
+        id: select
+        env:
+          REQUESTED: ${{ inputs.experiment }}
+        run: |
+          # Default to the headline experiment named in showcase.json.
+          experiment="${REQUESTED:-$(node -p "require('./showcase.json').experiment || ''" 2>/dev/null)}"
+          # A new benchmark repository has no experiment yet: nothing to report, which is not a failure.
+          if [ -z "$experiment" ]; then echo "::notice::No experiment selected yet (showcase.json names none)"; exit 0; fi
+          if [ ! -d "experiments/$experiment" ]; then echo "::error::No experiment record found for $experiment"; exit 1; fi
+          input="experiments/$experiment/experiment.json"
+          if [ -f "experiments/$experiment/assessed.json" ]; then input="experiments/$experiment/assessed.json"; fi
+          echo "experiment=$experiment" >> "$GITHUB_OUTPUT"
+          echo "input=$input" >> "$GITHUB_OUTPUT"
+      - name: Render report files and README preview
+        if: steps.select.outputs.experiment != ''
+        env:
+          EXPERIMENT: ${{ steps.select.outputs.experiment }}
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          pnpm -s bench report --experiment "$EXPERIMENT" --out "reports/$EXPERIMENT" > /dev/null || true
+          pnpm -s bench showcase --experiment "$EXPERIMENT" --write "reports/$EXPERIMENT/README.md"
+      - name: Summarize GitHub vs StarSling
+        if: steps.select.outputs.experiment != ''
+        uses: ./
+        with:
+          input-json: ${{ steps.select.outputs.input }}
+          reference-dir: reference
+          fail-on-withheld: 'false'
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        if: steps.select.outputs.experiment != ''
+        with:
+          name: bench-report-${{ steps.select.outputs.experiment }}
+          path: reports/
+      - name: Publish showcase to the default branch
+        # Publishing on push keeps the README current as experiment records land on bench/control.
+        if: steps.select.outputs.experiment != '' && (github.event_name == 'push' || inputs.publish)
+        env:
+          EXPERIMENT: ${{ steps.select.outputs.experiment }}
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          # bench publish runs Git in its own object store, which does not inherit actions/checkout's credentials.
+          git config --global url."https://x-access-token:${GH_TOKEN}@github.com/".insteadOf "https://github.com/"
+          if [ -n "$(git ls-remote origin refs/tags/bench-controller-lease)" ]; then
+            echo "::notice::An experiment holds the repository lease; the showcase will publish after it finishes."
+            exit 0
+          fi
+          pnpm -s bench publish --experiment "$EXPERIMENT"

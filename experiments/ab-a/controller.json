@@ -1,0 +1,68 @@
+{
+  "owner": "ab-a",
+  "expectedRefs": {
+    "refs/heads/main": "ec9d1001f82a210a41cf28fd210839d7ee523052",
+    "refs/heads/develop": null
+  },
+  "workflowStates": {
+    ".github/workflows/docker-publish.yml": "absent"
+  },
+  "dispatches": {
+    "ab-a:ab-a-main-push-cold-rep1-starsling-baseline:main-push:starsling-baseline": {
+      "headSha": "c6b72a90c09176c4b62c0b5c215df6101af99b2d",
+      "dispatchedAt": "2026-11-15T09:09:47.029Z"
+    },
+    "ab-a:ab-a-main-push-cold-rep1-starsling-patched:main-push:starsling-patched": {
+      "headSha": "6d3cd006bae2e28e7a3f83ef9388b98b4870ec17",
+      "dispatchedAt": "2026-11-15T09:19:22.970Z"
+    },
+    "ab-a:ab-a-main-push-cold-rep2-starsling-patched:main-push:starsling-patched": {
+      "headSha": "6d3cd006bae2e28e7a3f83ef9388b98b4870ec17",
+      "dispatchedAt": "2026-11-15T09:21:56.914Z"
+    },
+    "ab-a:ab-a-main-push-cold-rep2-starsling-baseline:main-push:starsling-baseline": {
+      "headSha": "c6b72a90c09176c4b62c0b5c215df6101af99b2d",
+      "dispatchedAt": "2026-11-15T09:24:33.123Z"
+    },
+    "ab-a:ab-a-main-push-cold-rep3-starsling-baseline:main-push:starsling-baseline": {
+      "headSha": "c6b72a90c09176c4b62c0b5c215df6101af99b2d",
+      "dispatchedAt": "2026-11-15T09:34:07.503Z"
+    },
+    "ab-a:ab-a-main-push-cold-rep3-starsling-patched:main-push:starsling-patched": {
+      "headSha": "6d3cd006bae2e28e7a3f83ef9388b98b4870ec17",
+      "dispatchedAt": "2026-11-15T09:44:15.172Z"
+    },
+    "ab-a:ab-a-main-push-cold-rep4-starsling-patched:main-push:starsling-patched": {
+      "headSha": "6d3cd006bae2e28e7a3f83ef9388b98b4870ec17",
+      "dispatchedAt": "2026-11-15T09:46:48.991Z"
+    },
+    "ab-a:ab-a-main-push-cold-rep4-starsling-baseline:main-push:starsling-baseline": {
+      "headSha": "c6b72a90c09176c4b62c0b5c215df6101af99b2d",
+      "dispatchedAt": "2026-11-15T09:49:24.111Z"
+    },
+    "ab-a:ab-a-main-push-cold-rep5-starsling-baseline:main-push:starsling-baseline": {
+      "headSha": "c6b72a90c09176c4b62c0b5c215df6101af99b2d",
+      "dispatchedAt": "2026-11-15T09:59:13.444Z"
+    },
+    "ab-a:ab-a-main-push-cold-rep5-starsling-patched:main-push:starsling-patched": {
+      "headSha": "6d3cd006bae2e28e7a3f83ef9388b98b4870ec17",
+      "dispatchedAt": "2026-11-15T10:08:49.185Z"
+    }
+  },
+  "leaseSha": "6658700937a463d8e990a05f0d3322e9125d5d76",
+  "initialRefs": {
+    "refs/heads/bench/control": "99cb583e287bab9ef46083b89560c956541b995d",
+    "refs/heads/main": "ec9d1001f82a210a41cf28fd210839d7ee523052",
+    "refs/heads/starsling/develop": "7b148975d53fb0b8c8fa94ec353bb5a1130266bc"
+  },
+  "recovery": {
+    "phase": "completed",
+    "restoredRefs": {
+      "refs/heads/main": "ec9d1001f82a210a41cf28fd210839d7ee523052",
+      "refs/heads/develop": null
+    },
+    "disabledWorkflows": [
+      ".github/workflows/docker-publish.yml"
+    ]
+  }
+}

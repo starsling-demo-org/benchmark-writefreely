@@ -1,0 +1,5 @@
+{
+  "name": "benchmark-native-fixture",
+  "private": true,
+  "type": "module"
+}

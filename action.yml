@@ -1,0 +1,25 @@
+name: 'StarSling Whole-Pipeline Benchmark Reporter'
+description: 'Summarizes CI duration and CI minutes on GitHub-hosted runners vs StarSling Runners, per pipeline, job and step, with the claim checklist, via @actions/core.'
+inputs:
+  input-json:
+    description: 'Path to the experiment record (experiments/<id>/experiment.json) or its assessed.json'
+    required: true
+  reference-dir:
+    description: 'Directory of upstream reference snapshots (reference/<scenario>.json) for CI parity'
+    required: false
+  fail-on-withheld:
+    description: 'Fail the step when any claim is withheld (incomplete samples, parity or cache evidence)'
+    required: false
+    default: 'true'
+outputs:
+  complete:
+    description: 'Whether all requested paired repetitions completed and passed parity gates'
+  experiment-id:
+    description: 'Unique identifier for the benchmark experiment'
+  report-json-path:
+    description: 'Path to the generated benchmark-report.v1.json file'
+  report-csv-path:
+    description: 'Path to the generated benchmark-samples.v1.csv file'
+runs:
+  using: 'node24'
+  main: 'dist/index.js'

@@ -1,0 +1,29 @@
+{
+  "tests": [
+    {
+      "testId": "go-binary:linux/amd64",
+      "verdict": "passed",
+      "mode": "executed"
+    },
+    {
+      "testId": "go-binary:linux/arm64",
+      "verdict": "passed",
+      "mode": "executed"
+    },
+    {
+      "testId": "image:linux/amd64",
+      "verdict": "passed",
+      "mode": "executed"
+    },
+    {
+      "testId": "image:linux/arm64",
+      "verdict": "passed",
+      "mode": "executed"
+    },
+    {
+      "testId": "ui",
+      "verdict": "passed",
+      "mode": "executed"
+    }
+  ]
+}
